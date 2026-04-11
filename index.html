@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- PWA Core -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#06B6D4" />
+
+    <!-- Ícones -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+    <!-- iOS PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Piripá" />
+
+    <!-- Android / Chrome -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Piripá Transparente" />
+
+    <!-- SEO -->
+    <title>Piripá Transparente — Transparência Pública Municipal</title>
+    <meta name="description" content="Acompanhe cada centavo gasto pela Prefeitura de Piripá-BA. Despesas, receitas, licitações e muito mais em tempo real." />
+    <meta name="keywords" content="piripá, transparência, prefeitura, gastos públicos, bahia, despesas, licitações" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Piripá Transparente" />
+    <meta property="og:description" content="Cada centavo gasto pela Prefeitura de Piripá-BA, em tempo real." />
+    <meta property="og:image" content="/icons/icon-512x512.png" />
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;900&display=swap" rel="stylesheet" />
+
+    <!-- Windows -->
+    <meta name="msapplication-TileColor" content="#060F1E" />
+    <meta name="msapplication-TileImage" content="/icons/icon-144x144.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Registrar Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then(reg => {
+              console.log('[PWA] Service Worker registrado:', reg.scope);
+              setInterval(() => reg.update(), 30 * 60 * 1000);
+            })
+            .catch(err => console.warn('[PWA] SW falhou:', err));
+        });
+      }
+    </script>
+  </body>
+</html>
