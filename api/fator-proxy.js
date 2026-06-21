@@ -7,18 +7,33 @@
  * Fontes:
  *  - Fator Sistemas (transparencia.fatorsistemas.com.br) → despesas + receitas
  *  - SAI2 (sai2.io.org.br) → licitações JSON puro via POST
+ *  - Portal da Transparência Federal (api.portaldatransparencia.gov.br) → transferências + Bolsa Família
+ *  - SICONFI (apidatalake.tesouro.gov.br) → RREO multi-ano (histórico)
  *
  * Endpoints:
  *   GET /api/fator-proxy?endpoint=totais
  *   GET /api/fator-proxy?endpoint=despesa&inicio=01/01/2025&fim=31/01/2025
  *   GET /api/fator-proxy?endpoint=receita&inicio=01/01/2025&fim=31/01/2025
  *   GET /api/fator-proxy?endpoint=licitacoes&ano=2025
+ *   GET /api/fator-proxy?endpoint=categorias&ano=2024
+ *   GET /api/fator-proxy?endpoint=transferencias&ano=2024
+ *   GET /api/fator-proxy?endpoint=bolsafamilia&mesAno=202412
+ *   GET /api/fator-proxy?endpoint=historico&anoInicio=2019&anoFim=2024
  */
 
 const FATOR_BASE = "https://transparencia.fatorsistemas.com.br/dados";
 const SAI2_BASE  = "https://sai2.io.org.br/v3";
 const FATOR_ID   = "pm_piripa";
 const SAI2_ORG   = 1820;
+
+// Portal da Transparência Federal
+const PORTAL_BASE = "https://api.portaldatransparencia.gov.br/api-de-dados";
+const PORTAL_KEY  = process.env.VITE_PORTAL_API_KEY || process.env.PORTAL_API_KEY || "";
+
+// SICONFI
+const SICONFI_BASE = "https://apidatalake.tesouro.gov.br/ords/siconfi/tt";
+const IBGE_CODE    = "2924702";
+const UF           = "BA";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -27,6 +42,14 @@ async function fetchISO(url) {
   if (!res.ok) throw new Error(`Fator HTTP ${res.status}`);
   const buf = await res.arrayBuffer();
   return new TextDecoder("iso-8859-1").decode(buf);
+}
+
+async function fetchJSON(url, headers = {}) {
+  const res = await fetch(url, {
+    headers: { "User-Agent": "PiripaTransparente/1.0", Accept: "application/json", ...headers },
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status} from ${new URL(url).hostname}`);
+  return res.json();
 }
 
 async function postSAI2(path, body) {
@@ -119,7 +142,7 @@ function parseDespesaDialog(txt) {
     fase:       fld(txt, /Fase:\s*(.+?)\s*N[º°o]/i),
     data:       fld(txt, /Data:\s*([\d\/]+)/i),
     credor:     fld(txt, /Credor:\s*(.+?)\s*(?:CPF|CNPJ):/i),
-    cnpj:       fld(txt, /(?:CPF|CNPJ):\s*([\d.\\/\-xX]+)/i),
+    cnpj:       fld(txt, /(?:CPF|CNPJ):\s*([\d.\\\/\-xX]+)/i),
     historico:  fld(txt, /Bem\s*\/\s*Servi[çc]o\s*prestado:\s*(.+?)\s*Fun[çc][ãa]o:/i),
     funcao:     fld(txt, /Fun[çc][ãa]o:\s*(.+?)\s*Sub-Fun[çc][ãa]o:/i),
     subfuncao:  fld(txt, /Sub-Fun[çc][ãa]o:\s*(.+?)\s*Programa:/i),
@@ -195,6 +218,33 @@ function gerarLinks(item) {
   return links;
 }
 
+// ── Mapeamento de funções para cores e ícones ─────────────────────────────────
+const FUNCAO_MAP = {
+  "educação":            { cor: "#3B82F6", icone: "BookOpen" },
+  "educacao":            { cor: "#3B82F6", icone: "BookOpen" },
+  "saúde":               { cor: "#EF4444", icone: "Heart" },
+  "saude":               { cor: "#EF4444", icone: "Heart" },
+  "administração":       { cor: "#8B5CF6", icone: "Users" },
+  "administracao":       { cor: "#8B5CF6", icone: "Users" },
+  "assistência social":  { cor: "#10B981", icone: "Shield" },
+  "assistencia social":  { cor: "#10B981", icone: "Shield" },
+  "urbanismo":           { cor: "#F59E0B", icone: "HardHat" },
+  "agricultura":         { cor: "#059669", icone: "TreePine" },
+  "saneamento":          { cor: "#06B6D4", icone: "Building2" },
+  "cultura":             { cor: "#EC4899", icone: "Building2" },
+  "transporte":          { cor: "#F97316", icone: "Building2" },
+  "desporto e lazer":    { cor: "#14B8A6", icone: "Building2" },
+  "legislativa":         { cor: "#6366F1", icone: "Building2" },
+};
+
+function mapFuncao(nome) {
+  const key = (nome || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+  for (const [k, v] of Object.entries(FUNCAO_MAP)) {
+    if (key.includes(k.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) return v;
+  }
+  return { cor: "#6B7280", icone: "Building2" };
+}
+
 // ── Handler principal ─────────────────────────────────────────────────────────
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -209,6 +259,9 @@ export default async function handler(req, res) {
     funcao     = "-1",
     fornecedor = "",
     ano        = String(new Date().getFullYear()),
+    mesAno     = "",
+    anoInicio  = "2019",
+    anoFim     = String(new Date().getFullYear() - 1),
   } = req.query;
 
   try {
@@ -312,6 +365,177 @@ export default async function handler(req, res) {
         ],
       }));
       return res.json({ total: items.length, ano: parseInt(ano), items });
+    }
+
+    // ── CATEGORIAS (Fator Sistemas — agrupa despesas do ano por função) ───────
+    if (endpoint === "categorias") {
+      const anoInt = parseInt(ano);
+      const ini = `01/01/${anoInt}`;
+      const fim = `31/12/${anoInt}`;
+      const params = new URLSearchParams({
+        id: FATOR_ID, unidade_gestora: "0", tipo: "-1",
+        fornecedor: "", cpfcnpj: "",
+        data_publicacao: ini, data_publicacao_fim: fim,
+        Numero: "", NProcesso: "", funcao: "-1", subfuncao: "-1",
+        Despesa: "", Historico: "", fonte: "-1", acao: "-1",
+        Valor: "", modalidade: "-1", Categoria_Economica: "-1",
+        Grupo_Despesa: "-1", Modalidade_Aplicacao: "-1",
+        Elemento: "-1", Subelemento: "-1", nContrato: "",
+      });
+      const html    = await fetchISO(`${FATOR_BASE}/carregaDespesa.php?${params}`);
+      const dialogs = extractDialogs(html, parseDespesaDialog);
+
+      // Agrupar por função
+      const funcoes = {};
+      for (const [, det] of Object.entries(dialogs)) {
+        const funcaoNome = det.funcao || "Outros";
+        if (!funcoes[funcaoNome]) funcoes[funcaoNome] = 0;
+        funcoes[funcaoNome] += det.valor;
+      }
+
+      // Se não encontrou detalhes, tentar agrupar pelas linhas da tabela
+      if (Object.keys(funcoes).length === 0) {
+        const rows = parseTableRows(html);
+        const totalFromRows = rows.reduce((s, c) => s + parseBRL(c[4]), 0);
+        return res.json({
+          source: "fator",
+          ano: anoInt,
+          total: totalFromRows,
+          categorias: [],
+          _note: "Sem detalhes de função disponíveis nos dialogs"
+        });
+      }
+
+      const total = Object.values(funcoes).reduce((s, v) => s + v, 0);
+      const categorias = Object.entries(funcoes)
+        .map(([nome, valor]) => {
+          const mapped = mapFuncao(nome);
+          return {
+            nome,
+            valor,
+            pct:   total > 0 ? parseFloat(((valor / total) * 100).toFixed(1)) : 0,
+            cor:   mapped.cor,
+            icone: mapped.icone,
+          };
+        })
+        .sort((a, b) => b.valor - a.valor);
+
+      return res.json({ source: "fator", ano: anoInt, total, categorias });
+    }
+
+    // ── TRANSFERÊNCIAS (Portal da Transparência Federal) ──────────────────────
+    if (endpoint === "transferencias") {
+      if (!PORTAL_KEY) {
+        return res.json({ source: "unavailable", items: [], error: "Chave API não configurada" });
+      }
+      const anoInt = parseInt(ano);
+      const mes = `${anoInt}12`;
+      const headers = { "chave-api-dados": PORTAL_KEY };
+
+      const [bolsaRes, bpcRes] = await Promise.allSettled([
+        fetchJSON(`${PORTAL_BASE}/novo-bolsa-familia-por-municipio?mesAno=${mes}&codigoIbge=${IBGE_CODE}&pagina=1`, headers)
+          .catch(() => fetchJSON(`${PORTAL_BASE}/bolsa-familia-por-municipio?mesAno=${mes}&codigoIbge=${IBGE_CODE}&pagina=1`, headers)),
+        fetchJSON(`${PORTAL_BASE}/bpc-por-municipio?mesAno=${mes}&codigoIbge=${IBGE_CODE}&pagina=1`, headers),
+      ]);
+
+      const items = [];
+      if (bolsaRes.status === "fulfilled" && Array.isArray(bolsaRes.value) && bolsaRes.value.length > 0) {
+        const bf = bolsaRes.value[0];
+        items.push({
+          programa: bf.tipo?.descricao || "Bolsa Família",
+          valor: parseFloat(bf.valor || 0),
+          beneficiarios: parseInt(bf.quantidadeBeneficiados || 0),
+          origem: "Federal",
+          area: "Assistência Social",
+        });
+      }
+      if (bpcRes.status === "fulfilled" && Array.isArray(bpcRes.value) && bpcRes.value.length > 0) {
+        const bpc = bpcRes.value[0];
+        items.push({
+          programa: bpc.tipo?.descricao || "BPC / LOAS",
+          valor: parseFloat(bpc.valor || 0),
+          beneficiarios: parseInt(bpc.quantidadeBeneficiados || 0),
+          origem: "Federal",
+          area: "Assistência Social",
+        });
+      }
+      return res.json({ source: "portal_federal", ano: anoInt, total: items.length, items });
+    }
+
+    // ── BOLSA FAMÍLIA (Portal da Transparência Federal) ───────────────────────
+    if (endpoint === "bolsafamilia") {
+      if (!PORTAL_KEY) {
+        return res.json({ source: "unavailable", item: null, error: "Chave API não configurada" });
+      }
+      const mes = mesAno || `${ano}12`;
+      // Tenta o endpoint novo primeiro, depois o antigo
+      let data;
+      try {
+        data = await fetchJSON(
+          `${PORTAL_BASE}/novo-bolsa-familia-por-municipio?mesAno=${mes}&codigoIbge=${IBGE_CODE}&pagina=1`,
+          { "chave-api-dados": PORTAL_KEY }
+        );
+      } catch {
+        data = await fetchJSON(
+          `${PORTAL_BASE}/bolsa-familia-por-municipio?mesAno=${mes}&codigoIbge=${IBGE_CODE}&pagina=1`,
+          { "chave-api-dados": PORTAL_KEY }
+        );
+      }
+      if (!Array.isArray(data) || data.length === 0) {
+        return res.json({ source: "portal_federal", item: null });
+      }
+      const item = data[0];
+      return res.json({
+        source: "portal_federal",
+        item: {
+          programa:      "Bolsa Família / CadÚnico",
+          valor:         parseFloat(item.valor || item.valorTotalBolsaFamilia || 0),
+          beneficiarios: parseInt(item.quantidadeBeneficiados || item.quantidadeBeneficiarios || 0),
+          origem:        "Federal",
+          area:          "Assistência Social",
+        },
+      });
+    }
+
+    // ── HISTÓRICO MULTI-ANO (SICONFI) ─────────────────────────────────────────
+    if (endpoint === "historico") {
+      const ai = parseInt(anoInicio);
+      const af = parseInt(anoFim);
+      const anos = [];
+      for (let y = ai; y <= af; y++) anos.push(y);
+
+      const results = await Promise.all(
+        anos.map(async (y) => {
+          // Tentar bimestre 6, 5, 4... até achar dados
+          const bimestres = y < new Date().getFullYear() ? [6, 5, 4, 3, 2, 1] : [4, 3, 2, 1];
+          for (const b of bimestres) {
+            try {
+              const url = `${SICONFI_BASE}/rreo?an_exercicio=${y}&in_periodicidade=B&nr_periodo=${b}&co_tipo_demonstrativo=RREO&no_uf=${UF}&co_municipio=${IBGE_CODE}`;
+              const data = await fetchJSON(url);
+              if (data?.items?.length) {
+                const items = data.items;
+                const soma = (filtro, campo) =>
+                  items.filter(filtro).reduce((s, i) => s + parseFloat(i[campo] || 0), 0);
+                const receita = soma(
+                  i => (i.nome_conta || "").toLowerCase().includes("receita total") || i.cod_conta === "ReceitaTotal",
+                  "valor_orcado"
+                );
+                const despesa = soma(
+                  i => (i.nome_conta || "").toLowerCase().includes("despesa total") || i.cod_conta === "DespesaTotal",
+                  "valor_realizado"
+                );
+                if (receita > 0 || despesa > 0) {
+                  return { ano: String(y), receita: parseFloat((receita / 1e6).toFixed(1)), despesa: parseFloat((despesa / 1e6).toFixed(1)) };
+                }
+              }
+            } catch { /* skip */ }
+          }
+          return null;
+        })
+      );
+
+      const historico = results.filter(Boolean);
+      return res.json({ source: "siconfi", historico });
     }
 
     return res.status(400).json({ error: "endpoint inválido" });

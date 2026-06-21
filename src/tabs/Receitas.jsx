@@ -1,14 +1,28 @@
 import {
   PieChart, Pie, Cell, Tooltip, ResponsiveContainer,
 } from "recharts";
-import { AlertCircle, Landmark } from "lucide-react";
+import { AlertCircle, Landmark, Wifi, WifiOff } from "lucide-react";
 import Card from "../components/Card";
 import { Pill, SectionTitle } from "../components/ui";
 import { fmt, fmtR, pc } from "../lib/utils";
 import { CONFIG } from "../lib/config";
 
-export default function Receitas({ data }) {
+function SourceBadge({ source }) {
+  const live = source === "portal_federal";
+  const label = live ? "Portal Federal ao vivo" :
+                source === "sem_chave" ? "Chave API pendente" : "Dados estimados";
+  return (
+    <span className={`inline-flex items-center gap-1 text-[10px] font-semibold px-1.5 py-0.5 rounded-full
+      ${live ? "text-emerald-400 bg-emerald-400/10" : "text-amber-400 bg-amber-400/10"}`}>
+      {live ? <Wifi size={8} /> : <WifiOff size={8} />}
+      {label}
+    </span>
+  );
+}
+
+export default function Receitas({ data, sources }) {
   const { transferencias, resumo } = data;
+  const src = sources || {};
   const totalFederal  = transferencias.filter(t => t.origem === "Federal").reduce((s, t) => s + t.valor, 0);
   const totalEstadual = transferencias.filter(t => t.origem === "Estadual").reduce((s, t) => s + t.valor, 0);
   const totalPropria  = transferencias.filter(t => t.origem === "Própria").reduce((s, t) => s + t.valor, 0);
@@ -21,7 +35,10 @@ export default function Receitas({ data }) {
 
   return (
     <div className="space-y-6">
-      <SectionTitle sub="De onde vem o dinheiro da prefeitura">💰 Fontes de Receita</SectionTitle>
+      <SectionTitle sub="De onde vem o dinheiro da prefeitura"
+        action={<SourceBadge source={src.transferencias || "mock"} />}>
+        💰 Fontes de Receita
+      </SectionTitle>
 
       <Card className="border-emerald-500/20">
         <p className="text-xs text-slate-400">Total arrecadado em {resumo.ano}</p>
@@ -47,11 +64,30 @@ export default function Receitas({ data }) {
             <div key={i} className="text-center">
               <div className="w-3 h-3 rounded-full mx-auto mb-1" style={{ background: d.cor }} />
               <p className="text-xs text-slate-400">{d.name}</p>
-              <p className="text-xs font-bold text-white">{((d.value / resumo.receita) * 100).toFixed(0)}%</p>
+              <p className="text-xs font-bold text-white">{resumo.receita > 0 ? ((d.value / resumo.receita) * 100).toFixed(0) : 0}%</p>
             </div>
           ))}
         </div>
       </Card>
+
+      {src.transferencias !== "portal_federal" && (
+        <Card className="border-amber-500/20 bg-amber-500/5">
+          <div className="flex gap-2">
+            <AlertCircle size={16} className="text-amber-400 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-sm font-bold text-amber-400">
+                {src.transferencias === "sem_chave" ? "Chave API não configurada" : "Dados estimados"}
+              </p>
+              <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                {src.transferencias === "sem_chave"
+                  ? "Para obter dados oficiais de transferências federais, registre uma chave gratuita em portaldatransparencia.gov.br/api-de-dados/cadastrar-email e adicione como VITE_PORTAL_API_KEY no .env"
+                  : "Os valores de transferências abaixo são estimativas baseadas em anos anteriores. Para dados ao vivo, configure a chave do Portal da Transparência Federal."
+                }
+              </p>
+            </div>
+          </div>
+        </Card>
+      )}
 
       <Card className="border-amber-500/20 bg-amber-500/5">
         <div className="flex gap-2">
@@ -59,9 +95,9 @@ export default function Receitas({ data }) {
           <div>
             <p className="text-sm font-bold text-amber-400">Dependência de repasses</p>
             <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-              {(((totalFederal + totalEstadual) / resumo.receita) * 100).toFixed(0)}% da receita vem de transferências federais e estaduais.
+              {resumo.receita > 0 ? (((totalFederal + totalEstadual) / resumo.receita) * 100).toFixed(0) : 0}% da receita vem de transferências federais e estaduais.
               Municípios pequenos como {CONFIG.municipio} dependem fortemente do FPM e repasses do SUS/FUNDEB.
-              Receita própria (ISS, IPTU) representa apenas {((totalPropria / resumo.receita) * 100).toFixed(0)}%.
+              Receita própria (ISS, IPTU) representa apenas {resumo.receita > 0 ? ((totalPropria / resumo.receita) * 100).toFixed(0) : 0}%.
             </p>
           </div>
         </div>
@@ -88,7 +124,7 @@ export default function Receitas({ data }) {
             </div>
             <div className="text-right flex-shrink-0">
               <p className="font-black text-white text-sm">{fmt(t.valor)}</p>
-              <p className="text-xs text-slate-500">{((t.valor / resumo.receita) * 100).toFixed(1)}%</p>
+              <p className="text-xs text-slate-500">{resumo.receita > 0 ? ((t.valor / resumo.receita) * 100).toFixed(1) : 0}%</p>
             </div>
           </Card>
         ))}

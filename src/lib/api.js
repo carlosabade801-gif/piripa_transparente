@@ -1,5 +1,8 @@
 import { CONFIG } from "./config";
 import { MOCK } from "./mock";
+import {
+  Users, Heart, BookOpen, HardHat, Shield, TreePine, Building2,
+} from "lucide-react";
 
 // ╔══════════════════════════════════════════════════════╗
 // ║  URLS DAS APIs                                       ║
@@ -17,32 +20,8 @@ export const siconfiUrl = {
     `&co_tipo_demonstrativo=RGF&no_uf=${CONFIG.uf}&co_municipio=${CONFIG.ibgeCode}`,
 };
 
-// 2. Portal da Transparência Federal (chave no header)
-const PORTAL_KEY = CONFIG.chavePortal;
-const PORTAL_BASE = "https://api.portaldatransparencia.gov.br/api-de-dados";
-const portalHeaders = { "chave-api-dados": PORTAL_KEY };
-
-export const portalUrl = {
-  // Transferências voluntárias (convênios, emendas, etc.)
-  transferencias: (ano) =>
-    `${PORTAL_BASE}/transferencias-voluntarias?municipio=${CONFIG.ibgeCode}&ano=${ano}&pagina=1&quantidade=100`,
-
-  // Bolsa Família — mês mais recente (formato YYYYMM)
-  bolsaFamilia: (mesAno) =>
-    `${PORTAL_BASE}/bolsa-familia-por-municipio?mesAno=${mesAno}&codigoIbge=${CONFIG.ibgeCode}&pagina=1`,
-
-  // Novo Bolsa Família (endpoint atual)
-  novoBolsaFamilia: (mesAno) =>
-    `${PORTAL_BASE}/novo-bolsa-familia-por-municipio?mesAno=${mesAno}&codigoIbge=${CONFIG.ibgeCode}&pagina=1`,
-
-  // Convênios ativos
-  convenios: (ano) =>
-    `${PORTAL_BASE}/convenios?municipioConvenente=${CONFIG.ibgeCode}&ano=${ano}&pagina=1&quantidade=50`,
-
-  // Emendas parlamentares
-  emendas: (ano) =>
-    `${PORTAL_BASE}/emendas?municipio=${CONFIG.ibgeCode}&ano=${ano}&pagina=1`,
-};
+// 2. Proxy local/Vercel — resolve CORS para Fator, SAI2, Portal Federal
+const PROXY = "/api/fator-proxy";
 
 // 3. IBGE (sem chave)
 export const ibgeUrl = {
@@ -53,7 +32,7 @@ export const ibgeUrl = {
 // ╔══════════════════════════════════════════════════════╗
 // ║  FETCH SEGURO — timeout + fallback automático        ║
 // ╚══════════════════════════════════════════════════════╝
-export async function safeFetch(url, options = {}, fallback = null, timeoutMs = 8000) {
+export async function safeFetch(url, options = {}, fallback = null, timeoutMs = 12000) {
   const ctrl  = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
@@ -65,11 +44,6 @@ export async function safeFetch(url, options = {}, fallback = null, timeoutMs = 
     clearTimeout(timer);
     return { data: fallback, source: "mock", ok: false, error: e.message };
   }
-}
-
-// Fetch com chave do Portal da Transparência
-export function portalFetch(url, fallback = null) {
-  return safeFetch(url, { headers: portalHeaders }, fallback);
 }
 
 // ╔══════════════════════════════════════════════════════╗
@@ -94,32 +68,16 @@ export function normalizarRREO(raw) {
   return { receita: receita || null, despesa: despesa || null };
 }
 
-// Normaliza transferências do Portal → formato do MOCK
-export function normalizarTransferencias(raw) {
-  if (!Array.isArray(raw) || raw.length === 0) return null;
-
-  return raw.map(t => ({
-    programa:  t.programa?.nome || t.descricao || t.objeto || "Transferência",
-    valor:     parseFloat(t.valor || t.valorTotalTransferido || 0),
-    origem:    "Federal",
-    area:      t.funcao?.descricao || t.programa?.descricao || "Geral",
-    dataInicio: t.dataInicio || null,
-    situacao:  t.situacao?.descricao || null,
-  })).filter(t => t.valor > 0);
-}
-
-// Normaliza Bolsa Família
-export function normalizarBolsaFamilia(raw) {
-  if (!Array.isArray(raw) || raw.length === 0) return null;
-  const item = raw[0];
-  return {
-    programa:  "Bolsa Família / CadÚnico",
-    valor:     parseFloat(item.valor || item.valorTotalBolsaFamilia || 0),
-    beneficiarios: parseInt(item.quantidadeBeneficiados || item.quantidadeBeneficiarios || 0),
-    origem:    "Federal",
-    area:      "Assistência Social",
-  };
-}
+// Mapa de ícones por nome retornado do proxy
+const ICONE_MAP = {
+  BookOpen: BookOpen,
+  Heart: Heart,
+  Users: Users,
+  Shield: Shield,
+  HardHat: HardHat,
+  TreePine: TreePine,
+  Building2: Building2,
+};
 
 // ╔══════════════════════════════════════════════════════╗
 // ║  LOADER PRINCIPAL                                    ║
@@ -127,7 +85,7 @@ export function normalizarBolsaFamilia(raw) {
 // Tenta bimestres do mais recente (6) ao 1º — útil para anos em curso
 async function fetchRREOComFallback(ano) {
   const anoAtual    = new Date().getFullYear();
-  const bimestres   = ano < anoAtual ? [6, 5, 4, 3, 2, 1] : [4, 3, 2, 1]; // ano corrente: evita buscar bimestres futuros
+  const bimestres   = ano < anoAtual ? [6, 5, 4, 3, 2, 1] : [4, 3, 2, 1];
   for (const b of bimestres) {
     const result = await safeFetch(siconfiUrl.rreo(ano, b), {}, null);
     if (result.ok && result.data?.items?.length) {
@@ -141,21 +99,20 @@ async function fetchRREOComFallback(ano) {
 }
 
 export async function loadMunicipioData(ano) {
-  // Mês mais recente para Bolsa Família
-  const mesAno = `${ano}12`;
-
-  // SICONFI: sem chave, sem CORS, funciona direto
-  // Portal Federal: tem CORS bloqueado em dev — usar proxy ou VITE_PORTAL_API_KEY em produção
-  const [siconfiResult] = await Promise.all([
-    fetchRREOComFallback(ano),
+  // ── Buscar tudo em paralelo via proxy (sem CORS) ──
+  const [siconfiResult, categoriasResult, transferResult, historicoResult] = await Promise.all([
+    // SICONFI direto (CORS aberto em produção) com fallback via proxy
+    fetchRREOComFallback(ano).then(r => r || null),
+    safeFetch(`${PROXY}?endpoint=categorias&ano=${ano}`, {}, null, 15000),
+    safeFetch(`${PROXY}?endpoint=transferencias&ano=${ano}`, {}, null, 10000),
+    safeFetch(`${PROXY}?endpoint=historico&anoInicio=2019&anoFim=${ano}`, {}, null, 25000),
   ]);
-  const transferResult = { ok: false };
-  const bfResult = { ok: false };
 
   // ── Resumo orçamentário (SICONFI) ──
   let resumoFinal = { ...MOCK.resumo, ano };
   let srcFinal    = "mock";
 
+  // Tentar SICONFI direto primeiro
   if (siconfiResult) {
     resumoFinal = {
       ano,
@@ -166,23 +123,81 @@ export async function loadMunicipioData(ano) {
     };
     srcFinal = "api";
   }
+  // Fallback: extrair do histórico (que vem pelo proxy, sem CORS)
+  else if (historicoResult.ok && historicoResult.data?.historico?.length > 0) {
+    const entry = historicoResult.data.historico.find(h => String(h.ano) === String(ano));
+    if (entry) {
+      const recReal = entry.receita * 1e6;
+      const desReal = entry.despesa * 1e6;
+      resumoFinal = {
+        ano,
+        receita:   recReal,
+        despesa:   desReal,
+        superavit: recReal - desReal,
+        bimestre:  null,
+      };
+      srcFinal = "api";
+    }
+  }
 
-  // ── Transferências — usa dados mock (Portal da Transparência Federal
-  // tem CORS bloqueado em dev; em produção usar VITE_PORTAL_API_KEY) ──
+  // ── Categorias (Fator Sistemas via proxy) ──
+  let categoriasFinal = MOCK.categorias;
+  let categoriasSrc   = "mock";
+
+  if (categoriasResult.ok && categoriasResult.data?.categorias?.length > 0) {
+    categoriasFinal = categoriasResult.data.categorias.map(c => ({
+      nome:  c.nome,
+      valor: c.valor,
+      pct:   c.pct,
+      cor:   c.cor,
+      icone: ICONE_MAP[c.icone] || Building2,
+    }));
+    categoriasSrc = "fator";
+  }
+
+  // ── Transferências (Portal Federal via proxy, ou mock) ──
   let transferFinal = MOCK.transferencias;
+  let transferSrc   = "mock";
+
+  if (transferResult.ok && transferResult.data?.items?.length > 0) {
+    transferFinal = transferResult.data.items;
+    transferSrc   = "portal_federal";
+  } else if (transferResult.ok && transferResult.data?.source === "unavailable") {
+    transferSrc = "sem_chave";
+  }
+
+  // ── Histórico (SICONFI multi-ano via proxy) ──
+  let historicoFinal = MOCK.historico;
+  let historicoSrc   = "mock";
+
+  if (historicoResult.ok && historicoResult.data?.historico?.length > 0) {
+    historicoFinal = historicoResult.data.historico;
+    historicoSrc   = "siconfi";
+  }
 
   return {
     data: {
       ...MOCK,
       resumo:         resumoFinal,
+      categorias:     categoriasFinal,
       transferencias: transferFinal,
+      historico:      historicoFinal,
     },
     source: srcFinal,
-    // Metadados de debug (útil no console)
+    // Metadados de debug e UI (útil no console e para badges)
     _debug: {
-      siconfi:      siconfiResult ? `✅ ao vivo (bimestre ${siconfiResult.bimestre})` : "❌ mock (sem dados)",
-      transferencias: transferResult.ok ? "✅ ao vivo" : `❌ mock (${transferResult.error})`,
-      bolsaFamilia: bfResult.ok ? "✅ ao vivo" : `❌ mock (${bfResult.error})`,
+      siconfi:        srcFinal === "api" ? `✅ ao vivo` : "❌ mock (sem dados)",
+      categorias:     categoriasSrc === "fator" ? "✅ ao vivo (Fator Sistemas)" : "❌ mock (estimativa)",
+      transferencias: transferSrc === "portal_federal" ? "✅ ao vivo (Portal Federal)" :
+                      transferSrc === "sem_chave" ? "⚠️ mock (chave API não configurada)" :
+                      `❌ mock (${transferResult.error || "sem dados"})`,
+      historico:      historicoSrc === "siconfi" ? "✅ ao vivo (SICONFI)" : "❌ mock (estimativa)",
+    },
+    _sources: {
+      categorias:     categoriasSrc,
+      transferencias: transferSrc,
+      historico:      historicoSrc,
     },
   };
 }
+

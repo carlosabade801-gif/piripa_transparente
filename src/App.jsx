@@ -217,22 +217,25 @@ export default function App() {
   const [tab,        setTab]    = useState("visao");
   const [data,       setData]   = useState(null);
   const [dataSource, setSource] = useState("mock");
+  const [sources,    setSources]= useState({});
   const [loading,    setLoading]= useState(true);
   const [ano,        setAno]    = useState(anoDefault);
   const tabsRef = useRef(null);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
-    const { data: d, source: s, _debug } = await loadMunicipioData(ano);
+    const { data: d, source: s, _debug, _sources } = await loadMunicipioData(ano);
     if (_debug) {
       console.group("🏛️ Piripá Transparente — status das APIs");
       console.log("SICONFI:        ", _debug.siconfi);
+      console.log("Categorias:     ", _debug.categorias);
       console.log("Transferências: ", _debug.transferencias);
-      console.log("Bolsa Família:  ", _debug.bolsaFamilia);
+      console.log("Histórico:      ", _debug.historico);
       console.groupEnd();
     }
     setData(d);
     setSource(s);
+    setSources(_sources || {});
     setLoading(false);
   }, [ano]);
 
@@ -306,10 +309,10 @@ export default function App() {
       {/* ── Conteúdo ── */}
       {!loading && data && (
         <main className="max-w-lg mx-auto px-4 py-5 pb-20">
-          {tab === "visao"       && <Visao       data={data} dataSource={dataSource} loading={loading} />}
+          {tab === "visao"       && <Visao       data={data} dataSource={dataSource} loading={loading} sources={sources} />}
           {tab === "custopramim" && <CustoPraMim data={data} />}
           {tab === "despesas"    && <Despesas    data={data} />}
-          {tab === "receitas"    && <Receitas    data={data} />}
+          {tab === "receitas"    && <Receitas    data={data} sources={sources} />}
           {tab === "licitacoes"  && <Licitacoes  data={data} />}
           {tab === "denuncias"   && <Denuncias />}
           {tab === "chatia"      && <ChatIA      data={data} />}
@@ -325,7 +328,7 @@ export default function App() {
       {/* ── Footer ── */}
       <footer className="fixed bottom-0 left-0 right-0 bg-[#060F1E]/95 backdrop-blur border-t border-[#1A3356] py-2.5">
         <p className="text-center text-[10px] text-slate-700">
-          Dados públicos • SICONFI · Portal Transparência Federal · IBGE · TCM-BA
+          Dados públicos • SICONFI · Fator Sistemas · SAI2 · IBGE · TCM-BA
         </p>
       </footer>
     </div>

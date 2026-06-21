@@ -2,15 +2,29 @@ import {
   AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip, Legend,
   PieChart, Pie, Cell, ResponsiveContainer,
 } from "recharts";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Wifi, WifiOff } from "lucide-react";
 import { TrendingUp, DollarSign, Users, CheckCircle } from "lucide-react";
 import Card from "../components/Card";
 import { ApiStatus, SectionTitle, KpiCard } from "../components/ui";
 import { fmt, fmtR, pc } from "../lib/utils";
 import { CONFIG } from "../lib/config";
 
-export default function Visao({ data, dataSource, loading }) {
+function SourceBadge({ source, labels }) {
+  const live = source !== "mock";
+  const label = labels?.[source] || (live ? "Dados ao vivo" : "Estimativa");
+  return (
+    <span className={`inline-flex items-center gap-1 text-[10px] font-semibold px-1.5 py-0.5 rounded-full
+      ${live ? "text-emerald-400 bg-emerald-400/10" : "text-amber-400 bg-amber-400/10"}`}>
+      {live ? <Wifi size={8} /> : <WifiOff size={8} />}
+      {label}
+    </span>
+  );
+}
+
+export default function Visao({ data, dataSource, loading, sources }) {
   const { resumo, historico, categorias } = data;
+  const src = sources || {};
+
   return (
     <div className="space-y-8">
       {/* Hero */}
@@ -43,7 +57,10 @@ export default function Visao({ data, dataSource, loading }) {
 
       {/* Histórico */}
       <div>
-        <SectionTitle sub="Receita vs Despesa — em R$ milhões">📈 Evolução Orçamentária</SectionTitle>
+        <SectionTitle sub="Receita vs Despesa — em R$ milhões"
+          action={<SourceBadge source={src.historico || "mock"} labels={{ siconfi: "SICONFI ao vivo" }} />}>
+          📈 Evolução Orçamentária
+        </SectionTitle>
         <Card>
           <ResponsiveContainer width="100%" height={180}>
             <AreaChart data={historico}>
@@ -74,7 +91,10 @@ export default function Visao({ data, dataSource, loading }) {
 
       {/* Distribuição */}
       <div>
-        <SectionTitle sub="Para onde vai cada R$ 100 gastos">🍕 Distribuição dos Gastos</SectionTitle>
+        <SectionTitle sub="Para onde vai cada R$ 100 gastos"
+          action={<SourceBadge source={src.categorias || "mock"} labels={{ fator: "Fator Sistemas" }} />}>
+          🍕 Distribuição dos Gastos
+        </SectionTitle>
         <Card>
           <ResponsiveContainer width="100%" height={180}>
             <PieChart>
@@ -106,6 +126,8 @@ export default function Visao({ data, dataSource, loading }) {
           {[
             ["SICONFI / Tesouro Nacional",       "https://siconfi.tesouro.gov.br",                           "Receitas e despesas anuais"],
             ["Portal da Transparência Federal",  "https://portaldatransparencia.gov.br",                     "Repasses e convênios"],
+            ["Fator Sistemas (Prefeitura)",      "https://transparencia.fatorsistemas.com.br/dados/despesa.php?id=pm_piripa", "Despesas e receitas detalhadas"],
+            ["SAI2 (Licitações)",                "https://sai2.io.org.br",                                   "Licitações e contratos"],
             ["IBGE Cidades",                     `https://www.ibge.gov.br/cidades-e-estados/ba/piripa.html`, "Dados municipais"],
             ["TCM-BA / SAGRES",                  "https://sagres.tcm.ba.gov.br",                             "Fiscalização estadual"],
           ].map(([nome, url, desc], i) => (
