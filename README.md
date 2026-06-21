@@ -1,83 +1,71 @@
-# Piripá Transparente 🏛️
+# Piripá Transparente
 
-App de transparência pública municipal para Piripá-BA.
-React + Vite + Tailwind + Vercel Serverless Functions.
+**Piripá Transparente** é uma aplicação web moderna de transparência pública, desenvolvida para fornecer acesso fácil, visual e em tempo real aos dados orçamentários, receitas, despesas e contratos do município de Piripá, na Bahia. 
 
-## Abas e fontes de dados
+O aplicativo consolida dados de múltiplas fontes oficiais do governo, convertendo informações brutas e complexas em gráficos interativos e painéis fáceis de entender para a população.
 
-| Aba | Fonte | Dados |
-|-----|-------|-------|
-| 🏛️ Visão Geral | SICONFI / Tesouro | Receita, despesa, superávit anual |
-| 🧮 Pra Mim | Calculado | Quanto do imposto vai para cada área |
-| 💸 Despesas | SICONFI | Gráficos por categoria |
-| 💰 Receitas | SICONFI | Transferências FPM, FUNDEB, SUS |
-| 📋 Contratos | MOCK | Licitações estáticas |
-| 🚨 Denunciar | Links oficiais | TCM-BA, MP, CGU, Ouvidoria |
-| 🤖 IA | Claude API | Chat sobre as finanças |
-| 🔍 Gastos | **Fator Sistemas — ao vivo** | Cada empenho/pagamento com descrição |
-| ⚖️ Licitações | **SAI2 — ao vivo** | Todas as licitações do ano |
-| 💹 Receitas+ | **Fator Sistemas — ao vivo** | Cada arrecadação com fonte e previsto |
+## 📊 Principais Funcionalidades
 
-## APIs confirmadas ao vivo
+- **Visão Geral (Dashboard):** KPIs com o total de receitas e despesas, evolução orçamentária através de gráficos e detalhamento de gastos por área de atuação (Saúde, Educação, etc.).
+- **Portal de Receitas:** Acompanhamento da arrecadação municipal, incluindo repasses federais e verbas de programas sociais (como Bolsa Família e BPC).
+- **Mural de Contratos e Licitações:** Listagem em tempo real dos contratos firmados pela prefeitura, com detalhes sobre fornecedores, valores, vigência e status.
+- **Design Responsivo e Moderno:** Construído para funcionar perfeitamente em dispositivos móveis e desktops, com interface escura (Dark Mode) voltada para a melhor legibilidade.
 
-### SICONFI (sem chave)
-```
-GET https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo
-  ?an_exercicio=2025&in_periodicidade=B&nr_periodo=4
-  &co_tipo_demonstrativo=RREO&no_uf=BA&co_municipio=2924702
-```
+## 🔗 Fontes de Dados (APIs Integradas)
 
-### Fator Sistemas (proxy necessário — ISO-8859-1 + CORS)
-```
-GET https://transparencia.fatorsistemas.com.br/dados/carregaDespesa.php
-  ?id=pm_piripa&data_publicacao=01/01/2025&data_publicacao_fim=31/01/2025
+O sistema não utiliza banco de dados próprio para armazenar valores; ele consome dados diretamente na fonte (ao vivo) através das seguintes integrações:
 
-GET https://transparencia.fatorsistemas.com.br/dados/carregaReceita.php
-  ?id=pm_piripa&dt_ini=01/01/2025&dt_fim=31/01/2025
-```
+1. **SAI2 (Sistema de Administração Pública):** Fornece os dados em tempo real sobre Licitações e Contratos da prefeitura.
+2. **Portal da Transparência Federal (CGU):** Consumido via chave de API oficial, fornece os montantes transferidos para programas sociais como o Novo Bolsa Família e o BPC (Benefício de Prestação Continuada).
+3. **Fator Sistemas:** Fornece o detalhamento estrutural das contas públicas, separando os gastos por categorias e áreas da administração municipal.
 
-### SAI2 — Licitações (JSON puro, sem autenticação)
-```
-POST https://sai2.io.org.br/v3/Licitacao/Filtro
-  { "cod_orgao_org": 1820, "ano": 2025 }
-```
+*(O app possui também suporte integrado ao SICONFI, atuando como fallback caso o município passe a enviar ativamente seus relatórios RREO/RGF).*
 
-### Portal da Transparência Federal (chave gratuita)
-```
-GET https://api.portaldatransparencia.gov.br/api-de-dados/transferencias-voluntarias
-  ?municipio=2924702&ano=2025
-  Header: chave-api-dados: SUA_CHAVE
-```
+## 🛠️ Tecnologias Utilizadas
 
-## Rodar localmente
+- **Frontend:** React.js com Vite, Tailwind CSS para estilização, Recharts para os gráficos e Framer Motion para animações.
+- **Backend / Proxy:** Node.js (via `dev-server.js` localmente e funções Serverless em produção) responsável por contornar bloqueios de CORS e orquestrar as chamadas a múltiplas APIs simultaneamente.
+- **Ícones:** Lucide React.
+- **Integração Continua:** GitHub e Vercel/Railway para deploy.
 
-```bash
-npm install
-cp .env.example .env
+## 🚀 Como Executar Localmente
 
-# Opção 1: só o frontend (proxy retorna erro — dados mock)
-npm run dev
+### Pré-requisitos
+- Node.js (v18 ou superior) instalado na máquina.
+- Uma chave gratuita do Portal da Transparência Federal.
 
-# Opção 2: frontend + proxy (dados reais da prefeitura)
-npm i -g vercel
-vercel dev
-```
+### Passos
 
-## Deploy no Vercel
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/carlosabade801-gif/piripa_transparente.git
+   cd piripa_transparente
+   ```
 
-```bash
-git init
-git add .
-git commit -m "init"
-git push origin main
-```
-Importe no vercel.com e adicione:
-- `VITE_PORTAL_API_KEY` — chave do Portal da Transparência
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
 
-## Adaptar para outro município
+3. **Configure as Variáveis de Ambiente:**
+   Crie um arquivo `.env` na raiz do projeto baseado no `.env.example`:
+   ```env
+   VITE_PORTAL_API_KEY=sua_chave_aqui
+   ```
 
-`src/lib/config.js` — código IBGE e população
-`api/fator-proxy.js` — `FATOR_ID` e `SAI2_ORG`
+4. **Inicie o Servidor Proxy (Terminal 1):**
+   ```bash
+   node dev-server.js
+   ```
 
-Para descobrir os IDs, abra o portal de transparência do município e
-inspecione as chamadas de rede (DevTools → Network → XHR/Fetch).
+5. **Inicie o Frontend (Terminal 2):**
+   ```bash
+   npm run dev
+   ```
+
+6. **Acesse:** `http://localhost:5173`
+
+## 📄 Estrutura do Projeto
+- `/src`: Código fonte do frontend (Componentes React, Tabs, Utils).
+- `/api`: Serverless functions (como o `fator-proxy.js`) para ambiente de produção.
+- `dev-server.js`: Servidor Node para roteamento e proxy durante o desenvolvimento.
