@@ -1,5 +1,5 @@
 import { 
-  Calculator, Search, Building2, Balance, TrendingUp 
+  Calculator, Search, Building2, Scale, TrendingUp 
 } from "lucide-react";
 import Card from "../components/Card";
 import { SectionTitle } from "../components/ui";
@@ -31,7 +31,7 @@ export default function Mais({ setTab }) {
       id: "licitaovivo", 
       titulo: "Licitações (SAI2)", 
       desc: "Acompanhe editais e contratos direto da fonte",
-      icone: Balance,
+      icone: Scale,
       cor: "#F59E0B"
     },
     { 
