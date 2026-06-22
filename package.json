@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "dev:proxy": "node dev-server.js",
-    "dev:full": "concurrently \"node dev-server.js\" \"vite\""
+    "dev:proxy": "node dev-server.cjs",
+    "dev:full": "concurrently \"node dev-server.cjs\" \"vite\""
   },
   "dependencies": {
     "lucide-react": "^0.383.0",

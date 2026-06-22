@@ -1,0 +1,2343 @@
+{
+  "years": {
+    "2019": {
+      "resumo": {
+        "ano": 2019,
+        "receita": 38200000,
+        "despesa": 36800000,
+        "superavit": 1400000,
+        "bimestre": null
+      },
+      "categorias": [],
+      "transferencias": [],
+      "licitacoes": []
+    },
+    "2020": {
+      "resumo": {
+        "ano": 2020,
+        "receita": 40100000,
+        "despesa": 39400000,
+        "superavit": 700000,
+        "bimestre": null
+      },
+      "categorias": [],
+      "transferencias": [],
+      "licitacoes": []
+    },
+    "2021": {
+      "resumo": {
+        "ano": 2021,
+        "receita": 45600000,
+        "despesa": 44200000,
+        "superavit": 1400000,
+        "bimestre": null
+      },
+      "categorias": [],
+      "transferencias": [],
+      "licitacoes": []
+    },
+    "2022": {
+      "resumo": {
+        "ano": 2022,
+        "receita": 51300000,
+        "despesa": 40564816.33,
+        "superavit": 10735183.670000002,
+        "bimestre": null
+      },
+      "categorias": [
+        {
+          "nome": "12 - EDUCAÃ§Ã£O",
+          "valor": 14044020.919999998,
+          "pct": 34.6,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "10 - SAÃºDE",
+          "valor": 10890246.060000002,
+          "pct": 26.8,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "15 - URBANISMO",
+          "valor": 6340305.330000001,
+          "pct": 15.6,
+          "cor": "#F59E0B",
+          "icone": "HardHat"
+        },
+        {
+          "nome": "4 - ADMINISTRAÃ§Ã£O",
+          "valor": 4532809.040000001,
+          "pct": 11.2,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "28 - ENCARGOS ESPECIAIS",
+          "valor": 1396547.9099999997,
+          "pct": 3.4,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "8 - ASSISTÃªNCIA SOCIAL",
+          "valor": 1327970.9999999995,
+          "pct": 3.3,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "13 - CULTURA",
+          "valor": 942128.49,
+          "pct": 2.3,
+          "cor": "#EC4899",
+          "icone": "Building2"
+        },
+        {
+          "nome": "17 - SANEAMENTO",
+          "valor": 311121.05,
+          "pct": 0.8,
+          "cor": "#06B6D4",
+          "icone": "Building2"
+        },
+        {
+          "nome": "20 - AGRICULTURA",
+          "valor": 279063.44,
+          "pct": 0.7,
+          "cor": "#059669",
+          "icone": "TreePine"
+        },
+        {
+          "nome": "2 - JUDICIÃ¡RIA",
+          "valor": 260760,
+          "pct": 0.6,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "26 - TRANSPORTE",
+          "valor": 181103.09,
+          "pct": 0.4,
+          "cor": "#F97316",
+          "icone": "Building2"
+        },
+        {
+          "nome": "27 - DESPORTO E LAZER",
+          "valor": 58740,
+          "pct": 0.1,
+          "cor": "#14B8A6",
+          "icone": "Building2"
+        },
+        {
+          "nome": "NÃO APLICÃVEL",
+          "valor": 0,
+          "pct": 0,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        }
+      ],
+      "transferencias": [
+        {
+          "programa": "BPC",
+          "valor": 392689.17,
+          "beneficiarios": 302,
+          "origem": "Federal",
+          "area": "Assistência Social"
+        }
+      ],
+      "licitacoes": [
+        {
+          "id": "67370",
+          "numero": "PE023/2022",
+          "processo": "146/2022",
+          "objeto": "Registro de preços para futura e eventual contratação de empresa especializada para executar serviços de pequenos reparos e pinturas nos prédios públicos e aquisição de materiais correlatos, conforme especificações e quantidades estabelecidas no Term",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2022-12-27",
+          "srp": true
+        },
+        {
+          "id": "66468",
+          "numero": "PE022/2022",
+          "processo": "134/2022",
+          "objeto": "Registro de Preços para futura e eventual aquisição de combustível S10  para prestação de serviços de preparo do solo (aração/Gradagem)  limpeza de aguadas em atendimento as demandas da Secretaria de Agricultura, conforme especificações e quantidades",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2022-12-12",
+          "srp": true
+        },
+        {
+          "id": "66304",
+          "numero": "PP032/2022",
+          "processo": "140/2022",
+          "objeto": "Registro de Preços para futura e eventual contratação de pessoa jurídica ou física para prestação de serviços de serralheria, para atender as demandas das Secretarias, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus Anexos. ",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2022-12-07",
+          "srp": true
+        },
+        {
+          "id": "66301",
+          "numero": "PE021/2022",
+          "processo": "133/2022",
+          "objeto": "Registro de Preços para futura e eventual aquisição de combustível (Gasolina, Etanol, Diesel-S10 e Diesel-S500) em atendimento as demandas das Secretarias Municipais, conforme especificações e quantidades estabelecidas no Termo de Referência do Edita",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2022-11-29",
+          "srp": true
+        },
+        {
+          "id": "65683",
+          "numero": "PP031/2022",
+          "processo": "132/2022",
+          "objeto": "Registro de Preços para futura e eventual aquisição e instalação de divisórias e materiais em gesso, para atender as demandas das Secretarias, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus Anexos. ",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2022-11-23",
+          "srp": true
+        },
+        {
+          "id": "64359",
+          "numero": "PP029/2022",
+          "processo": "127/2022",
+          "objeto": "Registro de Preços para futura e eventual aquisição de material de expediente para atender as necessidades das Secretarias Municipais, conforme especificações e quantidades estabelecidas no Termo de Referência e neste Edital e seus Anexos.",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2022-10-19",
+          "srp": true
+        },
+        {
+          "id": "64548",
+          "numero": "PP030/2022",
+          "processo": "128/2022",
+          "objeto": "Registro de Preços para futura e eventual contratação de empresa especializada, no Serviço de fornecimento, transporte a aplicação de concreto betuminoso usinado a quente- CBUQ para conservação de vias no município de Piripá-BA, em uso esporádico,para atender as necessidades da Secretaria de obras, conforme especificações e quantidades estabelecidas no Termo de Referência e neste Edital e seus Anexos.",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2022-10-19",
+          "srp": true
+        },
+        {
+          "id": "55294",
+          "numero": "TP002/2022",
+          "processo": "088/2022",
+          "objeto": "Contratação de empresa especializada para Execução de Pavimentação Asfáltica no Bairro Califórnia, Rua Sebastião de Jesus; Rua Ana Rosa C. da Rocha; Rua Agnério da S. Lima; Rua Osmar R. Marques; Rua Simone J. F. de Lima; Rua Jesuina V. Carmo; Rua Aur",
+          "modalidade": "Tomada de Preço",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2022-06-10",
+          "srp": false
+        },
+        {
+          "id": "54960",
+          "numero": "PE010/2022",
+          "processo": "077/2022",
+          "objeto": "CONTRATAÇÃO DE EMPRESA PARA FORNECIMENTO DE PÃES PARA ATENDER AS NECESSIDADES DA MERENDA ESCOLAR DA REDE MUNICIPAL DE ENSINO, PARA ATENDER AS DEMANDAS DA SECRETARIA MUNICIPAL DE EDUCAÇÃO DO MUNICÍPIO DE PIRIPÁ – BAHIA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2022-05-26",
+          "srp": false
+        },
+        {
+          "id": "54961",
+          "numero": "PE009/2022",
+          "processo": "074/2022",
+          "objeto": "REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE PEÇAS PARA VEÍCULOS AUTOMOTORES E MOTOCICLETAS PERTENCENTES A FROTA DO MUNICÍPIO.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2022-05-26",
+          "srp": false
+        },
+        {
+          "id": "50095",
+          "numero": "TP001/2022",
+          "processo": "047/2022",
+          "objeto": "Contratação de empresa especializada para execução de serviços de engenharia visando à Pavimentação do Bairro Horizonte Azul no Município de Piripá/Ba.",
+          "modalidade": "Tomada de Preço",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2022-03-29",
+          "srp": false
+        },
+        {
+          "id": "55993",
+          "numero": "PP017/2022",
+          "processo": "075/2022",
+          "objeto": "Contratação de instituição financeira pública ou privada para prestação de serviços de pagamento de vencimentos, salários, proventos, aposentadorias, pensões e similares, em caráter de exclusividade, dos servidores da Administração Publica Municipal,",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "55311",
+          "numero": "PE011/2022",
+          "processo": "085/2022",
+          "objeto": "Aquisição de blocos intertravados e sextavado, cimento e grama esmeralda.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "55288",
+          "numero": "PP015/2022",
+          "processo": "086/2022",
+          "objeto": "Registro de preços para futura e eventual contratação de empresa especializada para executar prestação de serviços de borracharia, consertos, montagem e desmontagem de Pneus para manutenção da frota de veículos do Município de Piripá.",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "55990",
+          "numero": "PE012/2022",
+          "processo": "089/2022",
+          "objeto": "Aquisição de blocos intertravados, sextavado e lajotas de concreto, cimento e grama esmeralda, para atender as demandas do Município de PIRIPÁ – Bahia.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "56154",
+          "numero": "PP016/2022",
+          "processo": "090/2022",
+          "objeto": "Registro de preços para futura e eventual aquisição de serviços de fornecimento parcelado de urnas funerárias, incluindo no fornecimento a preparação do corpo, transportes e demais encargos, para atender aos munícipes em vulnerabilidade social.",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "55992",
+          "numero": "TP003/2022",
+          "processo": "091/2022",
+          "objeto": "Contratação de empresa especializada para Complemento de Pavimentação Asfáltica no Bairro Califórnia, Rua Narcísico M. Lima; Rua Edson B. Silva; Rua José V. Carmo; Rua Gil Pereira; Rua Magno O. Leite; Rua Mozarth J. B. Filho; Rua Donério F. Carvalho;",
+          "modalidade": "Tomada de Preço",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "56155",
+          "numero": "PE013/2022",
+          "processo": "092/2022",
+          "objeto": "Contratação de empresa  para realização dos shows artísticos para a realização das tradicionais festas do São João,  na sede, bem como o São Pedro, e demandas do ano de 2022 ambos pertencentes ao Município de Piripá – BA.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "56159",
+          "numero": "PE014/2022",
+          "processo": "093/2022",
+          "objeto": "Registro de preços para futura e eventual contratação de empresa especializada para executar serviços de pequenos reparos e pinturas nos prédios públicos e aquisição de materiais correlatos.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "56725",
+          "numero": "PP018/2022",
+          "processo": "097/2022",
+          "objeto": "Registro de Preços para futura e eventual prestação de serviços mecânicos e fornecimento peças para máquinas pesadas em atendimento à frota de do Município de Piripá - Bahia.",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "57655",
+          "numero": "PP019/2022",
+          "processo": "100/2022",
+          "objeto": "Registro de preços para futura e eventual contratação de empresa  fornecimento de refeições, quentinhas tipo marmitex, sucos e refrigerantes, para atender as \r\n necessidades das Secretarias Municipais.",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "57659",
+          "numero": "PP020/2022",
+          "processo": "101/2022",
+          "objeto": "Registro de Preços para futura e eventual prestação de serviços mecânicos em atendimento à frota do Município de Piripá - Bahia.",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "59154",
+          "numero": "PE015/2022",
+          "processo": "102/2022",
+          "objeto": "REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL FORNECIMENTO DE PEÇAS PARA MÁQUINAS PESADAS EM ATENDIMENTO À FROTA DE DO MUNICÍPIO DE PIRIPÁ - BAHIA.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "59810",
+          "numero": "PP021/2022",
+          "processo": "103/2022",
+          "objeto": "Registro de Preços para futura e eventual aquisição parcelada de materiais de construção, materiais hidráulicos, ferramentas e correlatos para atender as necessidades das Secretarias Municipais.",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "59812",
+          "numero": "PP022/2022",
+          "processo": "105/2022",
+          "objeto": "Registro de Preços para futura e eventual aquisição de gêneros alimentícios diversos para atender as necessidades das Secretarias Municipais.",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "61053",
+          "numero": "PP023/2022",
+          "processo": "111/2022",
+          "objeto": "Registro de preços para futura e eventual aquisição de pisos, revestimentos, argamassas e rejuntes para atender as secretarias Municipais",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "61055",
+          "numero": "PP024/2022",
+          "processo": "112/2022",
+          "objeto": "Registro de preços para futura e eventual aquisição de vidros, grades, divisórias, espelhos, persianas, policarbonato e metalon com serviços de instalação para atender as demandas das Secretarias Municipais.",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "61612",
+          "numero": "PE016/2022",
+          "processo": "113/2022",
+          "objeto": "Aquisição de empresa especializada no fornecimento de mobiliários escolares, para atender as necessidades da secretaria municipal de educação, no Município de Piripá – Ba.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "61613",
+          "numero": "PP017/2022",
+          "processo": "114/2022",
+          "objeto": "Contratação de empresa especializada, para aquisição de equipamentos de Academia ao Ar Livre e Parquinho Infantil, que serão destinados ao Município de Piripá-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "61943",
+          "numero": "PP025/2022",
+          "processo": "115/2022",
+          "objeto": "Registro de preços para futura e eventual fornecimento de materiais e equipamentos de informática, eletroeletrônicos e outros, para atender as demandas das Secretarias Municipais.",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "62061",
+          "numero": "PE018/2022",
+          "processo": "116/2022",
+          "objeto": "Contratação de empresa (s) para fornecimento de Veículos usados/seminovos, ano/modelo 2019, para atender as necessidades da Secretaria Municipal de Saúde do Município de Piripá - BA.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "63103",
+          "numero": "TP004/2022",
+          "processo": "120/2022",
+          "objeto": "Contratação de empresa especializada para Usinagem e aplicação de Asfalto CBUQ em ruas no Município de Piripá-BA.",
+          "modalidade": "Tomada de Preço",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "63311",
+          "numero": "PP027/2022",
+          "processo": "121/2022",
+          "objeto": "Registro de Preços para futura e eventual aquisição de material de higiene\r\ne limpeza, para atender as necessidades das secretarias municipais",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        },
+        {
+          "id": "65785",
+          "numero": "PE020/2022",
+          "processo": "131/2022",
+          "objeto": "REGISTRO DE PREÇOS  PARA FUTURA E EVENTUAL AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS PARA ATENDER AS DEMANDAS DA SECRETARIA DE ASSISTÊNCIA SOCIAL, para atender as demandas da Secretaria Municipal de Educação do Município de PIRIPÁ – Bahia.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "",
+          "srp": false
+        }
+      ]
+    },
+    "2023": {
+      "resumo": {
+        "ano": 2023,
+        "receita": 55800000,
+        "despesa": 42162575.620000005,
+        "superavit": 13637424.379999995,
+        "bimestre": null
+      },
+      "categorias": [
+        {
+          "nome": "12 - EDUCAÃ§Ã£O",
+          "valor": 15763030.410000004,
+          "pct": 37.4,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "10 - SAÃºDE",
+          "valor": 11449353.03,
+          "pct": 27.2,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "15 - URBANISMO",
+          "valor": 6858915.0600000005,
+          "pct": 16.3,
+          "cor": "#F59E0B",
+          "icone": "HardHat"
+        },
+        {
+          "nome": "4 - ADMINISTRAÃ§Ã£O",
+          "valor": 4071716.230000002,
+          "pct": 9.7,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "8 - ASSISTÃªNCIA SOCIAL",
+          "valor": 1151880.66,
+          "pct": 2.7,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "13 - CULTURA",
+          "valor": 998588.56,
+          "pct": 2.4,
+          "cor": "#EC4899",
+          "icone": "Building2"
+        },
+        {
+          "nome": "28 - ENCARGOS ESPECIAIS",
+          "valor": 878353.9,
+          "pct": 2.1,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "20 - AGRICULTURA",
+          "valor": 270611.18000000005,
+          "pct": 0.6,
+          "cor": "#059669",
+          "icone": "TreePine"
+        },
+        {
+          "nome": "17 - SANEAMENTO",
+          "valor": 267025.70999999996,
+          "pct": 0.6,
+          "cor": "#06B6D4",
+          "icone": "Building2"
+        },
+        {
+          "nome": "2 - JUDICIÃ¡RIA",
+          "valor": 266880,
+          "pct": 0.6,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "26 - TRANSPORTE",
+          "valor": 173470.88,
+          "pct": 0.4,
+          "cor": "#F97316",
+          "icone": "Building2"
+        },
+        {
+          "nome": "27 - DESPORTO E LAZER",
+          "valor": 12750,
+          "pct": 0,
+          "cor": "#14B8A6",
+          "icone": "Building2"
+        },
+        {
+          "nome": "NÃO APLICÃVEL",
+          "valor": 0,
+          "pct": 0,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        }
+      ],
+      "transferencias": [
+        {
+          "programa": "Novo Bolsa Família",
+          "valor": 1094156,
+          "beneficiarios": 1652,
+          "origem": "Federal",
+          "area": "Assistência Social"
+        },
+        {
+          "programa": "BPC",
+          "valor": 456720.9,
+          "beneficiarios": 320,
+          "origem": "Federal",
+          "area": "Assistência Social"
+        }
+      ],
+      "licitacoes": [
+        {
+          "id": "89722",
+          "numero": "PE026/2023",
+          "processo": "143/2023",
+          "objeto": "REGISTRO DE PREÇO PARA CONTRATAÇÃO DE EMPRESA PARA FORNECIMENTO DE MATERIAL ELÉTRICO PARA ATENDER AS DEMANDAS DAS SECRETARIAS MUNICIPAIS.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 388911.47,
+          "valorHomologado": 0,
+          "data": "2023-12-28",
+          "srp": true
+        },
+        {
+          "id": "88978",
+          "numero": "PP007/2023",
+          "processo": "138/2023",
+          "objeto": "Registro de preço para futura e eventual contratação de empresa especializada na prestação de serviços de borracharia, em atendimento as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 48670,
+          "valorHomologado": 0,
+          "data": "2023-12-19",
+          "srp": true
+        },
+        {
+          "id": "88674",
+          "numero": "PE024/2023",
+          "processo": "136/2023",
+          "objeto": "Registro de preços para futura e eventual aquisição de combustíveis para atender as necessidades das Secretarias do Município de Piripá - BA, conforme edital e seus anexos. ",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 2348700,
+          "valorHomologado": 0,
+          "data": "2023-12-15",
+          "srp": true
+        },
+        {
+          "id": "88675",
+          "numero": "PE025/2023",
+          "processo": "137/2023",
+          "objeto": "Registro de preços para futura e eventual aquisição de matérias para Cobertura metálica para atender as necessidades do Município, conforme edital e seus anexos. ",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-12-15",
+          "srp": true
+        },
+        {
+          "id": "88673",
+          "numero": "PP006/2023",
+          "processo": "135/2023",
+          "objeto": "Registro de preço para futura e eventual contratação de empresa especializada no fornecimento e serviços de instalação de parede de bloco em gesso, forro rebaixado e gesso liso para parede, em atendimento as demandas do Município de Piripá-BA, confor",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 181895,
+          "valorHomologado": 0,
+          "data": "2023-12-04",
+          "srp": true
+        },
+        {
+          "id": "86600",
+          "numero": "PE023/2023",
+          "processo": "134/2023",
+          "objeto": "Registro de Preços para futura e eventual aquisição de oxigênio e componentes, em atendimento as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus Anexos. ",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 140179.9,
+          "valorHomologado": 0,
+          "data": "2023-10-19",
+          "srp": true
+        },
+        {
+          "id": "86599",
+          "numero": "PP005/2023",
+          "processo": "133/2023",
+          "objeto": "Registro de Preços para futura e eventual aquisição de Refeição individual, tipo quentinha pronta acondicionada em embalagens tipo “marmitex” e refrigerantes, em atendimento as demandas do Município de Piripá-BA, conforme especificações e quantidades",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 135950,
+          "valorHomologado": 0,
+          "data": "2023-10-16",
+          "srp": true
+        },
+        {
+          "id": "86139",
+          "numero": "CHP007/2023",
+          "processo": "132/2023",
+          "objeto": "CREDENCIAMENTO DE PESSOAS FÍSICAS PARA PRESTAÇÃO DE SERVIÇOS DE ENFERMEIROS E TÉCNICOS DE ENFERMAGEM EM ATENDIMENTO À SECRETARIA MUNICIPAL DE SAÚDE, CONFORME EDITAL E TERMO DE REFERÊNCIA.",
+          "modalidade": "Credenciamento",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-09-27",
+          "srp": false
+        },
+        {
+          "id": "85269",
+          "numero": "PE022/2023",
+          "processo": "131/2023",
+          "objeto": "Registro de preços para futura e eventual prestação de serviços mecânicos em atendimento à frota do Município de Piripá – Bahia, Referente aos lotes 02 e 03 fracassados em licitação anterior, conforme especificações e quantidades estabelecidas no Ter",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-09-22",
+          "srp": true
+        },
+        {
+          "id": "85267",
+          "numero": "PE021/2023",
+          "processo": "130/2023",
+          "objeto": "Registro de Preços para futura e eventual contratação de prestação de serviços de mão de obra manual na manutenção e conservação de estradas vicinais (roçagem de estradas), em atendimento as demandas do Município de Piripá-BA, conforme especificações",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-09-21",
+          "srp": true
+        },
+        {
+          "id": "85263",
+          "numero": "PP004/2023",
+          "processo": "129/2023",
+          "objeto": "Registro de Preços para futura e eventual aquisição de carnes, em atendimento as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus Anexos.",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-09-21",
+          "srp": true
+        },
+        {
+          "id": "85262",
+          "numero": "PE020/2023",
+          "processo": "128/2023",
+          "objeto": "Registro de Preços para futura e eventual aquisição de oxigênio e componentes, em atendimento as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus Anexos. ",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-09-21",
+          "srp": true
+        },
+        {
+          "id": "84183",
+          "numero": "PE019/2023",
+          "processo": "125/2023",
+          "objeto": "Contratação de pessoa jurídica para o levantamento de informações patrimoniais dos pontos consumidores de energia elétrica e fornecimento de sistema de gestão e controle de serviços públicos, incluindo sistema web e aplicativos, bem como serviços con",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-08-24",
+          "srp": false
+        },
+        {
+          "id": "84180",
+          "numero": "PE018/2023",
+          "processo": "124/2023",
+          "objeto": "Registro de Preços para futura e eventual prestação de serviços mecânicos em atendimento à frota do Município de Piripá - Bahia, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus Anexos.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-08-24",
+          "srp": true
+        },
+        {
+          "id": "84178",
+          "numero": "PE017/2023",
+          "processo": "123/2023",
+          "objeto": "Registro de Preços para futura e eventual aquisição de material esportivo LOTE 02, em atendimento as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus Anexos. ",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-08-24",
+          "srp": true
+        },
+        {
+          "id": "82333",
+          "numero": "PE016/2023",
+          "processo": "117/2023",
+          "objeto": "Registro de Preços para futura e eventual aquisição de material esportivo, em atendimento as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus Anexos. ",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-08-02",
+          "srp": true
+        },
+        {
+          "id": "79815",
+          "numero": "PE0015/2023",
+          "processo": "112/2023",
+          "objeto": "Registro de Preços para futura e eventual aquisição de filtros e lubrificantes, em atendimento as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus Anexos.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-07-11",
+          "srp": true
+        },
+        {
+          "id": "77723",
+          "numero": "CHP005/2023",
+          "processo": "097/2023",
+          "objeto": "Credenciamento para a prestação de serviços de arbitragem (torneio e campeonatos munici-pais de fustal, futebol society, futebol campo e torneios de voleibol) que deverão ser prestadas conforme especificações constantes no edital. Os interessados dev",
+          "modalidade": "Credenciamento",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-05-25",
+          "srp": false
+        },
+        {
+          "id": "77035",
+          "numero": "PE014/2023",
+          "processo": "093/2023",
+          "objeto": "Contratação de empresa para prestação de serviços de hospedagem incluso café da manhã, em atendimento as Secretarias Municipais, conforme especificações constantes do Termo de Referência – Anexo I deste Edital.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-05-24",
+          "srp": false
+        },
+        {
+          "id": "75795",
+          "numero": "PE013/2023",
+          "processo": "089/2023",
+          "objeto": "Registro de Preços para futura e eventual aquisição de pães, bolos, chimangos e derivados de padaria, em atendimento as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus An",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-05-08",
+          "srp": true
+        },
+        {
+          "id": "75794",
+          "numero": "PE012/2023",
+          "processo": "088/2023",
+          "objeto": "Registro de Preços para futura e eventual aquisição de material gráfico e derivados, em atendimento as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus Anexos.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-05-04",
+          "srp": true
+        },
+        {
+          "id": "75564",
+          "numero": "PE011/2023",
+          "processo": "083/2023",
+          "objeto": "Registro de Preços para futura e eventual aquisição de gêneros alimentícios em atendimento as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus Anexos. ",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-05-02",
+          "srp": true
+        },
+        {
+          "id": "75268",
+          "numero": "PE010/2023",
+          "processo": "081/2023",
+          "objeto": "Contratação de empresa para o fornecimento de mobiliários escolares, para atender as necessidades da secretaria municipal de educação, no Município de Piripá - Ba, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-04-17",
+          "srp": false
+        },
+        {
+          "id": "74021",
+          "numero": "PE009/2023",
+          "processo": "074/2023",
+          "objeto": "Contratação de empresa para o fornecimento de suprimentos e equipamentos de internet (fibra óptica), em atendimento as Secretarias Municipais, conforme especificações constantes do Termo de Referência – Anexo I deste Edital. ",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-03-30",
+          "srp": false
+        },
+        {
+          "id": "73584",
+          "numero": "PE008/2023",
+          "processo": "069/2023",
+          "objeto": "Contratação de empresa especializada em locação de software integrado para a gestão de compras municipais, bem como gestão do planejamento de compras, licitações, contratos e atas de registro de preço, gestão de almoxarifado e gestão financeira, além",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-03-28",
+          "srp": false
+        },
+        {
+          "id": "73048",
+          "numero": "PP003/2023",
+          "processo": "068/2023",
+          "objeto": "O objeto desta licitação é a Contratação de empresa(s) para prestação de serviços de intermediação de publicidade legal: em Jornal de Grande Circulação no Estado da Bahia e Diário Oficial da União, para atender as necessidades do Município de Piripá,",
+          "modalidade": "Pregão Presencial",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-03-13",
+          "srp": false
+        },
+        {
+          "id": "71956",
+          "numero": "PE007/2023",
+          "processo": "058/2023",
+          "objeto": "Registro de preços para futura e eventual contratação de Serviço de recarga de cartucho de tonner para impressoras laser e recarga de cartuchos para impressoras jato de tinta, em atendimento as Secretarias Municipais, conforme especificações constant",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-03-07",
+          "srp": true
+        },
+        {
+          "id": "70302",
+          "numero": "CHP002/2023",
+          "processo": "034/2023",
+          "objeto": "O Municipal de Piripá – Bahia, em consonância com a Lei nº 11.947/09, Resolução CD/ FNDE nº 26/2013, e Lei nº 8.666/93, para CREDENCIAMENTO n.º 002/2023, de grupos formais de agricultores familiares e empreendedores familiares rurais ou suas organiza",
+          "modalidade": "Chamada Pública",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-02-09",
+          "srp": false
+        },
+        {
+          "id": "70020",
+          "numero": "PE004/2023",
+          "processo": "040/2023",
+          "objeto": "Registro de preços para futura e eventual contratação de empresa para o fornecimento de gás de cozinha em atendimento as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus A",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-02-06",
+          "srp": true
+        },
+        {
+          "id": "70701",
+          "numero": "CHP004/2023",
+          "processo": "050/2023",
+          "objeto": "CREDENCIAMENTO de pessoa jurídica ou física especializada na execução de serviços com veículos dos tipos ônibus, micro-ônibus, vans e similares para atender ao transporte escolar do Município de Piripá, credenciamento por item/Rota, conforme as espec",
+          "modalidade": "Chamada Pública",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-02-06",
+          "srp": false
+        },
+        {
+          "id": "69993",
+          "numero": "PE003/2023",
+          "processo": "037/2023",
+          "objeto": "Registro de Preços para futura e eventual contratação de empresa para prestação de serviços de transporte diversos em atendimentos as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do Ed",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-01-30",
+          "srp": true
+        },
+        {
+          "id": "69991",
+          "numero": "PE002/2023",
+          "processo": "036/2023",
+          "objeto": "Registro de Preços para futura e eventual aquisição de material de construção em atendimentos as demandas do Município de Piripá-BA, conforme especificações e quantidades estabelecidas no Termo de Referência do Edital e seus Anexos.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-01-27",
+          "srp": true
+        },
+        {
+          "id": "69990",
+          "numero": "PE001/2023",
+          "processo": "035/2023",
+          "objeto": "Contratação de empresa (s) para fornecimento de gêneros alimentícios para atender as necessidades da merenda escolar da rede municipal de ensino, conforme edital e seus anexos. ",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-01-27",
+          "srp": false
+        },
+        {
+          "id": "69842",
+          "numero": "CHP003/2023",
+          "processo": "039/2023",
+          "objeto": " Constitui objeto do presente termo o CREDENCIAMENTO de pessoas físicas ou jurídicas\r\npara eventual prestação de Serviço na confecção de Próteses Dentárias, conforme Política\r\nNacional de Saúde Bucal – Laboratórios Regionais de Prótese Dentária (LRPD",
+          "modalidade": "Chamada Pública",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2023-01-23",
+          "srp": false
+        }
+      ]
+    },
+    "2024": {
+      "resumo": {
+        "ano": 2024,
+        "receita": 61000000,
+        "despesa": 55337886.019999996,
+        "superavit": 5662113.980000004,
+        "bimestre": null
+      },
+      "categorias": [
+        {
+          "nome": "12 - EDUCAÃ§Ã£O",
+          "valor": 21477863.009999994,
+          "pct": 38.8,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "10 - SAÃºDE",
+          "valor": 13315012.7,
+          "pct": 24.1,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "15 - URBANISMO",
+          "valor": 9530392.379999999,
+          "pct": 17.2,
+          "cor": "#F59E0B",
+          "icone": "HardHat"
+        },
+        {
+          "nome": "4 - ADMINISTRAÃ§Ã£O",
+          "valor": 4344571.739999999,
+          "pct": 7.9,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "13 - CULTURA",
+          "valor": 2159595.0700000003,
+          "pct": 3.9,
+          "cor": "#EC4899",
+          "icone": "Building2"
+        },
+        {
+          "nome": "8 - ASSISTÃªNCIA SOCIAL",
+          "valor": 1591235.9299999997,
+          "pct": 2.9,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "28 - ENCARGOS ESPECIAIS",
+          "valor": 1092530.29,
+          "pct": 2,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "26 - TRANSPORTE",
+          "valor": 896501.81,
+          "pct": 1.6,
+          "cor": "#F97316",
+          "icone": "Building2"
+        },
+        {
+          "nome": "17 - SANEAMENTO",
+          "valor": 384207.70999999996,
+          "pct": 0.7,
+          "cor": "#06B6D4",
+          "icone": "Building2"
+        },
+        {
+          "nome": "2 - JUDICIÃ¡RIA",
+          "valor": 306372,
+          "pct": 0.6,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "20 - AGRICULTURA",
+          "valor": 237878.38,
+          "pct": 0.4,
+          "cor": "#059669",
+          "icone": "TreePine"
+        },
+        {
+          "nome": "27 - DESPORTO E LAZER",
+          "valor": 1725,
+          "pct": 0,
+          "cor": "#14B8A6",
+          "icone": "Building2"
+        },
+        {
+          "nome": "NÃO APLICÃVEL",
+          "valor": 0,
+          "pct": 0,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        }
+      ],
+      "transferencias": [
+        {
+          "programa": "Novo Bolsa Família",
+          "valor": 1119186,
+          "beneficiarios": 1664,
+          "origem": "Federal",
+          "area": "Assistência Social"
+        },
+        {
+          "programa": "BPC",
+          "valor": 542211.44,
+          "beneficiarios": 347,
+          "origem": "Federal",
+          "area": "Assistência Social"
+        }
+      ],
+      "licitacoes": [
+        {
+          "id": "120796",
+          "numero": "023",
+          "processo": "059/2024",
+          "objeto": "[LICITANET] - Registro de Preços para futura e eventual aquisição de veículos automotores novos 0 km do tipo (MINIVAN, SUV, HATCH e VAN), em atendimento as demandas do Município de Piripá-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 26451990.12,
+          "valorHomologado": 0,
+          "data": "2024-12-18",
+          "srp": true
+        },
+        {
+          "id": "120285",
+          "numero": "020",
+          "processo": "060/2024",
+          "objeto": "[LICITANET] - Registro de preços para contratação de empresa especializada na prestação de serviços funerários para atender os munícipes em situação de vulnerabilidade social, conforme necessidade e demandas do município de Piripá - BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 126161.24,
+          "valorHomologado": 0,
+          "data": "2024-12-12",
+          "srp": true
+        },
+        {
+          "id": "120284",
+          "numero": "022",
+          "processo": "062/2024",
+          "objeto": "[LICITANET] - Registro de preços para futura e eventual aquisição de utensílios de cozinha, para atender as demandas do município de Piripá - BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 127808.37,
+          "valorHomologado": 0,
+          "data": "2024-12-10",
+          "srp": true
+        },
+        {
+          "id": "120283",
+          "numero": "021",
+          "processo": "061/2024",
+          "objeto": "[LICITANET] - Registro de preços para futura e eventual aquisição de vidros, grades, divisórias, espelhos, persianas, policarbonato e metalon com serviços de instalação para atender as demandas do município de Piripá - BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 506460.5,
+          "valorHomologado": 0,
+          "data": "2024-12-10",
+          "srp": true
+        },
+        {
+          "id": "119914",
+          "numero": "019",
+          "processo": "059/2024",
+          "objeto": "[LICITANET] - Registro de Preços para futura e eventual aquisição de veículos automotores novos 0 km do tipo (MINIVAN, SUV, HATCH e VAN), em atendimento as demandas do Município de Piripá-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 3016459.54,
+          "valorHomologado": 0,
+          "data": "2024-12-03",
+          "srp": true
+        },
+        {
+          "id": "118534",
+          "numero": "015",
+          "processo": "053/2024",
+          "objeto": "[LICITANET] - Contratação de empresa para prestação de serviços de horas máquinas, trator de esteira, moto niveladora, pá carregadeira, retroescavadeira, escavadeira hidráulica, trator de pneu com arado, rolo compactador, caminhão pipa e\r\ncaminhão do tipo basculante, para abertura e manutenção de estradas vicinais, aguadas e outros serviços, visando atender as demandas do Município de Piripá-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 2507007.58,
+          "valorHomologado": 0,
+          "data": "2024-11-05",
+          "srp": true
+        },
+        {
+          "id": "118510",
+          "numero": "018",
+          "processo": "056/2024",
+          "objeto": "[LICITANET] - Registro de Preços para futura e eventual aquisição de materiais e equipamentos de informática, eletroeletrônicos e outros, em atendimento as demandas do Município de Piripá-BA.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 1113332.79,
+          "valorHomologado": 0,
+          "data": "2024-10-31",
+          "srp": true
+        },
+        {
+          "id": "118508",
+          "numero": "017",
+          "processo": "055/2024",
+          "objeto": "[LICITANET] - Registro de Preços para futura e eventual aquisição de material esportivo, em atendimento as demandas do Município de Piripá-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 711656.44,
+          "valorHomologado": 0,
+          "data": "2024-10-31",
+          "srp": true
+        },
+        {
+          "id": "118506",
+          "numero": "016",
+          "processo": "054/2024",
+          "objeto": "[LICITANET] - Registro de preços para futura e eventual contratação de empresa especializada na prestação de serviços continuados de apoio às atividades operacionais e administrativas, de forma complementar, atendendo as necessidades do município de Piripá - BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 15705676.8,
+          "valorHomologado": 0,
+          "data": "2024-10-30",
+          "srp": true
+        },
+        {
+          "id": "117811",
+          "numero": "015",
+          "processo": "053/2024",
+          "objeto": "[LICITANET] - Contratação de empresa para prestação de serviços de horas máquinas, trator de esteira, moto niveladora, pá carregadeira, retroescavadeira, escavadeira hidráulica, trator de pneu com arado, rolo compactador, caminhão pipa e\r\ncaminhão do tipo basculante, para abertura e manutenção de estradas vicinais, aguadas e outros serviços, visando atender as demandas do Município de Piripá-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 2507007.58,
+          "valorHomologado": 0,
+          "data": "2024-10-18",
+          "srp": true
+        },
+        {
+          "id": "115885",
+          "numero": "PREGÃO ELETRÔNICO  N° 014/2024",
+          "processo": "049/2024",
+          "objeto": "Registro de preço para futura e eventual contratação de empresa para fornecimento de material gráfico, visando atender as demandas das secretarias do município de Piripá - Ba, conforme especificações constantes do TERMO DE REFERÊNCIA E ESTUDO TÉCNICO PRELIMINAR - ETP.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-09-17",
+          "srp": true
+        },
+        {
+          "id": "114892",
+          "numero": "CONCORRÊNCIA ELETRÔNICA Nº 001/2024",
+          "processo": "038/2024",
+          "objeto": "Contratação de empresa, compreendendo material e mão de obra, para execução de obra e serviços de engenharia para construção de cobertura em três quadras\r\npoliesportivas, em atendimento as demandas do município de Piripá-BA.\r\n",
+          "modalidade": "Concorrência Pública",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-09-02",
+          "srp": false
+        },
+        {
+          "id": "113021",
+          "numero": "LEILÃO ELETRÔNICO Nº 001/2024",
+          "processo": "047/2024",
+          "objeto": "O Município de Piripá - Bahia, em consonância com a Lei nº 14.133, de 1º de abril de 2021, torna público leilão online site www.mgl.com.br, em 30/08/2024, a partir das 10:00 horas, seus bens inservíveis: veículos e  máquinas. Local de visitação: Travessa Osvaldo Cruz, s/n, saída para Condeúba, Piripá/BA.",
+          "modalidade": "Leilão",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-08-30",
+          "srp": false
+        },
+        {
+          "id": "113025",
+          "numero": "PREGÃO ELETRÔNICO  N° 013/2024",
+          "processo": "046/2024",
+          "objeto": "registro de preço para futura e eventual aquisição alimentos (salgados, bolos, biscoitos, pães recheado) destinados para eventos e reuniões, em atendimento as demandas do Município de Piripá-BA. AQUISIÇÃO DE ITENS QUE FORAM DESERTOS NO PREGÃO ANTERIOR. ",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-08-13",
+          "srp": true
+        },
+        {
+          "id": "113019",
+          "numero": "PREGÃO ELETRÔNICO  N° 012/2024",
+          "processo": "045/2024",
+          "objeto": "Registro de preço para futura e eventual aquisição de gêneros alimentícios, em atendimento as demandas do Município de Piripá-BA. ",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-08-13",
+          "srp": true
+        },
+        {
+          "id": "111881",
+          "numero": "CONCORRÊNCIA ELETRÔNICA Nº 001/2024",
+          "processo": "038/2024",
+          "objeto": "Contratação de empresa, compreendendo material e mão de obra, para execução de obra e serviços de engenharia para construção de cobertura em três quadras poliesportivas e uma cobertura no espaço de lazer da escola da região Lagoa do Meio, em atendimento as demandas do município de Piripá-BA.",
+          "modalidade": "Concorrência Pública",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-07-30",
+          "srp": false
+        },
+        {
+          "id": "106667",
+          "numero": "PREGÃO ELETRÔNICO: N.° 011/2024",
+          "processo": "027/2024",
+          "objeto": "REGISTRO DE PREÇO PARA FUTURA E EVENTUAL AQUISIÇÃO ALIMENTOS (SALGADOS, BOLOS, BISCOITOS, PÃES RECHEADO) DESTINADOS PARA EVENTOS E REUNIÕES, EM ATENDIMENTO AS DEMANDAS DO MUNICIPIO DE PIRIPÁ-BA, conforme especificações constantes do TERMO DE REFERÊNCIA E ESTUDO TÉCNICO PRELIMINAR - ETP.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-06-11",
+          "srp": true
+        },
+        {
+          "id": "106594",
+          "numero": "PREGÃO ELETRÔNICO: N.° 010/2024",
+          "processo": "025/2024",
+          "objeto": "Registro de preços para contratação de empresa para prestação de serviço de locação de estrutura, equipamentos e serviços para realização de eventos para atender as demandas das Secretarias Municipais, conforme especificações constantes do TERMO DE REFERÊNCIA E ESTUDO TÉCNICO PRELIMINAR - ETP.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-06-06",
+          "srp": true
+        },
+        {
+          "id": "106326",
+          "numero": "PREGÃO ELETRÔNICO: N.° 009/2024",
+          "processo": "024/2024",
+          "objeto": "Registro de preços para contratação de empresa prestadora de serviços de hospedagem, em atendimento as demandas do Município de Piripá-BA.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-05-31",
+          "srp": true
+        },
+        {
+          "id": "104542",
+          "numero": "PREGÃO ELETRÔNICO: N.° 008/2024",
+          "processo": "023/2024",
+          "objeto": "Registro de preços para a futura e eventual contratação de empresa, visando aquisição de materiais e instrumentais odontológicos em atendimento as demandas do Município de Piripá-BA, conforme especificações constantes do TERMO DE REFERÊNCIA E ESTUDO TÉCNICO PRELIMINAR - ETP.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-05-22",
+          "srp": true
+        },
+        {
+          "id": "104037",
+          "numero": "CREDENCIAMENTO Nº 002/2024",
+          "processo": "019/2024",
+          "objeto": "O CREDENCIAMENTO Nº 002/2024 de pessoa física para atuar como Leiloeiro visando a alienação de ativos, por meio de leilão ou venda direta, de forma definitiva ou cautelar, de bens móveis, sucatas ou bens em condições de uso, para atender às necessidades da Secretara Municipal de Administração. MODALIDADE: CREDENCIAMENTO.",
+          "modalidade": "Credenciamento",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-05-20",
+          "srp": false
+        },
+        {
+          "id": "103192",
+          "numero": "PREGÃO ELETRÔNICO: N.° 007/2024",
+          "processo": "017/2024",
+          "objeto": "Registro de Preços para contratação de empresa para fornecimento de pneus novos, câmara de ar e baterias, em atendimento às necessidades das diversas Secretarias municipais, conforme especificações constantes do TERMO DE REFERÊNCIA E ESTUDO TÉCNICO PRELIMINAR - ETP.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-05-09",
+          "srp": false
+        },
+        {
+          "id": "103178",
+          "numero": "PREGÃO ELETRÔNICO: N.° 006/2024",
+          "processo": "016/2024",
+          "objeto": "Registro de preços para contratação de empresas para futuras e eventuais aquisições de peças automotivas originais/genuínas para veículos das categorias leves, médios, pesados e motocicletas para atender as demandas das Secretarias Municipais, conforme especificações constantes do TERMO DE REFERÊNCIA E ESTUDO TÉCNICO PRELIMINAR - ETP.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-05-09",
+          "srp": true
+        },
+        {
+          "id": "102022",
+          "numero": "PREGÃO ELETRÔNICO: N.° 005/2024",
+          "processo": "011/2024",
+          "objeto": "Registro de preço para futura e eventual contratação de empresa para fornecimento de materiais de expediente, visando atender as demandas do município de Piripá - Ba, conforme especificações constantes do TERMO DE REFERÊNCIA E ESTUDO TÉCNICO PRELIMINAR - ETP.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-04-26",
+          "srp": true
+        },
+        {
+          "id": "102019",
+          "numero": "PREGÃO ELETRÔNICO: N.° 004/2024",
+          "processo": "010/2024",
+          "objeto": "Registro de preço para futura e eventual contratação de empresa para o fornecimento de material de limpeza e higienização, visando atender as demandas do município de Piripá - Ba, conforme especificações constantes do TERMO DE REFERÊNCIA E ESTUDO TÉCNICO PRELIMINAR - ETP.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-04-26",
+          "srp": true
+        },
+        {
+          "id": "101096",
+          "numero": "CHAMADA PÚBLICA Nº 001/2024",
+          "processo": "007/2024",
+          "objeto": "CHAMAMENTO PÚBLICO nº 001/2024, com utilização do procedimento auxiliar de CREDENCIAMENTO, com o objetivo de realizar a Aquisição de Gêneros Alimentícios oriundos da Agricultura Familiar e do Empreendedor Familiar Rural ou de suas organizações, destinados à alimentação escolar dos alunos da Rede Municipal de Ensino do Município de PIRIPÁ/BA. ",
+          "modalidade": "Credenciamento",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-04-05",
+          "srp": false
+        },
+        {
+          "id": "99564",
+          "numero": "PREGÃO ELETRÔNICO: N.° 003/2024",
+          "processo": "006/2024",
+          "objeto": "Registro de preços para a futura e eventual contratação de empresa, visando aquisição de materiais essenciais para obras, manutenções e projetos de infraestrutura no Município de Piripá, conforme especificações constantes do TERMO DE REFERÊNCIA E ESTUDO TÉCNICO PRELIMINAR - ETP.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-04-02",
+          "srp": true
+        },
+        {
+          "id": "98052",
+          "numero": "PREGÃO ELETRÔNICO: N.° 002/2024",
+          "processo": "004/2024",
+          "objeto": "Aquisição de gêneros alimentícios perecíveis e não perecíveis, destinados a atender aos alunos da rede municipal de ensino do município de Piripá-BA, conforme as diretrizes do Programa Nacional de Alimentação Escolar (PNAE), conforme especificações constantes do TERMO DE REFERÊNCIA E ESTUDO TÉCNICO PRELIMINAR - ETP.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-03-26",
+          "srp": false
+        },
+        {
+          "id": "97309",
+          "numero": "PREGÃO ELETRÔNICO: N.° 001/2024",
+          "processo": "002/2024",
+          "objeto": "Registro de preços para a futura e eventual contratação de empresa, visando aquisição de medicamentos e materiais em atendimento as demandas do Município de Piripá-BA, conforme condições, quantidades e exigências estabelecidas neste Edital e seus anexos.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2024-03-19",
+          "srp": true
+        }
+      ]
+    },
+    "2025": {
+      "resumo": {
+        "ano": 2025,
+        "receita": 61500000,
+        "despesa": 58598735.52000004,
+        "superavit": 2901264.4799999595,
+        "bimestre": null
+      },
+      "categorias": [
+        {
+          "nome": "12 - EDUCAÃ§Ã£O",
+          "valor": 26284817.900000017,
+          "pct": 44.9,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "10 - SAÃºDE",
+          "valor": 13948747.170000019,
+          "pct": 23.8,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "4 - ADMINISTRAÃ§Ã£O",
+          "valor": 6382006.3500000015,
+          "pct": 10.9,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "15 - URBANISMO",
+          "valor": 6307411.079999998,
+          "pct": 10.8,
+          "cor": "#F59E0B",
+          "icone": "HardHat"
+        },
+        {
+          "nome": "28 - ENCARGOS ESPECIAIS",
+          "valor": 1660188.4100000001,
+          "pct": 2.8,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "26 - TRANSPORTE",
+          "valor": 1143083.3499999999,
+          "pct": 2,
+          "cor": "#F97316",
+          "icone": "Building2"
+        },
+        {
+          "nome": "8 - ASSISTÃªNCIA SOCIAL",
+          "valor": 1000193.98,
+          "pct": 1.7,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "13 - CULTURA",
+          "valor": 827338.43,
+          "pct": 1.4,
+          "cor": "#EC4899",
+          "icone": "Building2"
+        },
+        {
+          "nome": "17 - SANEAMENTO",
+          "valor": 425309.45999999996,
+          "pct": 0.7,
+          "cor": "#06B6D4",
+          "icone": "Building2"
+        },
+        {
+          "nome": "20 - AGRICULTURA",
+          "valor": 313367.38999999996,
+          "pct": 0.5,
+          "cor": "#059669",
+          "icone": "TreePine"
+        },
+        {
+          "nome": "2 - JUDICIÃ¡RIA",
+          "valor": 306272,
+          "pct": 0.5,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        },
+        {
+          "nome": "NÃO APLICÃVEL",
+          "valor": 0,
+          "pct": 0,
+          "cor": "#6B7280",
+          "icone": "Building2"
+        }
+      ],
+      "transferencias": [
+        {
+          "programa": "Novo Bolsa Família",
+          "valor": 1021030,
+          "beneficiarios": 1512,
+          "origem": "Federal",
+          "area": "Assistência Social"
+        },
+        {
+          "programa": "BPC",
+          "valor": 596577.83,
+          "beneficiarios": 346,
+          "origem": "Federal",
+          "area": "Assistência Social"
+        }
+      ],
+      "licitacoes": [
+        {
+          "id": "148982",
+          "numero": "CREDENCIAMENTO Nº 008/2025",
+          "processo": "087/2025",
+          "objeto": "Credenciamento de pessoas físicas e/ou jurídicas para a prestação de serviços especializados destinados a atender às demandas da Secretaria Municipal de Saúde e da Secretaria Municipal de Educação do Município de Piripá.",
+          "modalidade": "Credenciamento",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2025-12-08",
+          "srp": false
+        },
+        {
+          "id": "149067",
+          "numero": "025",
+          "processo": "086/2025",
+          "objeto": "[LICITANET] - Registro de preço para futura e eventual contratação de empresa para fornecimento de materiais de expediente, visando atender as demandas do município de Piripá - BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 800638.76,
+          "valorHomologado": 0,
+          "data": "2025-12-05",
+          "srp": true
+        },
+        {
+          "id": "148187",
+          "numero": "024",
+          "processo": "081/2025",
+          "objeto": "[LICITANET] - Registro de preço para aquisição de materiais de consumo e equipamentos odontológicos, para suprir as necessidades da secretaria municipal de saúde, em atendimento as demandas do Município de Piripá-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 1146914.69,
+          "valorHomologado": 0,
+          "data": "2025-11-26",
+          "srp": true
+        },
+        {
+          "id": "147896",
+          "numero": "004",
+          "processo": "085/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada em obras de engenharia, visando à execução da PASSAGEM MOLHADA na Comunidade de Barra de Santana, no Município de Piripá – BA. ",
+          "modalidade": "Concorrência Pública",
+          "status": "Em Andamento",
+          "valor": 660792.25,
+          "valorHomologado": 0,
+          "data": "2025-11-24",
+          "srp": false
+        },
+        {
+          "id": "146548",
+          "numero": "021",
+          "processo": "078/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada para a prestação de serviços de serralheria, compreendendo a confecção e instalação de portões, gradis e estruturas metálicas, incluindo o fornecimento de todos os materiais, mão de obra e equipamentos necessários, em atendimento as demandas do município",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 61981.35,
+          "valorHomologado": 0,
+          "data": "2025-10-22",
+          "srp": false
+        },
+        {
+          "id": "146549",
+          "numero": "022",
+          "processo": "079/2025",
+          "objeto": "[LICITANET] - Contratação de empresa para prestação de serviços de chaveiro, em atendimento as demandas do município de Piripá-BA.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 45205.45,
+          "valorHomologado": 0,
+          "data": "2025-10-22",
+          "srp": false
+        },
+        {
+          "id": "146550",
+          "numero": "023",
+          "processo": "080/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada para Prestação de serviços de manutenção preventiva e corretiva de impressoras, com o fornecimento de peças.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 33000,
+          "valorHomologado": 0,
+          "data": "2025-10-22",
+          "srp": false
+        },
+        {
+          "id": "145613",
+          "numero": "002",
+          "processo": "075/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada para conclusão da quadra poliesportiva coberta com palco – Município de Piripá/BA",
+          "modalidade": "Concorrência Pública",
+          "status": "Em Andamento",
+          "valor": 638857.42,
+          "valorHomologado": 0,
+          "data": "2025-10-16",
+          "srp": false
+        },
+        {
+          "id": "144437",
+          "numero": "001",
+          "processo": "058/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada para execução de pavimentação asfáltica em PMF – Pré-Misturado a Frio no bairro Alto do Campo,  incluindo serviços de meio-fio, calçadas acessíveis e sinalização viária no município de Piripá/BA",
+          "modalidade": "Concorrência Pública",
+          "status": "Em Andamento",
+          "valor": 1061563.9,
+          "valorHomologado": 0,
+          "data": "2025-09-26",
+          "srp": false
+        },
+        {
+          "id": "144439",
+          "numero": "023",
+          "processo": "067/2025",
+          "objeto": "[LICITANET] - Registro de preço para futura e eventual aquisição de gêneros alimentícios, em atendimento as demandas do Município de Piripá-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 2240070.15,
+          "valorHomologado": 0,
+          "data": "2025-09-24",
+          "srp": true
+        },
+        {
+          "id": "144438",
+          "numero": "022",
+          "processo": "030/2025",
+          "objeto": "[LICITANET] - Registro de preço para futura e eventual contratação de empresa para o fornecimento de material de limpeza e higienização e materiais descartáveis, visando atender as demandas do município de Piripá - Ba.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 1157074.04,
+          "valorHomologado": 0,
+          "data": "2025-09-24",
+          "srp": true
+        },
+        {
+          "id": "144213",
+          "numero": "021",
+          "processo": "065/2025",
+          "objeto": "[LICITANET] - Registro de Preços para futura e eventual contratação de empresa especializada na prestação de serviços continuados de apoio às atividades-meio, compreendendo limpeza e conservação de ambientes, apoio administrativo, condução de veículos e demais serviços operacionais e complementares, visando atender de forma eficiente e ininterrupta às necessidades das diversas Secretarias e órgãos do Município de Piripá – BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Finalizado",
+          "valor": 16552176.72,
+          "valorHomologado": 14640457.44,
+          "data": "2025-09-18",
+          "srp": true
+        },
+        {
+          "id": "144331",
+          "numero": "015",
+          "processo": "068/2025",
+          "objeto": "[LICITANET] - Contratação de empresa para prestação de serviços de chaveiro, em atendimento as demandas do município de Piripá-BA.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 25452.45,
+          "valorHomologado": 0,
+          "data": "2025-09-16",
+          "srp": false
+        },
+        {
+          "id": "144333",
+          "numero": "016",
+          "processo": "069/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada na prestação de serviços na confecção e reparos em móveis e estofados em geral, para atender as demandas das secretarias deste municipio.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 32649.35,
+          "valorHomologado": 0,
+          "data": "2025-09-16",
+          "srp": false
+        },
+        {
+          "id": "144336",
+          "numero": "017",
+          "processo": "070/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada para prestação de serviço de instalação e manutenção preventiva e corretiva de aparelhos de ar condicionado, para atender as demandas das secretarias deste município.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 45019.37,
+          "valorHomologado": 0,
+          "data": "2025-09-16",
+          "srp": false
+        },
+        {
+          "id": "144337",
+          "numero": "018",
+          "processo": "071/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada para a prestação de serviços de serralheria, compreendendo a confecção e instalação de portões, gradis e estruturas metálicas, incluindo o fornecimento de todos os materiais, mão de obra e equipamentos necessários, em atendimento as demandas do município.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 61981.35,
+          "valorHomologado": 0,
+          "data": "2025-09-16",
+          "srp": false
+        },
+        {
+          "id": "144338",
+          "numero": "019",
+          "processo": "072/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada para Prestação de serviços de manutenção preventiva e corretiva de impressoras, com o fornecimento de peças..",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 33000,
+          "valorHomologado": 0,
+          "data": "2025-09-16",
+          "srp": false
+        },
+        {
+          "id": "144344",
+          "numero": "020",
+          "processo": "073/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada na prestação de serviços de manutenção preventiva e corretiva em equipamentos odontológicos, com substituição de peças em atendimento as demandas da secretaria municipal de saúde.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 43010,
+          "valorHomologado": 0,
+          "data": "2025-09-16",
+          "srp": false
+        },
+        {
+          "id": "143721",
+          "numero": "020",
+          "processo": "062/2025",
+          "objeto": "[LICITANET] - AQUISIÇÃO DE GÁS GLP - GÁS LIQUEFEITO DE PETRÓLEO “GÁS DE COZINHA” EM ATENDIMENTO AS DEMANDAS DO MUNICÍPIO DE PIRIPÁ - BAHIA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 107100,
+          "valorHomologado": 0,
+          "data": "2025-09-12",
+          "srp": true
+        },
+        {
+          "id": "143718",
+          "numero": "013",
+          "processo": "061/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada na prestação de serviços de manutenção preventiva e corretiva em equipamentos odontológicos, com substituição de peças em atendimento as demandas da secretaria municipal de saúde.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 43010,
+          "valorHomologado": 0,
+          "data": "2025-09-05",
+          "srp": false
+        },
+        {
+          "id": "143719",
+          "numero": "014",
+          "processo": "063/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada para Prestação de serviços de manutenção preventiva e corretiva de impressoras, com o fornecimento de peças.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 33000,
+          "valorHomologado": 0,
+          "data": "2025-09-05",
+          "srp": false
+        },
+        {
+          "id": "142395",
+          "numero": "018",
+          "processo": "057/2025",
+          "objeto": "[LICITANET] - Registro de preços para a futura e eventual contratação de empresa, visando aquisição de medicamentos e materiais em atendimento as demandas do Município de Piripá-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 1687486.3,
+          "valorHomologado": 0,
+          "data": "2025-08-26",
+          "srp": true
+        },
+        {
+          "id": "142394",
+          "numero": "019",
+          "processo": "059/2025",
+          "objeto": "[LICITANET] - Registro de Preços para futura e eventual aquisição de material esportivo, em atendimento as demandas do Município de Piripá-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 458405.55,
+          "valorHomologado": 0,
+          "data": "2025-08-26",
+          "srp": true
+        },
+        {
+          "id": "142154",
+          "numero": "011",
+          "processo": "055/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada para a prestação de serviços de serralheria, compreen-dendo a confecção e instalação de portões, gradis e estruturas metálicas, incluindo o forneci-mento de todos os materiais, mão de obra e equipamentos necessários, em atendimento as de-mandas do município.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 61981.35,
+          "valorHomologado": 0,
+          "data": "2025-08-14",
+          "srp": false
+        },
+        {
+          "id": "142155",
+          "numero": "012",
+          "processo": "056/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada para prestação de serviço de instalação e manutenção preventiva e corretiva de aparelhos de ar condicionado, para atender as demandas das secreta-rias deste município.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 45019.37,
+          "valorHomologado": 0,
+          "data": "2025-08-14",
+          "srp": false
+        },
+        {
+          "id": "140571",
+          "numero": "017",
+          "processo": "052/2025",
+          "objeto": "[LICITANET] - CONTRATAÇÃO DE EMPRESA PARA FORNECIMENTO DE LINK DE INTERNET, EM ATENDIMENTO AS DEMANDAS DO MUNICIPIO DE PIRIPÁ-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 243540,
+          "valorHomologado": 0,
+          "data": "2025-08-06",
+          "srp": false
+        },
+        {
+          "id": "140569",
+          "numero": "016",
+          "processo": "051/2025",
+          "objeto": "[LICITANET] - AQUISIÇÃO DE AMBULÂNCIA TIPO A - SIMPLES REMOÇÃO TIPO PICK-UP 4X4, EM ATENDIMENTO AS DEMANDAS DASECRETARIA DE SAÚDE DO MUNICIPIO DE PIRIPÁ-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 344515,
+          "valorHomologado": 0,
+          "data": "2025-08-06",
+          "srp": false
+        },
+        {
+          "id": "139646",
+          "numero": "010",
+          "processo": "050/2025",
+          "objeto": "[LICITANET] - Contratação de empresa especializada na prestação de serviços na confecção e reparos em móveis e estofados em geral, para atender as demandas das secretarias deste município.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 32649.35,
+          "valorHomologado": 0,
+          "data": "2025-07-17",
+          "srp": false
+        },
+        {
+          "id": "137505",
+          "numero": "015",
+          "processo": "046/2025",
+          "objeto": "[LICITANET] - Registro de preço para futura e eventual contratação de empresa especializada no fornecimento e serviços de instalação de paredes e/ou forros em drywall, forro rebaixado e gesso liso para perede, em atendimento as demandas do municipio de Piripá-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 226148,
+          "valorHomologado": 0,
+          "data": "2025-07-10",
+          "srp": true
+        },
+        {
+          "id": "136941",
+          "numero": "CHAMAMENTO PÚBLICO Nº 007/2025",
+          "processo": "044/2025",
+          "objeto": "Aquisição de Gêneros Alimentícios oriundos da Agricultura Familiar e do Empreendedor Familiar Rural ou de suas organizações, destinados à alimentação escolar dos alunos da Rede Municipal de Ensino do Município de PIRIPÁ/BA.",
+          "modalidade": "Credenciamento",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2025-06-11",
+          "srp": false
+        },
+        {
+          "id": "136705",
+          "numero": "006",
+          "processo": "038/2025",
+          "objeto": "[LICITANET] - Credenciamento de pessoas físicas e jurídicas para prestação de serviços e fornecimento de materiais destinados à manutenção da frota municipal, incluindo fornecimento de peças, pneus, filtros, lubrificantes, e serviços de mecânica, elétrica, funilaria, alinhamento, balanceamento, ar-condicionado automotivo, lava rápido e borracharia, conforme especificações constantes no edital e seus anexos",
+          "modalidade": "Credenciamento",
+          "status": "Em Andamento",
+          "valor": 2325315.62,
+          "valorHomologado": 0,
+          "data": "2025-06-09",
+          "srp": false
+        },
+        {
+          "id": "137510",
+          "numero": "006",
+          "processo": "038/2025",
+          "objeto": "[LICITANET] - Credenciamento de pessoas físicas e jurídicas para prestação de serviços e fornecimento de materiais destinados à manutenção da frota municipal, incluindo fornecimento de peças, pneus, filtros, lubrificantes, e serviços de mecânica, elétrica, funilaria, alinhamento, balanceamento, ar-condicionado automotivo, lava rápido e borracharia, conforme especificações constantes no edital e seus anexos",
+          "modalidade": "Credenciamento",
+          "status": "Em Andamento",
+          "valor": 2325315.62,
+          "valorHomologado": 0,
+          "data": "2025-06-09",
+          "srp": false
+        },
+        {
+          "id": "136092",
+          "numero": "007",
+          "processo": "041/2025",
+          "objeto": "[LICITANET] - Contratação de empresa para a aquisição de tecidos diversos, em atendimento as demandas do município de Piripá-BA conforme termo de referência. ",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 62007.2,
+          "valorHomologado": 0,
+          "data": "2025-06-06",
+          "srp": false
+        },
+        {
+          "id": "136091",
+          "numero": "008",
+          "processo": "042/2025",
+          "objeto": "[LICITANET] - Contratação de empresa para  prestação de serviço de confecção de bancada, divisória ou outro facilitador em pedra rocha (mármore/granito), em espessura de no mínimo 2 cm, como também o serviço de aplicação de insumos necessários e a devida instalação.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 61421.7,
+          "valorHomologado": 0,
+          "data": "2025-06-06",
+          "srp": false
+        },
+        {
+          "id": "136090",
+          "numero": "009",
+          "processo": "043/2025",
+          "objeto": "[LICITANET] - Contratação de empresa para prestação de serviços de chaveiro, em atendimento as demandas do município de Piripá-BA.",
+          "modalidade": "Dispensa",
+          "status": "Em Andamento",
+          "valor": 25452.45,
+          "valorHomologado": 0,
+          "data": "2025-06-06",
+          "srp": false
+        },
+        {
+          "id": "134412",
+          "numero": "014",
+          "processo": "035/2025",
+          "objeto": "[LICITANET] - Registro De Preços Para Futura E Eventual Contratação de empresa visando a prestação de serviços de transporte diversos (alternativo) em atendimentos as demandas do município de Piripá-Ba.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 3769111.6,
+          "valorHomologado": 0,
+          "data": "2025-06-04",
+          "srp": true
+        },
+        {
+          "id": "134411",
+          "numero": "08",
+          "processo": "16",
+          "objeto": "[LICITANET] - Registro De Preços Para Futura E Eventual Contratação De Empresa Especializada Na Prestação De Serviços Funerários Destinados Ao Atendimento De Famílias Em Situação De Vulnerabilidade, para atender as necessidades das Secretarias do Município de Piripá - BA.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 129486.54,
+          "valorHomologado": 0,
+          "data": "2025-05-28",
+          "srp": true
+        },
+        {
+          "id": "134410",
+          "numero": "12",
+          "processo": "22/2025",
+          "objeto": "[LICITANET] - Registro De Preços Para Futura E Eventual Contratação de empresa para o fornecimento de carnes, para atender as demandas do Município de Piripá-BA.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 165381.5,
+          "valorHomologado": 0,
+          "data": "2025-05-26",
+          "srp": true
+        },
+        {
+          "id": "132108",
+          "numero": "CHAMAMENTO PÚBLICO Nº 005/2025",
+          "processo": "030/2025",
+          "objeto": "CONTRATAÇÃO DE PESSOA FÍSICA OU JURÍDICA PARA A PRESTAÇÃO DE SERVIÇO DE MÉDICO ANGIOLOGISTA PARA EXECUÇÃO PROCEDIMENTO DE ESCLEROTERAPIA EM\r\nMEMBROS INFERIORES A NÍVEL AMBULATORIAL AOS USUÁRIOS DO SISTEMA ÚNICO DE SAÚDE – SUS, VOLTADO A ATENDER AS NECESSIDADES DA SECRETARIA MUNICIPAL DE SAÚDE DE PIRIPÁ/BA",
+          "modalidade": "Credenciamento",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2025-05-05",
+          "srp": false
+        },
+        {
+          "id": "128622",
+          "numero": "013",
+          "processo": "023/2025",
+          "objeto": "[LICITANET] - Registro De Preços Para Futura E Eventual Contratação de empresa para prestação de serviços mecânicos (maquinas pesadas, veículos de médio e grande porte e manutenção elétrica), para atender as demandas do Município de Piripá-BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 372294,
+          "valorHomologado": 0,
+          "data": "2025-04-14",
+          "srp": true
+        },
+        {
+          "id": "128621",
+          "numero": "012",
+          "processo": "022/2025",
+          "objeto": "[LICITANET] - Registro De Preços Para Futura E Eventual Contratação de empresa para o fornecimento de carnes, para atender as demandas do Município de Piripá-BA.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 181833.5,
+          "valorHomologado": 0,
+          "data": "2025-04-10",
+          "srp": true
+        },
+        {
+          "id": "128620",
+          "numero": "011",
+          "processo": "019/2025",
+          "objeto": "[LICITANET] - Registro De Preços Para Futura E Eventual Contratação de empresa para o fornecimento de madeiras em geral, para atender as demandas do Município de Piripá-BA.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 854193.5,
+          "valorHomologado": 0,
+          "data": "2025-04-10",
+          "srp": true
+        },
+        {
+          "id": "129126",
+          "numero": "CHAMAMENTO PÚBLICO Nº 004/2025",
+          "processo": "024/2025",
+          "objeto": "Credenciamento para contratação de Pessoa Jurídica para prestação de serviços de laboratórios regionais de próteses dentarias (LRPD), para prestação de serviços odontológicos de moldagem e confecções de próteses dentarias sob medida, para atender a demanda da população do Município de Piripá-BA",
+          "modalidade": "Credenciamento",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2025-04-08",
+          "srp": false
+        },
+        {
+          "id": "126850",
+          "numero": "010",
+          "processo": "018/2025",
+          "objeto": "[LICITANET] - Registro De Preços Para Futura E Eventual Contratação De Serviço De Recarga De Cartucho De Tonner Para\r\nImpressoras Laser E Recarga De Cartuchos Para Impressoras Jato De Tinta, para atender as necessidades\r\ndas Secretarias do Município de Piripá - BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 126785.1,
+          "valorHomologado": 0,
+          "data": "2025-03-19",
+          "srp": true
+        },
+        {
+          "id": "126852",
+          "numero": "009",
+          "processo": "017/2025",
+          "objeto": "[LICITANET] - Registro De Preços Para Futura E Eventual Aquisição De Refeição Individual, Tipo Quentinha Pronta Acondicionada Em Embalagens Tipo Marmitex E Refrigerantes, para atender as necessidades das Secretarias do Município de Piripá - BA.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 148129,
+          "valorHomologado": 0,
+          "data": "2025-03-19",
+          "srp": true
+        },
+        {
+          "id": "126853",
+          "numero": "005",
+          "processo": "012/2025",
+          "objeto": "[LICITANET] - REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL AQUISIÇÃO DE PÃES, BOLOS, CHIMANGOS E DERIVADOS DE PADARIA, para atender as necessidades das Secretarias do Município de Piripá - BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 154036,
+          "valorHomologado": 0,
+          "data": "2025-03-18",
+          "srp": true
+        },
+        {
+          "id": "126854",
+          "numero": "004",
+          "processo": "011/2025",
+          "objeto": "[LICITANET] - REGISTRO DE PREÇOS PARA CONTRATAÇÃO DE EMPRESAS PARA FUTURAS E EVENTUAIS AQUISIÇÕES DE MATERIAIS ELÉTRICOS.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 903839.4,
+          "valorHomologado": 0,
+          "data": "2025-03-18",
+          "srp": true
+        },
+        {
+          "id": "126834",
+          "numero": "003",
+          "processo": "010/2025",
+          "objeto": "[LICITANET] - Registro de Preços para futura e eventual aquisição de material esportivo, para atender as necessidades das Secretarias do Município de Piripá - BA.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 700165.75,
+          "valorHomologado": 0,
+          "data": "2025-03-18",
+          "srp": false
+        },
+        {
+          "id": "126856",
+          "numero": "002",
+          "processo": "007/2025",
+          "objeto": "[LICITANET] -  Registro de preços para futura e eventual aquisição de combustíveis, filtros e lubrificantes, para atender as necessidades das Secretarias do Município de Piripá - BA",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 3313923.1,
+          "valorHomologado": 0,
+          "data": "2025-03-18",
+          "srp": true
+        },
+        {
+          "id": "125997",
+          "numero": "001",
+          "processo": "005/2025",
+          "objeto": "[LICITANET] - REGISTRO DE PREÇOS PARA CONTRATAÇÃO DE EMPRESAS PARA FUTURAS E EVENTUAIS AQUISIÇÕES DE PEÇAS ORIGINAIS/GENUÍNAS PARA VEÍCULOS DAS CATEGORIAS MAQUINAS PESADAS.",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 5.81,
+          "valorHomologado": 0,
+          "data": "2025-03-10",
+          "srp": true
+        },
+        {
+          "id": "126106",
+          "numero": "007",
+          "processo": "014/2025",
+          "objeto": "[LICITANET] - Aquisição de gêneros alimentícios perecíveis e não perecíveis, destinados a atender aos alunos da rede municipal de ensino do município de Piripá-BA, conforme as diretrizes do Programa Nacional de Alimentação Escolar (PNAE).",
+          "modalidade": "Pregão Eletrônico",
+          "status": "Em Andamento",
+          "valor": 2064441.8,
+          "valorHomologado": 0,
+          "data": "2025-03-10",
+          "srp": false
+        },
+        {
+          "id": "124905",
+          "numero": "CHAMAMENTO PÚBLICO Nº 002/2025",
+          "processo": "008/2025",
+          "objeto": "Credenciamento,  compreendendo  as  especialidade na área de saúde para CONTRATAÇÃO DE PESSOA FÍSICA OU JURÍDICA PARA PRESTAÇÃO DE SERVIÇOS MÉDICOS, ESPECIALIDADES, ULTRASSONOGRAFIAS, PROCEDIMENTOS E EXAMES LABORATORIAIS; para atender as necessidades da Secretaria Municipal de Saúde de Piripá-BA, nos termos e condições estabelecidas neste Edital e seus anexos.",
+          "modalidade": "Credenciamento",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2025-02-24",
+          "srp": false
+        },
+        {
+          "id": "125031",
+          "numero": "CHAMAMENTO PÚBLICO Nº 003/2025",
+          "processo": "009/2025",
+          "objeto": "Chamamento Público para fins de Credenciamento para contratação de Pessoas Físicas e/ou Jurídicas, objetivando a execução de serviços de transporte escolar de alunos, conforme as especificações e condições constantes neste Edital, contemplando os critérios técnicos específicos, os pré-requisitos e os valores referenciais fixados para a realização da prestação dos serviços\r\n\r\n",
+          "modalidade": "Credenciamento",
+          "status": "Em Andamento",
+          "valor": 0,
+          "valorHomologado": 0,
+          "data": "2025-02-17",
+          "srp": false
+        }
+      ]
+    }
+  },
+  "historico": [
+    {
+      "ano": "2019",
+      "receita": 38.2,
+      "despesa": 36.8
+    },
+    {
+      "ano": "2020",
+      "receita": 40.1,
+      "despesa": 39.4
+    },
+    {
+      "ano": "2021",
+      "receita": 45.6,
+      "despesa": 44.2
+    },
+    {
+      "ano": "2022",
+      "receita": 51.3,
+      "despesa": 49.7
+    },
+    {
+      "ano": "2023",
+      "receita": 55.8,
+      "despesa": 53.1
+    },
+    {
+      "ano": "2024",
+      "receita": 61,
+      "despesa": 57.1
+    },
+    {
+      "ano": "2025",
+      "receita": 61.5,
+      "despesa": 58.5
+    }
+  ]
+}

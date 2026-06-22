@@ -103,7 +103,7 @@ function parseTableRows(html) {
 // ── Parser de dialogs ocultos ─────────────────────────────────────────────────
 function extractDialogs(html, parser) {
   const result = {};
-  const re = /<div[^>]+id="(dialog_\d+)"[^>]*>([\s\S]*?)<\/div>/gi;
+  const re = /<div[^>]+id=['"](dialog_\d+)['"][^>]*>([\s\S]*?)<\/div>/gi;
   let m;
   while ((m = re.exec(html)) !== null) {
     // Normalizar imediatamente — esta é a correção do bug
@@ -119,41 +119,29 @@ function extractDialogs(html, parser) {
 
 // ── Parser de despesa ─────────────────────────────────────────────────────────
 function parseDespesaDialog(txt) {
-  // Unidade/Secretaria = tudo antes de "Relatório:" ou "Relat"
-  const unidadeM = txt.match(/^(.+?)\s*Relat/i);
-  const unidade  = unidadeM ? unidadeM[1].trim() : "";
-
-  // Valor como número (campo "Valor: R$ X,XX")
-  const valorM = txt.match(/Valor:\s*R\$\s*([\d.,\-]+)/i);
-  const valor  = valorM ? parseBRL(valorM[1]) : 0;
-
-  // Número do processo / empenho / liquidação
-  const processoM  = txt.match(/N[º°o]\s*do\s*Processo:\s*(\S+)/i);
-  const empenhoM   = txt.match(/N[º°o]\s*Empenho:\s*(\S+)/i);
-  const liquidacaoM= txt.match(/N[º°o]\s*Liquida[çc][ãa]o:\s*(\S+)/i);
-  const processo   = processoM?.[1]  || "";
-  const empenho    = empenhoM?.[1]   || liquidacaoM?.[1] || "";
-
+  // Unidade/Secretaria
+  const unidade = fld(txt, /^(.+?)(?:Relat)/);
+  
+  // Valor (deve pegar "Valor Empenhado: R$ X" ou "Valor: R$ X" ou similar)
+  const valorM = txt.match(/Valor[^:]*:\s*R\$\s*([\d.,\-]+)/i);
+  const valor = valorM ? parseBRL(valorM[1]) : 0;
+  
   return {
     unidade,
     valor,
-    empenho,
-    processo,
-    fase:       fld(txt, /Fase:\s*(.+?)\s*N[º°o]/i),
-    data:       fld(txt, /Data:\s*([\d\/]+)/i),
-    credor:     fld(txt, /Credor:\s*(.+?)\s*(?:CPF|CNPJ):/i),
-    cnpj:       fld(txt, /(?:CPF|CNPJ):\s*([\d.\\\/\-xX]+)/i),
-    historico:  fld(txt, /Bem\s*\/\s*Servi[çc]o\s*prestado:\s*(.+?)\s*Fun[çc][ãa]o:/i),
-    funcao:     fld(txt, /Fun[çc][ãa]o:\s*(.+?)\s*Sub-Fun[çc][ãa]o:/i),
-    subfuncao:  fld(txt, /Sub-Fun[çc][ãa]o:\s*(.+?)\s*Programa:/i),
-    programa:   fld(txt, /Programa:\s*(.+?)\s*Fonte/i),
-    fonte:      fld(txt, /Fonte do Recurso:\s*(.+?)\s*Categoria/i),
-    categoria:  fld(txt, /Categoria Econ[ôo]mica:\s*(.+?)\s*Grupo/i),
-    grupo:      fld(txt, /Grupo de Despesa\s*:\s*(.+?)\s*Modalidade de Aplica/i),
-    elemento:   fld(txt, /Elemento de Despesa:\s*(.+?)\s*Sub-elemento:/i),
-    contrato:   fld(txt, /N[º°o]\s*Contrato:\s*(.+?)\s*Processo\s*Licit/i),
-    licitacao:  fld(txt, /Processo\s*Licit[a-z]+[oó][a-z]*:\s*(.+?)\s*Modalidade:/i),
-    modalidade: fld(txt, /Modalidade:\s*(.+?)\s*(?:Consulta|$)/i),
+    fase:       fld(txt, /Fase[^:]*:\s*(.+?)\s*N[º°o]/i),
+    empenho:    fld(txt, /N[º°o]\s*Empenho[^:]*:\s*(\S+)/i),
+    processo:   fld(txt, /N[º°o]\s*do\s*Processo[^:]*:\s*(\S+)/i),
+    data:       fld(txt, /Data[^:]*:\s*([\d\/]+)/i),
+    credor:     fld(txt, /Credor[^:]*:\s*(.+?)\s*(?:CPF|CNPJ)/i),
+    historico:  fld(txt, /(?:Bem|Servi)[^:]*:\s*(.+?)\s*Fun/i),
+    funcao:     fld(txt, /Fun[^\s:]*:\s*(.+?)\s*Sub/i),
+    subfuncao:  fld(txt, /Sub[^\s:]*:\s*(.+?)\s*Programa/i),
+    fonte:      fld(txt, /Fonte[^:]*:\s*(.+?)\s*Categoria/i),
+    elemento:   fld(txt, /Elemento[^:]*:\s*(.+?)\s*Sub/i),
+    contrato:   fld(txt, /N[º°o]\s*Contrato[^:]*:\s*(.+?)\s*Processo\s*Licit/i),
+    licitacao:  fld(txt, /Processo\s*Licit[^:]*:\s*(.+?)\s*Modalidade/i),
+    modalidade: fld(txt, /Modalidade[^:]*:\s*(.+?)\s*(?:Consulta|$)/i),
   };
 }
 

@@ -14,12 +14,13 @@ export function Skeleton() {
 }
 
 export function ApiStatus({ source }) {
-  const live = source === "api";
+  const live = source === "api" || source === "fator";
+  const label = source === "api" ? "Dados ao vivo" : source === "fator" ? "Fator Sistemas (Real)" : "Demonstração";
   return (
     <div className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-1 rounded-full
       ${live ? "text-emerald-400 bg-emerald-400/10" : "text-amber-400 bg-amber-400/10"}`}>
       {live ? <Wifi size={10} /> : <WifiOff size={10} />}
-      {live ? "Dados ao vivo" : "Demonstração"}
+      {label}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { CONFIG } from "./config";
 import { MOCK } from "./mock";
+import dataCache from "./data_cache.json";
 import {
   Users, Heart, BookOpen, HardHat, Shield, TreePine, Building2,
 } from "lucide-react";
@@ -99,6 +100,45 @@ async function fetchRREOComFallback(ano) {
 }
 
 export async function loadMunicipioData(ano) {
+  console.log("[loadMunicipioData] ano:", ano, "dataCache:", dataCache, "cachedYear:", dataCache?.years?.[ano]);
+  // ── Verificar se o ano está presente no cache local e tem valores válidos ──
+  const cachedYear = dataCache.years[ano];
+  if (cachedYear && cachedYear.resumo && cachedYear.resumo.despesa > 0) {
+    console.log(`[api.js] Usando dados do cache local para o ano ${ano}`);
+    
+    // Normalizar as categorias do cache para mapear os componentes lucide
+    const categoriasFinal = cachedYear.categorias.map(c => ({
+      nome:  c.nome,
+      valor: c.valor,
+      pct:   c.pct,
+      cor:   c.cor,
+      icone: ICONE_MAP[c.icone] || Building2,
+    }));
+
+    return {
+      data: {
+        ...MOCK,
+        resumo:         cachedYear.resumo,
+        categorias:     categoriasFinal,
+        transferencias: cachedYear.transferencias.length > 0 ? cachedYear.transferencias : MOCK.transferencias,
+        licitacoes:     cachedYear.licitacoes.length > 0 ? cachedYear.licitacoes : MOCK.licitacoes,
+        historico:      dataCache.historico.length > 0 ? dataCache.historico : MOCK.historico,
+      },
+      source: "fator", // Marca como carregado do fator sistemas (real)
+      _debug: {
+        siconfi:        "✅ local cache",
+        categorias:     "✅ local cache (Fator Sistemas)",
+        transferencias: cachedYear.transferencias.length > 0 ? "✅ local cache (Portal Federal)" : "❌ mock (sem dados)",
+        historico:      dataCache.historico.length > 0 ? "✅ local cache (SICONFI)" : "❌ mock (estimativa)",
+      },
+      _sources: {
+        categorias:     "fator",
+        transferencias: cachedYear.transferencias.length > 0 ? "portal_federal" : "mock",
+        historico:      dataCache.historico.length > 0 ? "siconfi" : "mock",
+      },
+    };
+  }
+
   // ── Buscar tudo em paralelo via proxy (sem CORS) ──
   const [siconfiResult, categoriasResult, transferResult, historicoResult] = await Promise.all([
     // SICONFI direto (CORS aberto em produção) com fallback via proxy
