@@ -290,13 +290,26 @@ export default async function handler(req, res) {
 
       const items = rows.map((c, i) => {
         const det = dialogs[`dialog_${i}`] || null;
+        let valor = 0;
+        if (c.length >= 7) {
+          const faseUpper = (c[2] || "").toUpperCase();
+          if (faseUpper.includes("LIQUIDAC")) {
+            valor = parseBRL(c[5]);
+          } else if (faseUpper.includes("PAGAMENTO") || faseUpper.includes("EXTRA")) {
+            valor = parseBRL(c[6]);
+          } else {
+            valor = parseBRL(c[4]);
+          }
+        } else {
+          valor = parseBRL(c[4]);
+        }
         return {
           data:      c[0] || "",
           processo:  c[1] || "",
           fase:      c[2] || "",
           credor:    c[3] || "",
-          valor:     parseBRL(c[4]),
-          valorFmt:  c[4] || "0,00",
+          valor:     valor,
+          valorFmt:  valor.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
           detalhe:   det,
           links:     det ? gerarLinks({ processo: det.processo || c[1], empenho: det.empenho }) : [],
         };
