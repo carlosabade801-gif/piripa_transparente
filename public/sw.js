@@ -3,8 +3,8 @@
  * Estratégia: Cache First para assets estáticos, Network First para dados da API
  */
 
-const CACHE_NAME    = "piripa-v2";
-const API_CACHE     = "piripa-api-v2";
+const CACHE_NAME    = "piripa-v3";
+const API_CACHE     = "piripa-api-v3";
 const OFFLINE_PAGE  = "/offline.html";
 
 // Assets que ficam em cache permanente

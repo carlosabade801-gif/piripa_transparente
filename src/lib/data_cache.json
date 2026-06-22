@@ -46,18 +46,18 @@
       },
       "categorias": [
         {
-          "nome": "12 - EDUCAÃ§Ã£O",
+          "nome": "12 - EDUCAçãO",
           "valor": 14044020.919999998,
           "pct": 34.6,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#3B82F6",
+          "icone": "BookOpen"
         },
         {
-          "nome": "10 - SAÃºDE",
+          "nome": "10 - SAúDE",
           "valor": 10890246.060000002,
           "pct": 26.8,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#EF4444",
+          "icone": "Heart"
         },
         {
           "nome": "15 - URBANISMO",
@@ -67,11 +67,11 @@
           "icone": "HardHat"
         },
         {
-          "nome": "4 - ADMINISTRAÃ§Ã£O",
+          "nome": "4 - ADMINISTRAçãO",
           "valor": 4532809.040000001,
           "pct": 11.2,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#8B5CF6",
+          "icone": "Users"
         },
         {
           "nome": "28 - ENCARGOS ESPECIAIS",
@@ -81,11 +81,11 @@
           "icone": "Building2"
         },
         {
-          "nome": "8 - ASSISTÃªNCIA SOCIAL",
+          "nome": "8 - ASSISTêNCIA SOCIAL",
           "valor": 1327970.9999999995,
           "pct": 3.3,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#10B981",
+          "icone": "Shield"
         },
         {
           "nome": "13 - CULTURA",
@@ -109,7 +109,7 @@
           "icone": "TreePine"
         },
         {
-          "nome": "2 - JUDICIÃ¡RIA",
+          "nome": "2 - JUDICIáRIA",
           "valor": 260760,
           "pct": 0.6,
           "cor": "#6B7280",
@@ -130,7 +130,7 @@
           "icone": "Building2"
         },
         {
-          "nome": "NÃO APLICÃVEL",
+          "nome": "NÃO APLICÁVEL",
           "valor": 0,
           "pct": 0,
           "cor": "#6B7280",
@@ -567,18 +567,18 @@
       },
       "categorias": [
         {
-          "nome": "12 - EDUCAÃ§Ã£O",
+          "nome": "12 - EDUCAçãO",
           "valor": 15763030.410000004,
           "pct": 37.4,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#3B82F6",
+          "icone": "BookOpen"
         },
         {
-          "nome": "10 - SAÃºDE",
+          "nome": "10 - SAúDE",
           "valor": 11449353.03,
           "pct": 27.2,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#EF4444",
+          "icone": "Heart"
         },
         {
           "nome": "15 - URBANISMO",
@@ -588,18 +588,18 @@
           "icone": "HardHat"
         },
         {
-          "nome": "4 - ADMINISTRAÃ§Ã£O",
+          "nome": "4 - ADMINISTRAçãO",
           "valor": 4071716.230000002,
           "pct": 9.7,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#8B5CF6",
+          "icone": "Users"
         },
         {
-          "nome": "8 - ASSISTÃªNCIA SOCIAL",
+          "nome": "8 - ASSISTêNCIA SOCIAL",
           "valor": 1151880.66,
           "pct": 2.7,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#10B981",
+          "icone": "Shield"
         },
         {
           "nome": "13 - CULTURA",
@@ -630,7 +630,7 @@
           "icone": "Building2"
         },
         {
-          "nome": "2 - JUDICIÃ¡RIA",
+          "nome": "2 - JUDICIáRIA",
           "valor": 266880,
           "pct": 0.6,
           "cor": "#6B7280",
@@ -651,7 +651,7 @@
           "icone": "Building2"
         },
         {
-          "nome": "NÃO APLICÃVEL",
+          "nome": "NÃO APLICÁVEL",
           "valor": 0,
           "pct": 0,
           "cor": "#6B7280",
@@ -1095,18 +1095,18 @@
       },
       "categorias": [
         {
-          "nome": "12 - EDUCAÃ§Ã£O",
+          "nome": "12 - EDUCAçãO",
           "valor": 21477863.009999994,
           "pct": 38.8,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#3B82F6",
+          "icone": "BookOpen"
         },
         {
-          "nome": "10 - SAÃºDE",
+          "nome": "10 - SAúDE",
           "valor": 13315012.7,
           "pct": 24.1,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#EF4444",
+          "icone": "Heart"
         },
         {
           "nome": "15 - URBANISMO",
@@ -1116,11 +1116,11 @@
           "icone": "HardHat"
         },
         {
-          "nome": "4 - ADMINISTRAÃ§Ã£O",
+          "nome": "4 - ADMINISTRAçãO",
           "valor": 4344571.739999999,
           "pct": 7.9,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#8B5CF6",
+          "icone": "Users"
         },
         {
           "nome": "13 - CULTURA",
@@ -1130,11 +1130,11 @@
           "icone": "Building2"
         },
         {
-          "nome": "8 - ASSISTÃªNCIA SOCIAL",
+          "nome": "8 - ASSISTêNCIA SOCIAL",
           "valor": 1591235.9299999997,
           "pct": 2.9,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#10B981",
+          "icone": "Shield"
         },
         {
           "nome": "28 - ENCARGOS ESPECIAIS",
@@ -1158,7 +1158,7 @@
           "icone": "Building2"
         },
         {
-          "nome": "2 - JUDICIÃ¡RIA",
+          "nome": "2 - JUDICIáRIA",
           "valor": 306372,
           "pct": 0.6,
           "cor": "#6B7280",
@@ -1179,7 +1179,7 @@
           "icone": "Building2"
         },
         {
-          "nome": "NÃO APLICÃVEL",
+          "nome": "NÃO APLICÁVEL",
           "valor": 0,
           "pct": 0,
           "cor": "#6B7280",
@@ -1563,25 +1563,25 @@
       },
       "categorias": [
         {
-          "nome": "12 - EDUCAÃ§Ã£O",
+          "nome": "12 - EDUCAçãO",
           "valor": 26284817.900000017,
           "pct": 44.9,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#3B82F6",
+          "icone": "BookOpen"
         },
         {
-          "nome": "10 - SAÃºDE",
+          "nome": "10 - SAúDE",
           "valor": 13948747.170000019,
           "pct": 23.8,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#EF4444",
+          "icone": "Heart"
         },
         {
-          "nome": "4 - ADMINISTRAÃ§Ã£O",
+          "nome": "4 - ADMINISTRAçãO",
           "valor": 6382006.3500000015,
           "pct": 10.9,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#8B5CF6",
+          "icone": "Users"
         },
         {
           "nome": "15 - URBANISMO",
@@ -1605,11 +1605,11 @@
           "icone": "Building2"
         },
         {
-          "nome": "8 - ASSISTÃªNCIA SOCIAL",
+          "nome": "8 - ASSISTêNCIA SOCIAL",
           "valor": 1000193.98,
           "pct": 1.7,
-          "cor": "#6B7280",
-          "icone": "Building2"
+          "cor": "#10B981",
+          "icone": "Shield"
         },
         {
           "nome": "13 - CULTURA",
@@ -1633,14 +1633,14 @@
           "icone": "TreePine"
         },
         {
-          "nome": "2 - JUDICIÃ¡RIA",
+          "nome": "2 - JUDICIáRIA",
           "valor": 306272,
           "pct": 0.5,
           "cor": "#6B7280",
           "icone": "Building2"
         },
         {
-          "nome": "NÃO APLICÃVEL",
+          "nome": "NÃO APLICÁVEL",
           "valor": 0,
           "pct": 0,
           "cor": "#6B7280",

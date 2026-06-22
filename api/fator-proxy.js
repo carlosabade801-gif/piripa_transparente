@@ -41,7 +41,7 @@ async function fetchISO(url) {
   const res = await fetch(url, { headers: { "User-Agent": "PiripaTransparente/1.0" } });
   if (!res.ok) throw new Error(`Fator HTTP ${res.status}`);
   const buf = await res.arrayBuffer();
-  return new TextDecoder("iso-8859-1").decode(buf);
+  return new TextDecoder("utf-8").decode(buf);
 }
 
 async function fetchJSON(url, headers = {}) {

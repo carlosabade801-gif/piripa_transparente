@@ -40,22 +40,20 @@ function DrillDown({ categoria, ano, onClose }) {
     const ini = `${m.ini}/${ano}`;
     const fim = `${m.fim}/${ano}`;
     try {
+      const match = (categoria.nome || "").match(/^(\d+)/);
+      const code = match ? match[1] : "-1";
       const r = await fetch(
-        `${PROXY}?endpoint=despesa&inicio=${encodeURIComponent(ini)}&fim=${encodeURIComponent(fim)}&fornecedor=${encodeURIComponent(categoria.nome)}`
+        `${PROXY}?endpoint=despesa&inicio=${encodeURIComponent(ini)}&fim=${encodeURIComponent(fim)}&funcao=${code}`
       );
       const d = await r.json();
-      // Filtrar pelo nome da categoria no credor
-      const filtrados = (d.items || []).filter(i => {
-        const c = (i.detalhe?.credor || i.credor || "").toUpperCase();
-        const f = (i.detalhe?.funcao || "").toUpperCase();
-        const h = (i.detalhe?.historico || "").toUpperCase();
-        const nome = categoria.nome.toUpperCase();
-        return c.includes(nome) || f.includes(nome) || h.includes(nome);
-      });
-      setItens(filtrados.length > 0 ? filtrados : d.items || []);
+      setItens(d.items || []);
       setBuscado(true);
-    } catch { setBuscado(true); }
-    finally { setLoading(false); }
+    } catch (e) {
+      console.error("Erro ao buscar detalhamento da categoria:", e);
+      setBuscado(true);
+    } finally {
+      setLoading(false);
+    }
   }, [mes, ano, categoria]);
 
   // Agrupar por sub-credor

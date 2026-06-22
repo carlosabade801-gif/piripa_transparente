@@ -54,7 +54,7 @@ function httpsGet(targetUrl, extraHeaders = {}) {
 async function httpsGetISO(targetUrl) {
   const { buf, statusCode } = await httpsGet(targetUrl);
   if (statusCode >= 400) throw new Error(`HTTP ${statusCode}`);
-  return buf.toString("latin1");
+  return buf.toString("utf8");
 }
 
 async function httpsGetJSON(targetUrl, headers = {}) {
