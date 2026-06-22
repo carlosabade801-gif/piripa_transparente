@@ -1,11 +1,25 @@
 import { 
-  Calculator, Search, Building2, Scale, TrendingUp 
+  Calculator, Search, Building2, Scale, TrendingUp, FileText, ShieldAlert
 } from "lucide-react";
 import Card from "../components/Card";
 import { SectionTitle } from "../components/ui";
 
 export default function Mais({ setTab }) {
   const modulos = [
+    { 
+      id: "licitacoes", 
+      titulo: "Contratos e Licitações", 
+      desc: "Veja todos os contratos e editais vigentes",
+      icone: FileText,
+      cor: "#6366F1"
+    },
+    { 
+      id: "denuncias", 
+      titulo: "Denunciar Irregularidades", 
+      desc: "Canais oficiais e anônimos de denúncia",
+      icone: ShieldAlert,
+      cor: "#EF4444"
+    },
     { 
       id: "custopramim", 
       titulo: "Custo Pra Mim", 

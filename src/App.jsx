@@ -196,11 +196,9 @@ import ReceitasDetalhadas from "./tabs/ReceitasDetalhadas";
 import Mais               from "./tabs/Mais";
 
 const TABS = [
-  { id: "visao",       label: "Geral",      emoji: "🏛️" },
+  { id: "visao",       label: "Início",     emoji: "🏛️" },
   { id: "despesas",    label: "Despesas",   emoji: "💸" },
   { id: "receitas",    label: "Receitas",   emoji: "💰" },
-  { id: "licitacoes",  label: "Contratos",  emoji: "📋" },
-  { id: "denuncias",   label: "Denunciar",  emoji: "🚨" },
   { id: "chatia",      label: "IA",         emoji: "🤖" },
   { id: "mais",        label: "Mais",       emoji: "☰" },
 ];
@@ -258,7 +256,7 @@ export default function App() {
 
       {/* ── Header ── */}
       <header className="sticky top-0 z-50 bg-[#060F1E]/95 backdrop-blur-md border-b border-[#1A3356]">
-        <div className="max-w-lg mx-auto px-4 pt-3 pb-2 flex items-center justify-between">
+        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
           <div>
             <p className="text-[10px] text-cyan-400 font-bold tracking-widest uppercase leading-none">Transparência Pública</p>
             <h1 className="text-base font-black text-white leading-tight">{CONFIG.municipio} · BA</h1>
@@ -276,25 +274,6 @@ export default function App() {
               <RefreshCw size={13} className={loading ? "animate-spin text-cyan-400" : "text-slate-500"} />
             </button>
           </div>
-        </div>
-
-        {/* Tabs */}
-        <div ref={tabsRef} className="max-w-lg mx-auto px-4 pb-2.5 flex gap-1.5 overflow-x-auto scrollbar-hide">
-          {TABS.map(t => (
-            <button
-              key={t.id}
-              data-active={tab === t.id}
-              onClick={() => setTab(t.id)}
-              className={`flex-shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                tab === t.id
-                  ? t.id === "chatia"
-                    ? "bg-violet-600 text-white shadow-lg shadow-violet-500/25"
-                    : "bg-cyan-500 text-white shadow-lg shadow-cyan-500/25"
-                  : "bg-[#0D1F3C] text-slate-400 hover:text-white border border-[#1A3356]"
-              }`}>
-              {t.emoji} {t.label}
-            </button>
-          ))}
         </div>
       </header>
 
@@ -355,12 +334,34 @@ export default function App() {
 
       <InstallBanner />
 
-      {/* ── Footer ── */}
-      <footer className="fixed bottom-0 left-0 right-0 bg-[#060F1E]/95 backdrop-blur border-t border-[#1A3356] py-2.5">
-        <p className="text-center text-[10px] text-slate-700">
-          Dados públicos • SICONFI · Fator Sistemas · SAI2 · IBGE · TCM-BA
-        </p>
-      </footer>
+      {/* ── Bottom Navigation Bar ── */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-[#060F1E]/95 backdrop-blur-md border-t border-[#1A3356] pb-safe">
+        <div className="max-w-lg mx-auto flex items-center justify-around px-2 py-2">
+          {TABS.map(t => {
+            const isActive = tab === t.id;
+            return (
+              <button
+                key={t.id}
+                onClick={() => setTab(t.id)}
+                className={`flex flex-col items-center justify-center w-16 h-12 rounded-xl transition-all ${
+                  isActive 
+                    ? t.id === "chatia" 
+                      ? "text-violet-400" 
+                      : "text-cyan-400" 
+                    : "text-slate-500 hover:text-slate-300"
+                }`}
+              >
+                <span className={`text-xl mb-0.5 transition-transform ${isActive ? "scale-110" : "scale-100"}`}>
+                  {t.emoji}
+                </span>
+                <span className={`text-[10px] font-bold ${isActive ? "opacity-100" : "opacity-70"}`}>
+                  {t.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </nav>
     </div>
   );
 }
