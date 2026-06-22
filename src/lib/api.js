@@ -144,19 +144,21 @@ export async function loadMunicipioData(ano) {
   let categoriasFinal = MOCK.categorias;
   let categoriasSrc   = "mock";
 
-  if (categoriasResult.ok && categoriasResult.data?.categorias?.length > 0) {
-    categoriasFinal = categoriasResult.data.categorias.map(c => ({
-      nome:  c.nome,
-      valor: c.valor,
-      pct:   c.pct,
-      cor:   c.cor,
-      icone: ICONE_MAP[c.icone] || Building2,
-    }));
-    categoriasSrc = "fator";
+  if (categoriasResult.ok) {
+    if (categoriasResult.data?.categorias?.length > 0) {
+      categoriasFinal = categoriasResult.data.categorias.map(c => ({
+        nome:  c.nome,
+        valor: c.valor,
+        pct:   c.pct,
+        cor:   c.cor,
+        icone: ICONE_MAP[c.icone] || Building2,
+      }));
+      categoriasSrc = "fator";
+    }
 
     // NOVO: Como o SICONFI falha, extraímos a Despesa Real exata do Fator Sistemas (soma das categorias)
-    // A Receita é inacessível no momento, então a acompanhamos como 5% acima da despesa para evitar erros.
-    const despesaReal = categoriasResult.data.total;
+    // Atualizamos mesmo que a array de categorias venha vazia (anos antigos sem dialog).
+    const despesaReal = categoriasResult.data?.total || 0;
     if (srcFinal === "mock" && despesaReal > 0) {
       const receitaEstimada = despesaReal * 1.05; // Margem de superávit técnico de 5%
       resumoFinal = {
@@ -167,6 +169,7 @@ export async function loadMunicipioData(ano) {
         bimestre: null,
       };
       srcFinal = "fator"; // Sinaliza que a âncora é real
+      if (categoriasSrc === "mock") categoriasSrc = "fator";
     }
   }
 
