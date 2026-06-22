@@ -193,19 +193,16 @@ import GastosDetalhados    from "./tabs/GastosDetalhados";
 import GastosPorSecretaria from "./tabs/GastosPorSecretaria";
 import LicitacoesAoVivo   from "./tabs/LicitacoesAoVivo";
 import ReceitasDetalhadas from "./tabs/ReceitasDetalhadas";
+import Mais               from "./tabs/Mais";
 
 const TABS = [
   { id: "visao",       label: "Geral",      emoji: "🏛️" },
-  { id: "custopramim", label: "Pra Mim",    emoji: "🧮" },
   { id: "despesas",    label: "Despesas",   emoji: "💸" },
   { id: "receitas",    label: "Receitas",   emoji: "💰" },
   { id: "licitacoes",  label: "Contratos",  emoji: "📋" },
   { id: "denuncias",   label: "Denunciar",  emoji: "🚨" },
   { id: "chatia",      label: "IA",         emoji: "🤖" },
-  { id: "gastos",      label: "Gastos",     emoji: "🔍" },
-  { id: "secretarias",  label: "Secretarias",emoji: "🏛️" },
-  { id: "licitaovivo", label: "Licitações", emoji: "⚖️" },
-  { id: "recdetalhada",label: "Receitas+",  emoji: "💹" },
+  { id: "mais",        label: "Mais",       emoji: "☰" },
 ];
 
 export default function App() {
@@ -219,24 +216,33 @@ export default function App() {
   const [dataSource, setSource] = useState("mock");
   const [sources,    setSources]= useState({});
   const [loading,    setLoading]= useState(true);
+  const [error,      setError]  = useState(null);
   const [ano,        setAno]    = useState(anoDefault);
   const tabsRef = useRef(null);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
-    const { data: d, source: s, _debug, _sources } = await loadMunicipioData(ano);
-    if (_debug) {
-      console.group("🏛️ Piripá Transparente — status das APIs");
-      console.log("SICONFI:        ", _debug.siconfi);
-      console.log("Categorias:     ", _debug.categorias);
-      console.log("Transferências: ", _debug.transferencias);
-      console.log("Histórico:      ", _debug.historico);
-      console.groupEnd();
+    setError(null);
+    try {
+      const { data: d, source: s, _debug, _sources } = await loadMunicipioData(ano);
+      if (_debug) {
+        console.group("🏛️ Piripá Transparente — status das APIs");
+        console.log("SICONFI:        ", _debug.siconfi);
+        console.log("Categorias:     ", _debug.categorias);
+        console.log("Transferências: ", _debug.transferencias);
+        console.log("Histórico:      ", _debug.historico);
+        console.groupEnd();
+      }
+      if (!d) throw new Error("Falha ao carregar dados do município");
+      setData(d);
+      setSource(s);
+      setSources(_sources || {});
+    } catch (err) {
+      console.error("[fetchData]", err);
+      setError(err.message || "Ocorreu um erro desconhecido");
+    } finally {
+      setLoading(false);
     }
-    setData(d);
-    setSource(s);
-    setSources(_sources || {});
-    setLoading(false);
   }, [ano]);
 
   useEffect(() => { fetchData(); }, [fetchData]);
@@ -293,7 +299,7 @@ export default function App() {
       </header>
 
       {/* ── Loading ── */}
-      {loading && (
+      {loading && !error && (
         <div className="max-w-lg mx-auto px-4 py-16 flex flex-col items-center gap-4">
           <div className="relative">
             <div className="w-12 h-12 border-2 border-cyan-500/30 rounded-full" />
@@ -306,20 +312,44 @@ export default function App() {
         </div>
       )}
 
+      {/* ── Erro ── */}
+      {!loading && error && (
+        <div className="max-w-lg mx-auto px-4 py-16 flex flex-col items-center gap-4 text-center">
+          <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 border border-red-500/20">
+            <span className="text-3xl">⚠️</span>
+          </div>
+          <div>
+            <h2 className="text-lg font-bold text-white">Oops! Algo deu errado.</h2>
+            <p className="text-slate-400 text-sm max-w-xs mt-1">{error}</p>
+          </div>
+          <button 
+            onClick={fetchData}
+            className="mt-2 px-6 py-2.5 bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/30 font-bold rounded-xl transition-colors">
+            Tentar Novamente
+          </button>
+        </div>
+      )}
+
       {/* ── Conteúdo ── */}
       {!loading && data && (
         <main className="max-w-lg mx-auto px-4 py-5 pb-20">
-          {tab === "visao"       && <Visao       data={data} dataSource={dataSource} loading={loading} sources={sources} />}
-          {tab === "custopramim" && <CustoPraMim data={data} />}
-          {tab === "despesas"    && <Despesas    data={data} />}
-          {tab === "receitas"    && <Receitas    data={data} sources={sources} />}
-          {tab === "licitacoes"  && <Licitacoes  data={data} />}
-          {tab === "denuncias"   && <Denuncias />}
-          {tab === "chatia"      && <ChatIA      data={data} />}
-          {tab === "gastos"      && <GastosDetalhados />}
-          {tab === "secretarias" && <GastosPorSecretaria />}
-          {tab === "licitaovivo" && <LicitacoesAoVivo />}
-          {tab === "recdetalhada" && <ReceitasDetalhadas />}
+          <div className={tab === "chatia" ? "block" : "hidden"}>
+            <ChatIA data={data} />
+          </div>
+
+          <div className={tab !== "chatia" ? "block" : "hidden"}>
+            {tab === "visao"       && <Visao       data={data} dataSource={dataSource} loading={loading} sources={sources} />}
+            {tab === "custopramim" && <CustoPraMim data={data} />}
+            {tab === "despesas"    && <Despesas    data={data} />}
+            {tab === "receitas"    && <Receitas    data={data} sources={sources} />}
+            {tab === "licitacoes"  && <Licitacoes  data={data} />}
+            {tab === "denuncias"   && <Denuncias />}
+            {tab === "gastos"      && <GastosDetalhados />}
+            {tab === "secretarias" && <GastosPorSecretaria />}
+            {tab === "licitaovivo" && <LicitacoesAoVivo />}
+            {tab === "recdetalhada" && <ReceitasDetalhadas />}
+            {tab === "mais"        && <Mais        setTab={setTab} />}
+          </div>
         </main>
       )}
 

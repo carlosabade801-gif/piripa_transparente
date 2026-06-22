@@ -50,7 +50,7 @@ O sistema não utiliza banco de dados próprio para armazenar valores; ele conso
 3. **Configure as Variáveis de Ambiente:**
    Crie um arquivo `.env` na raiz do projeto baseado no `.env.example`:
    ```env
-   VITE_PORTAL_API_KEY=sua_chave_aqui
+   PORTAL_API_KEY=sua_chave_aqui
    ```
 
 4. **Inicie o Servidor Proxy (Terminal 1):**

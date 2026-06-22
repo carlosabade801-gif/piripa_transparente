@@ -80,7 +80,7 @@ export default function Receitas({ data, sources }) {
               </p>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
                 {src.transferencias === "sem_chave"
-                  ? "Para obter dados oficiais de transferências federais, registre uma chave gratuita em portaldatransparencia.gov.br/api-de-dados/cadastrar-email e adicione como VITE_PORTAL_API_KEY no .env"
+                  ? "Para obter dados oficiais de transferências federais, registre uma chave gratuita em portaldatransparencia.gov.br/api-de-dados/cadastrar-email e adicione como PORTAL_API_KEY no .env"
                   : "Os valores de transferências abaixo são estimativas baseadas em anos anteriores. Para dados ao vivo, configure a chave do Portal da Transparência Federal."
                 }
               </p>

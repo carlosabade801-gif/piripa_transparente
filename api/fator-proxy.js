@@ -28,7 +28,7 @@ const SAI2_ORG   = 1820;
 
 // Portal da Transparência Federal
 const PORTAL_BASE = "https://api.portaldatransparencia.gov.br/api-de-dados";
-const PORTAL_KEY  = process.env.VITE_PORTAL_API_KEY || process.env.PORTAL_API_KEY || "";
+const PORTAL_KEY  = process.env.PORTAL_API_KEY || "";
 
 // SICONFI
 const SICONFI_BASE = "https://apidatalake.tesouro.gov.br/ords/siconfi/tt";
@@ -235,7 +235,11 @@ function mapFuncao(nome) {
 
 // ── Handler principal ─────────────────────────────────────────────────────────
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  const allowedOrigins = ["http://localhost:5173", "http://localhost:3000", "https://piripa-transparente.vercel.app"];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
   res.setHeader("Cache-Control", "s-maxage=120, stale-while-revalidate=300");
   if (req.method === "OPTIONS") return res.status(200).end();
