@@ -1,11 +1,18 @@
 import { 
-  Calculator, Search, Building2, Scale, TrendingUp, FileText, ShieldAlert
+  Calculator, Search, Building2, Scale, TrendingUp, FileText, ShieldAlert, Flame
 } from "lucide-react";
 import Card from "../components/Card";
 import { SectionTitle } from "../components/ui";
 
 export default function Mais({ setTab }) {
   const modulos = [
+    { 
+      id: "festejos", 
+      titulo: "Festejos Juninos", 
+      desc: "Transparência exclusiva sobre os gastos do São João e São Pedro",
+      icone: Flame,
+      cor: "#F97316"
+    },
     { 
       id: "licitacoes", 
       titulo: "Contratos e Licitações", 

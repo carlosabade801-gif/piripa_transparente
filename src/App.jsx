@@ -194,6 +194,7 @@ import GastosPorSecretaria from "./tabs/GastosPorSecretaria";
 import LicitacoesAoVivo   from "./tabs/LicitacoesAoVivo";
 import ReceitasDetalhadas from "./tabs/ReceitasDetalhadas";
 import Mais               from "./tabs/Mais";
+import FestejosJuninos    from "./tabs/FestejosJuninos";
 
 const TABS = [
   { id: "visao",       label: "Início",     emoji: "🏛️" },
@@ -203,7 +204,7 @@ const TABS = [
   { id: "mais",        label: "Mais",       emoji: "☰" },
 ];
 
-const SUB_TABS = ["licitacoes", "denuncias", "custopramim", "gastos", "secretarias", "licitaovivo", "recdetalhada"];
+const SUB_TABS = ["licitacoes", "denuncias", "custopramim", "gastos", "secretarias", "licitaovivo", "recdetalhada", "festejos"];
 
 export default function App() {
   // Ano padrão = ano anterior (dados mais completos no SICONFI)
@@ -337,6 +338,7 @@ export default function App() {
             {tab === "secretarias" && <GastosPorSecretaria />}
             {tab === "licitaovivo" && <LicitacoesAoVivo />}
             {tab === "recdetalhada" && <ReceitasDetalhadas />}
+            {tab === "festejos"    && <FestejosJuninos data={data} />}
             {tab === "mais"        && <Mais        setTab={setTab} />}
           </div>
         </main>
