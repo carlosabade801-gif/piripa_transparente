@@ -178,7 +178,7 @@ function InstallBanner() {
     </>
   );
 }
-import { RefreshCw } from "lucide-react";
+import { RefreshCw, ArrowLeft } from "lucide-react";
 import { loadMunicipioData } from "./lib/api";
 import { CONFIG } from "./lib/config";
 
@@ -202,6 +202,8 @@ const TABS = [
   { id: "chatia",      label: "IA",         emoji: "🤖" },
   { id: "mais",        label: "Mais",       emoji: "☰" },
 ];
+
+const SUB_TABS = ["licitacoes", "denuncias", "custopramim", "gastos", "secretarias", "licitaovivo", "recdetalhada"];
 
 export default function App() {
   // Ano padrão = ano anterior (dados mais completos no SICONFI)
@@ -317,6 +319,14 @@ export default function App() {
           </div>
 
           <div className={tab !== "chatia" ? "block" : "hidden"}>
+            {SUB_TABS.includes(tab) && (
+              <button
+                onClick={() => setTab("mais")}
+                className="flex items-center gap-2 mb-5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors bg-[#0D1F3C] border border-[#1A3356] px-3.5 py-2 rounded-xl active:scale-[0.98] shadow-lg shadow-cyan-500/5 animate-fade-in"
+              >
+                <ArrowLeft size={13} /> Voltar ao Menu
+              </button>
+            )}
             {tab === "visao"       && <Visao       data={data} dataSource={dataSource} loading={loading} sources={sources} />}
             {tab === "custopramim" && <CustoPraMim data={data} />}
             {tab === "despesas"    && <Despesas    data={data} />}
@@ -338,7 +348,9 @@ export default function App() {
       <nav className="fixed bottom-0 left-0 right-0 bg-[#060F1E]/95 backdrop-blur-md border-t border-[#1A3356] pb-safe">
         <div className="max-w-lg mx-auto flex items-center justify-around px-2 py-2">
           {TABS.map(t => {
-            const isActive = tab === t.id;
+            const isActive = t.id === "mais"
+              ? (tab === "mais" || SUB_TABS.includes(tab))
+              : tab === t.id;
             return (
               <button
                 key={t.id}
