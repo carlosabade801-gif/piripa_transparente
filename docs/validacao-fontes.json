@@ -1,0 +1,197 @@
+{
+  "executadoEm": "2026-10-21T23:02:30.969Z",
+  "escopo": "Consulta às fontes externas. Evidência pontual; não certifica todos os registros, anos, documentos ou a completude da publicação.",
+  "consultas": [
+    {
+      "consulta": {
+        "endpoint": "despesa",
+        "inicio": "2025-09-15",
+        "fim": "2025-09-15"
+      },
+      "sucesso": true,
+      "status": "ok",
+      "registros": 43,
+      "totais": {
+        "empenhadoCentavos": 5907197,
+        "liquidadoCentavos": 11329088,
+        "pagoCentavos": 12552302
+      },
+      "avisos": [],
+      "meta": {
+        "fonte": "Fator Sistemas — portal indicado pela Prefeitura de Piripá",
+        "urlConsulta": "https://transparencia.fatorsistemas.com.br/dados/carregaDespesa.php?id=pm_piripa&unidade_gestora=0&tipo=-1&fornecedor=&cpfcnpj=&data_publicacao=15%2F09%2F2025&data_publicacao_fim=15%2F09%2F2025&Numero=&NProcesso=&funcao=-1&subfuncao=-1&Despesa=&Historico=&fonte=-1&acao=-1&Valor=&modalidade=-1&Categoria_Economica=-1&Grupo_Despesa=-1&Modalidade_Aplicacao=-1&Elemento=-1&Subelemento=-1&nContrato=",
+        "municipio": "Piripá",
+        "codigoIbge": "2924702",
+        "coletadoEm": "2026-10-21T23:02:05.541Z",
+        "atualizadoNaFonteEm": null,
+        "sha256Resposta": "b8c9a27cd3f352d684e35787759d56656a71fcbced3573aaad8a5c3b1ecc88b7",
+        "bytesResposta": 432155,
+        "cache": false,
+        "versaoExtrator": "1.0.0",
+        "cobertura": "Registros retornados pela fonte nesta consulta. A completude da publicação municipal não é certificada pelo aplicativo.",
+        "periodo": {
+          "start": "2025-09-15",
+          "end": "2025-09-15"
+        },
+        "urlPortal": "https://transparencia.fatorsistemas.com.br/dados/despesa.php?id=pm_piripa",
+        "linhasNaFonte": 43,
+        "previsoesAnuaisExcluidas": 0,
+        "registrosSemClassificacaoCompleta": 0,
+        "abrangencia": "Consolidado retornado pelo portal municipal; unidades gestoras identificadas em cada registro.",
+        "snapshot": "a7c5186983d52bbc843942c3fca15827d4e388d451d08d6f56e126e404a38155"
+      }
+    },
+    {
+      "consulta": {
+        "endpoint": "receita",
+        "inicio": "2025-09-15",
+        "fim": "2025-09-15"
+      },
+      "sucesso": true,
+      "status": "ok",
+      "registros": 22,
+      "totais": {
+        "orcamentariaCentavos": 26123783,
+        "extraorcamentariaCentavos": 118729
+      },
+      "avisos": [
+        "133 linhas de previsão anual sem arrecadação no período foram excluídas dos movimentos."
+      ],
+      "meta": {
+        "fonte": "Fator Sistemas — portal indicado pela Prefeitura de Piripá",
+        "urlConsulta": "https://transparencia.fatorsistemas.com.br/dados/carregaReceita.php?id=pm_piripa&unidade_gestora=0&tipo=-1&dt_ini=15%2F09%2F2025&dt_fim=15%2F09%2F2025&natureza=-1&tipoREC=2&valor=",
+        "municipio": "Piripá",
+        "codigoIbge": "2924702",
+        "coletadoEm": "2026-10-21T23:02:14.119Z",
+        "atualizadoNaFonteEm": null,
+        "sha256Resposta": "d4d25fe55f7d9f12413a2af1613f95efaee89b9a5125af5a1a0fba60013f8e34",
+        "bytesResposta": 1680811,
+        "cache": false,
+        "versaoExtrator": "1.0.0",
+        "cobertura": "Registros retornados pela fonte nesta consulta. A completude da publicação municipal não é certificada pelo aplicativo.",
+        "periodo": {
+          "start": "2025-09-15",
+          "end": "2025-09-15"
+        },
+        "urlPortal": "https://transparencia.fatorsistemas.com.br/dados/receita.php?id=pm_piripa",
+        "linhasNaFonte": 155,
+        "previsoesAnuaisExcluidas": 133,
+        "registrosSemClassificacaoCompleta": 0,
+        "abrangencia": "Consolidado retornado pelo portal municipal; unidades gestoras identificadas em cada registro.",
+        "snapshot": "ec0aca14bb76090e383696389a761d1af16b2b5f19d5eb28f0c961e06a5aa612"
+      }
+    },
+    {
+      "consulta": {
+        "endpoint": "resumo",
+        "ano": "2025",
+        "bimestre": "6"
+      },
+      "sucesso": true,
+      "status": "ok",
+      "registros": 235,
+      "resumo": {
+        "receitaRealizada": {
+          "centavos": 6236789195,
+          "conta": "TOTAL DAS RECEITAS (V) = (III + IV)",
+          "codigo": "TotalReceitas",
+          "coluna": "Até o Bimestre (c)"
+        },
+        "receitaPrevista": {
+          "centavos": 6874800000,
+          "conta": "TOTAL DAS RECEITAS (V) = (III + IV)",
+          "codigo": "TotalReceitas",
+          "coluna": "PREVISÃO ATUALIZADA (a)"
+        },
+        "empenhado": {
+          "centavos": 6018694470,
+          "conta": "SUBTOTAL DAS DESPESAS (X) = (VIII + IX)",
+          "codigo": "SubtotalDasDespesas",
+          "coluna": "DESPESAS EMPENHADAS ATÉ O BIMESTRE (f)"
+        },
+        "liquidado": {
+          "centavos": 6018694470,
+          "conta": "SUBTOTAL DAS DESPESAS (X) = (VIII + IX)",
+          "codigo": "SubtotalDasDespesas",
+          "coluna": "DESPESAS LIQUIDADAS ATÉ O BIMESTRE (h)"
+        },
+        "pago": {
+          "centavos": 6018694470,
+          "conta": "SUBTOTAL DAS DESPESAS (X) = (VIII + IX)",
+          "codigo": "SubtotalDasDespesas",
+          "coluna": "DESPESAS PAGAS ATÉ O BIMESTRE (j)"
+        },
+        "instituicao": "Prefeitura Municipal de Piripá - BA",
+        "exercicio": 2025,
+        "bimestre": 6
+      },
+      "avisos": [],
+      "meta": {
+        "fonte": "SICONFI — Tesouro Nacional",
+        "urlConsulta": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?an_exercicio=2025&nr_periodo=6&co_tipo_demonstrativo=RREO&no_anexo=RREO-Anexo+01&co_esfera=M&id_ente=2924702&offset=0",
+        "municipio": "Piripá",
+        "codigoIbge": "2924702",
+        "coletadoEm": "2026-10-21T23:02:03.310Z",
+        "atualizadoNaFonteEm": null,
+        "sha256Resposta": "693634492a6a01c03dcb98ef246ba7ca8049e2bcf7b1c2a88926976f027ff46c",
+        "cache": false,
+        "versaoExtrator": "1.0.0",
+        "cobertura": "Contas e colunas identificadas no RREO. Não some as etapas da despesa nem compare automaticamente com outro universo de consulta.",
+        "periodo": {
+          "ano": 2025,
+          "bimestre": 6
+        },
+        "paginas": [
+          {
+            "url": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?an_exercicio=2025&nr_periodo=6&co_tipo_demonstrativo=RREO&no_anexo=RREO-Anexo+01&co_esfera=M&id_ente=2924702&offset=0",
+            "sha256": "693634492a6a01c03dcb98ef246ba7ca8049e2bcf7b1c2a88926976f027ff46c",
+            "coletadoEm": "2026-10-21T23:02:03.310Z"
+          }
+        ],
+        "anexo": "RREO-Anexo 01",
+        "abrangencia": "Demonstrativo fiscal do ente municipal, acumulado até o bimestre selecionado. Não representa saldo bancário.",
+        "snapshot": "8b9039c3db82f382334b306949602129185815864914c892b12c396439c35414"
+      }
+    },
+    {
+      "consulta": {
+        "endpoint": "licitacoes",
+        "ano": "2025"
+      },
+      "sucesso": true,
+      "status": "ok",
+      "registros": 53,
+      "totais": {},
+      "avisos": [
+        "Valores estimados e homologados não comprovam contratação ou pagamento. Zero/ausência no campo de valor é exibido como não informado."
+      ],
+      "meta": {
+        "fonte": "SAI2 — licitações do portal municipal",
+        "urlConsulta": "https://transparencia.piripa.ba.gov.br/licitacoes",
+        "municipio": "Piripá",
+        "codigoIbge": "2924702",
+        "coletadoEm": "2026-10-21T23:02:02.813Z",
+        "atualizadoNaFonteEm": null,
+        "sha256Resposta": "82209c5841e7d739b9dde15ec5ad8ede3a75d5a283195b845b67ad503c5c7231",
+        "bytesResposta": 32643,
+        "cache": false,
+        "versaoExtrator": "1.0.0",
+        "cobertura": "Registros retornados pela fonte nesta consulta. A completude da publicação municipal não é certificada pelo aplicativo.",
+        "periodo": {
+          "ano": 2025
+        },
+        "requisicao": {
+          "url": "https://sai2.io.org.br/v3/Licitacao/Filtro",
+          "method": "POST",
+          "body": {
+            "cod_orgao_org": 1820,
+            "ano": 2025
+          }
+        },
+        "abrangencia": "Licitações retornadas pelo órgão 1820. Contratos, aditivos e pagamentos exigem documentos específicos.",
+        "snapshot": "2b3b5d1907cc198ec8e4b6152a28d0f75b4866e010386318f6ad21c1b092d313"
+      }
+    }
+  ],
+  "beneficios": "Integração autenticada não testada sem PORTAL_API_KEY."
+}

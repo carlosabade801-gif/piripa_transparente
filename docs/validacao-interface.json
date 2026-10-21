@@ -1,0 +1,19 @@
+{
+  "executadoEm": "2026-10-21T13:22:46.805Z",
+  "navegador": "131.0.6778.0",
+  "modo": "Interface compilada com respostas de teste originadas das amostras reais. Consultas externas verificadas separadamente em validacao-fontes.json.",
+  "verificacoes": [
+    "Desktop 1440 px e celular 390 px",
+    "Sem erros JavaScript capturados",
+    "Valores e detalhes monetários",
+    "CSV de 43 registros e JSON com totais conferidos",
+    "Paginação e filtro aplicados ao conjunto completo",
+    "Falha da fonte remove valores antigos; nova tentativa recupera consulta",
+    "Receita arrecadada e extraorçamentária separadas",
+    "Resumo por exercício e bimestre",
+    "Licitações e busca temática",
+    "Benefícios indisponíveis sem credencial",
+    "Sem transbordamento horizontal da página no celular"
+  ],
+  "resultado": "aprovado"
+}

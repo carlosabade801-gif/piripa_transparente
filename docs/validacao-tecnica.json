@@ -1,0 +1,27 @@
+{
+  "executadoEm": "2026-10-21",
+  "testesAutomatizados": {
+    "total": 13,
+    "aprovados": 13,
+    "comando": "npm test"
+  },
+  "compilacao": {
+    "resultado": "aprovada",
+    "comando": "npm run build",
+    "vite": "8.3.5"
+  },
+  "dependencias": {
+    "comando": "npm audit",
+    "vulnerabilidadesConhecidas": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "observacao": "Resultado pontual do registro npm, não uma certificação de segurança."
+  },
+  "consultasReais": "validacao-fontes.json",
+  "limites": "Sem teste de carga ou homologação no domínio de produção. Integração autenticada da CGU não testada sem chave."
+}

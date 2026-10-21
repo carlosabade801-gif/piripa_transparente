@@ -1,381 +1,167 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useEffect, useRef, useState } from 'react';
+import { Landmark, ArrowDownLeft, ArrowUpRight, FileText, BookOpen, HeartHandshake, ExternalLink, RefreshCw, Download, Search, ChevronLeft, ChevronRight, X, Info, AlertTriangle, ArrowRight, Menu } from 'lucide-react';
+import { money } from '../shared/money.js';
+import { dateBR, period, monthBounds } from '../shared/dates.js';
+import { query, exportQuery, saveFile } from './lib/client.js';
 
-// ── PWA Install Banner ────────────────────────────────────────────────────────
-function InstallBanner() {
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
-  const [showBanner,     setShowBanner]     = useState(false);
-  const [showModal,      setShowModal]      = useState(false);
-  const [dismissed,      setDismissed]      = useState(false);
-  const [platform,       setPlatform]       = useState("android"); // android | ios
-
-  useEffect(() => {
-    // Não mostrar se já instalado (standalone)
-    if (window.matchMedia("(display-mode: standalone)").matches) return;
-    if (window.navigator.standalone === true) return;
-    // Não mostrar se já dispensou nesta sessão
-    if (sessionStorage.getItem("pwa-dismissed")) return;
-
-    // Detectar plataforma
-    const ua = navigator.userAgent.toLowerCase();
-    const isIOS = /iphone|ipad|ipod/.test(ua);
-    setPlatform(isIOS ? "ios" : "android");
-
-    // Android/Chrome: esperar evento beforeinstallprompt
-    const handler = (e) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-      // Mostrar banner após 3 segundos
-      setTimeout(() => setShowBanner(true), 3000);
-    };
-    window.addEventListener("beforeinstallprompt", handler);
-
-    // iOS: mostrar banner após 5 segundos (não tem evento)
-    if (isIOS) {
-      const t = setTimeout(() => setShowBanner(true), 5000);
-      return () => clearTimeout(t);
-    }
-
-    return () => window.removeEventListener("beforeinstallprompt", handler);
-  }, []);
-
-  const dispensar = () => {
-    setShowBanner(false);
-    setShowModal(false);
-    setDismissed(true);
-    sessionStorage.setItem("pwa-dismissed", "1");
-  };
-
-  const instalarAndroid = async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === "accepted") dispensar();
-      setDeferredPrompt(null);
-    } else {
-      setShowModal(true);
-    }
-    setShowBanner(false);
-  };
-
-  const instalarIOS = () => {
-    setShowBanner(false);
-    setShowModal(true);
-  };
-
-  if (dismissed) return null;
-
-  return (
-    <>
-      {/* ── Banner deslizante na parte de baixo ── */}
-      {showBanner && (
-        <div className="fixed bottom-16 left-0 right-0 z-50 px-4 animate-fade-in">
-          <div className="max-w-lg mx-auto bg-[#0D1F3C] border border-cyan-500/50 rounded-2xl p-3.5 shadow-2xl shadow-cyan-500/20">
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-lg">
-                <span className="text-xl">🏛️</span>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-black text-white">Instalar Piripá Transparente</p>
-                <p className="text-[10px] text-slate-400 mt-0.5">
-                  {platform === "ios"
-                    ? "Adicione à tela inicial do iPhone"
-                    : "Instale o app no seu celular"}
-                </p>
-              </div>
-              <button onClick={dispensar}
-                className="text-slate-600 hover:text-slate-400 p-1 flex-shrink-0 text-lg leading-none">
-                ×
-              </button>
-            </div>
-            <div className="flex gap-2 mt-3">
-              <button onClick={dispensar}
-                className="flex-1 py-2 rounded-xl text-[11px] font-bold text-slate-400 bg-slate-800 hover:bg-slate-700 transition-colors">
-                Agora não
-              </button>
-              <button
-                onClick={platform === "ios" ? instalarIOS : instalarAndroid}
-                className="flex-1 py-2 rounded-xl text-[11px] font-bold text-white bg-cyan-500 hover:bg-cyan-400 transition-colors shadow-lg shadow-cyan-500/30">
-                {platform === "ios" ? "Como instalar" : "Instalar grátis"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ── Modal com instruções de instalação ── */}
-      {showModal && (
-        <div className="fixed inset-0 z-[60] bg-black/70 flex items-end justify-center p-4 backdrop-blur-sm"
-          onClick={(e) => e.target === e.currentTarget && dispensar()}>
-          <div className="max-w-lg w-full bg-[#0D1F3C] border border-[#1A3356] rounded-3xl p-6 shadow-2xl">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-5">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg">
-                  <span className="text-2xl">🏛️</span>
-                </div>
-                <div>
-                  <p className="text-sm font-black text-white">Piripá Transparente</p>
-                  <p className="text-[10px] text-slate-400">Instalar na tela inicial</p>
-                </div>
-              </div>
-              <button onClick={dispensar}
-                className="w-7 h-7 rounded-full bg-slate-700 flex items-center justify-center text-slate-400 hover:bg-slate-600">
-                ×
-              </button>
-            </div>
-
-            {/* Instruções por plataforma */}
-            {platform === "ios" ? (
-              <div className="space-y-3">
-                <p className="text-xs font-bold text-cyan-400 mb-4">Siga os passos no Safari:</p>
-                {[
-                  { step: "1", icon: "⬆️", text: 'Toque no botão de compartilhar (ícone de seta para cima) na barra inferior do Safari' },
-                  { step: "2", icon: "📲", text: 'Role para baixo e toque em "Adicionar à Tela de Início"' },
-                  { step: "3", icon: "✅", text: 'Toque em "Adicionar" no canto superior direito' },
-                ].map(item => (
-                  <div key={item.step} className="flex items-start gap-3 bg-[#060F1E] rounded-xl p-3">
-                    <div className="w-7 h-7 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-black flex items-center justify-center flex-shrink-0 mt-0.5">
-                      {item.step}
-                    </div>
-                    <div className="flex-1">
-                      <span className="text-base mr-1">{item.icon}</span>
-                      <span className="text-xs text-slate-300 leading-relaxed">{item.text}</span>
-                    </div>
-                  </div>
-                ))}
-                <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-3 mt-2">
-                  <p className="text-[10px] text-amber-400">⚠️ Funciona apenas no Safari. Se estiver no Chrome ou outro browser, copie o link e abra no Safari.</p>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <p className="text-xs font-bold text-cyan-400 mb-4">Siga os passos no Chrome:</p>
-                {[
-                  { step: "1", icon: "⋮",  text: 'Toque no menu (três pontos ⋮) no canto superior direito do Chrome' },
-                  { step: "2", icon: "📲", text: 'Toque em "Adicionar à tela inicial" ou "Instalar aplicativo"' },
-                  { step: "3", icon: "✅", text: 'Confirme tocando em "Instalar" ou "Adicionar"' },
-                ].map(item => (
-                  <div key={item.step} className="flex items-start gap-3 bg-[#060F1E] rounded-xl p-3">
-                    <div className="w-7 h-7 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-black flex items-center justify-center flex-shrink-0 mt-0.5">
-                      {item.step}
-                    </div>
-                    <div className="flex-1">
-                      <span className="text-base mr-1">{item.icon}</span>
-                      <span className="text-xs text-slate-300 leading-relaxed">{item.text}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            <button onClick={dispensar}
-              className="w-full mt-5 py-3 rounded-xl text-sm font-bold text-white bg-cyan-500 hover:bg-cyan-400 transition-colors">
-              Entendi!
-            </button>
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
-import { RefreshCw, ArrowLeft } from "lucide-react";
-import { loadMunicipioData } from "./lib/api";
-import { CONFIG } from "./lib/config";
-
-import Visao       from "./tabs/Visao";
-import CustoPraMim from "./tabs/CustoPraMim";
-import Despesas    from "./tabs/Despesas";
-import Receitas    from "./tabs/Receitas";
-import Licitacoes  from "./tabs/Licitacoes";
-import Denuncias   from "./tabs/Denuncias";
-import ChatIA           from "./tabs/ChatIA";
-import GastosDetalhados    from "./tabs/GastosDetalhados";
-import GastosPorSecretaria from "./tabs/GastosPorSecretaria";
-import LicitacoesAoVivo   from "./tabs/LicitacoesAoVivo";
-import ReceitasDetalhadas from "./tabs/ReceitasDetalhadas";
-import Mais               from "./tabs/Mais";
-import FestejosJuninos    from "./tabs/FestejosJuninos";
-
-const TABS = [
-  { id: "visao",       label: "Início",     emoji: "🏛️" },
-  { id: "despesas",    label: "Despesas",   emoji: "💸" },
-  { id: "receitas",    label: "Receitas",   emoji: "💰" },
-  { id: "chatia",      label: "IA",         emoji: "🤖" },
-  { id: "mais",        label: "Mais",       emoji: "☰" },
+const cityDate = Object.fromEntries(new Intl.DateTimeFormat('en', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date()).filter(p => p.type !== 'literal').map(p => [p.type, p.value]));
+const currentYear = Number(cityDate.year);
+const currentMonth = Number(cityDate.month);
+const years = Array.from({ length: currentYear - 2018 }, (_, i) => currentYear - i);
+const today = `${cityDate.year}-${cityDate.month}-${cityDate.day}`;
+const initialRange = { start: `${today.slice(0, 7)}-01`, end: today };
+const links = {
+  cidade: 'https://www.piripa.ba.gov.br/',
+  despesa: 'https://transparencia.fatorsistemas.com.br/dados/despesa.php?id=pm_piripa',
+  receita: 'https://transparencia.fatorsistemas.com.br/dados/receita.php?id=pm_piripa',
+  resumo: 'https://siconfi.tesouro.gov.br/',
+  licitacoes: 'https://transparencia.piripa.ba.gov.br/licitacoes',
+  beneficios: 'https://portaldatransparencia.gov.br/beneficios',
+};
+const tabs = [
+  { id: 'resumo', label: 'Visão do orçamento', icon: Landmark },
+  { id: 'receita', label: 'De onde vem', icon: ArrowDownLeft },
+  { id: 'despesa', label: 'Onde é gasto', icon: ArrowUpRight },
+  { id: 'licitacoes', label: 'Licitações', icon: FileText },
+  { id: 'beneficios', label: 'Benefícios aos cidadãos', icon: HeartHandshake },
+  { id: 'fontes', label: 'Fontes e explicações', icon: BookOpen },
 ];
-
-const SUB_TABS = ["licitacoes", "denuncias", "custopramim", "gastos", "secretarias", "licitaovivo", "recdetalhada", "festejos"];
-
-export default function App() {
-  // Ano padrão = ano anterior (dados mais completos no SICONFI)
-  const anoAtual        = new Date().getFullYear();
-  const anoDefault      = anoAtual - 1;
-  const anosDisponiveis = Array.from({ length: anoAtual - 2018 }, (_, i) => anoAtual - i);
-
-  const [tab,        setTab]    = useState("visao");
-  const [data,       setData]   = useState(null);
-  const [dataSource, setSource] = useState("mock");
-  const [sources,    setSources]= useState({});
-  const [loading,    setLoading]= useState(true);
-  const [error,      setError]  = useState(null);
-  const [ano,        setAno]    = useState(anoDefault);
-  const tabsRef = useRef(null);
-
-  const fetchData = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const { data: d, source: s, _debug, _sources } = await loadMunicipioData(ano);
-      if (_debug) {
-        console.group("🏛️ Piripá Transparente — status das APIs");
-        console.log("SICONFI:        ", _debug.siconfi);
-        console.log("Categorias:     ", _debug.categorias);
-        console.log("Transferências: ", _debug.transferencias);
-        console.log("Histórico:      ", _debug.historico);
-        console.groupEnd();
-      }
-      if (!d) throw new Error("Falha ao carregar dados do município");
-      setData(d);
-      setSource(s);
-      setSources(_sources || {});
-    } catch (err) {
-      console.error("[fetchData]", err);
-      setError(err.message || "Ocorreu um erro desconhecido");
-    } finally {
-      setLoading(false);
-    }
-  }, [ano]);
-
-  useEffect(() => { fetchData(); }, [fetchData]);
-
-  // Scroll aba ativa para o centro
+function External({ href, children, className = '' }) { return <a className={`external ${className}`} href={href} target="_blank" rel="noopener noreferrer">{children}<ExternalLink size={14}/></a>; }
+function Stamp({ value }) { return <>{value ? new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'America/Sao_Paulo' }).format(new Date(value)) : 'Não informada pela fonte'}</>; }
+function useQuery(params) {
+  const key = JSON.stringify(params), [revision, setRevision] = useState(0), [state, setState] = useState({});
+  const identity = `${key}:${revision}`;
   useEffect(() => {
-    const el = tabsRef.current?.querySelector("[data-active='true']");
-    el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-  }, [tab]);
-
-  return (
-    <div className="min-h-screen bg-[#060F1E] text-white" style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}>
-
-      {/* ── Header ── */}
-      <header className="sticky top-0 z-50 bg-[#060F1E]/95 backdrop-blur-md border-b border-[#1A3356]">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
-          <div>
-            <p className="text-[10px] text-cyan-400 font-bold tracking-widest uppercase leading-none">Transparência Pública</p>
-            <h1 className="text-base font-black text-white leading-tight">{CONFIG.municipio} · BA</h1>
-          </div>
-          <div className="flex items-center gap-2">
-            <select
-              value={ano}
-              onChange={e => setAno(Number(e.target.value))}
-              className="bg-[#0D1F3C] border border-[#1A3356] text-white text-xs rounded-lg px-2 py-1.5 focus:outline-none">
-              {anosDisponiveis.map(y => <option key={y} value={y}>{y}{y === anoAtual ? " ⚠️" : y === anoDefault ? " ✓" : ""}</option>)}
-            </select>
-            <button
-              onClick={fetchData}
-              className="p-1.5 rounded-lg bg-[#0D1F3C] border border-[#1A3356] hover:border-cyan-500/50 transition-colors">
-              <RefreshCw size={13} className={loading ? "animate-spin text-cyan-400" : "text-slate-500"} />
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* ── Loading ── */}
-      {loading && !error && (
-        <div className="max-w-lg mx-auto px-4 py-16 flex flex-col items-center gap-4">
-          <div className="relative">
-            <div className="w-12 h-12 border-2 border-cyan-500/30 rounded-full" />
-            <div className="w-12 h-12 border-2 border-t-cyan-500 rounded-full animate-spin absolute inset-0" />
-          </div>
-          <p className="text-slate-300 text-sm font-semibold">Carregando dados públicos...</p>
-          <p className="text-slate-600 text-xs text-center leading-relaxed max-w-xs">
-            Consultando SICONFI (Tesouro Nacional),<br />IBGE e Portal da Transparência
-          </p>
-        </div>
-      )}
-
-      {/* ── Erro ── */}
-      {!loading && error && (
-        <div className="max-w-lg mx-auto px-4 py-16 flex flex-col items-center gap-4 text-center">
-          <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 border border-red-500/20">
-            <span className="text-3xl">⚠️</span>
-          </div>
-          <div>
-            <h2 className="text-lg font-bold text-white">Oops! Algo deu errado.</h2>
-            <p className="text-slate-400 text-sm max-w-xs mt-1">{error}</p>
-          </div>
-          <button 
-            onClick={fetchData}
-            className="mt-2 px-6 py-2.5 bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/30 font-bold rounded-xl transition-colors">
-            Tentar Novamente
-          </button>
-        </div>
-      )}
-
-      {/* ── Conteúdo ── */}
-      {!loading && data && (
-        <main className="max-w-lg mx-auto px-4 py-5 pb-20">
-          <div className={tab === "chatia" ? "block" : "hidden"}>
-            <ChatIA data={data} />
-          </div>
-
-          <div className={tab !== "chatia" ? "block" : "hidden"}>
-            {SUB_TABS.includes(tab) && (
-              <button
-                onClick={() => setTab("mais")}
-                className="flex items-center gap-2 mb-5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors bg-[#0D1F3C] border border-[#1A3356] px-3.5 py-2 rounded-xl active:scale-[0.98] shadow-lg shadow-cyan-500/5 animate-fade-in"
-              >
-                <ArrowLeft size={13} /> Voltar ao Menu
-              </button>
-            )}
-            {tab === "visao"       && <Visao       data={data} dataSource={dataSource} loading={loading} sources={sources} />}
-            {tab === "custopramim" && <CustoPraMim data={data} />}
-            {tab === "despesas"    && <Despesas    data={data} />}
-            {tab === "receitas"    && <Receitas    data={data} sources={sources} />}
-            {tab === "licitacoes"  && <Licitacoes  data={data} />}
-            {tab === "denuncias"   && <Denuncias />}
-            {tab === "gastos"      && <GastosDetalhados />}
-            {tab === "secretarias" && <GastosPorSecretaria />}
-            {tab === "licitaovivo" && <LicitacoesAoVivo />}
-            {tab === "recdetalhada" && <ReceitasDetalhadas />}
-            {tab === "festejos"    && <FestejosJuninos data={data} />}
-            {tab === "mais"        && <Mais        setTab={setTab} />}
-          </div>
-        </main>
-      )}
-
-      <InstallBanner />
-
-      {/* ── Bottom Navigation Bar ── */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-[#060F1E]/95 backdrop-blur-md border-t border-[#1A3356] pb-safe">
-        <div className="max-w-lg mx-auto flex items-center justify-around px-2 py-2">
-          {TABS.map(t => {
-            const isActive = t.id === "mais"
-              ? (tab === "mais" || SUB_TABS.includes(tab))
-              : tab === t.id;
-            return (
-              <button
-                key={t.id}
-                onClick={() => setTab(t.id)}
-                className={`flex flex-col items-center justify-center w-16 h-12 rounded-xl transition-all ${
-                  isActive 
-                    ? t.id === "chatia" 
-                      ? "text-violet-400" 
-                      : "text-cyan-400" 
-                    : "text-slate-500 hover:text-slate-300"
-                }`}
-              >
-                <span className={`text-xl mb-0.5 transition-transform ${isActive ? "scale-110" : "scale-100"}`}>
-                  {t.emoji}
-                </span>
-                <span className={`text-[10px] font-bold ${isActive ? "opacity-100" : "opacity-70"}`}>
-                  {t.label}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </nav>
-    </div>
-  );
+    const controller = new AbortController(); let active = true;
+    setState({ identity, loading: true });
+    query({ ...JSON.parse(key), refresh: revision ? '1' : '0' }, controller.signal)
+      .then(data => { if (active) setState({ identity, data, loading: false }); })
+      .catch(error => { if (active && error.name !== 'AbortError') setState({ identity, error: error.message, loading: false }); });
+    return () => { active = false; controller.abort(); };
+  }, [key, revision]);
+  return { ...(state.identity === identity ? state : { loading: true }), refresh: () => setRevision(n => n + 1) };
+}
+function QueryState({ loading, error, source, refresh }) {
+  if (loading) return <div className="query-state" role="status"><RefreshCw className="spin" size={25}/><h2>Consultando a fonte</h2><p>Estamos conferindo o período e os valores retornados.</p></div>;
+  if (error) return <div className="query-state error" role="alert"><AlertTriangle size={28}/><h2>Consulta indisponível</h2><p>{error}</p><div className="actions"><button onClick={refresh}><RefreshCw size={16}/>Tentar novamente</button><External href={source}>Abrir a fonte</External></div><p className="muted">Indisponível não significa que não houve movimentação.</p></div>;
+  return null;
+}
+function Heading({ eyebrow, title, children }) { return <header className="page-heading"><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{children}</p></header>; }
+function Metric({ label, value, note, accent, children }) { return <article className={`metric ${accent ? 'accent' : ''}`}><span>{label}</span><strong>{money(value)}</strong><p>{note}</p>{children}</article>; }
+function Notice({ children }) { return <div className="notice"><Info size={18}/><div>{children}</div></div>; }
+function Warnings({ data }) { return data.warnings?.length ? <div className="source-warnings">{data.warnings.map(w => <p key={w}><Info size={15}/>{w}</p>)}</div> : null; }
+function Evidence({ data }) {
+  const m = data.meta;
+  return <section className="evidence"><div className="evidence-top"><div><span className="eyebrow">Conferência da consulta</span><h3>{m.fonte}</h3></div><External href={m.urlConsulta}>Ver na fonte</External></div>
+    <dl className="facts"><div><dt>Consultado em · Brasília</dt><dd><Stamp value={m.coletadoEm}/>{m.cache && ' · consulta recente reutilizada'}</dd></div><div><dt>Atualização dos dados na fonte</dt><dd><Stamp value={m.atualizadoNaFonteEm}/></dd></div><div><dt>Abrangência</dt><dd>{m.abrangencia}</dd></div></dl>
+    <p className="muted">{m.cobertura || 'A consulta reflete os registros que a fonte devolveu. Não certifica a completude da publicação.'}</p>
+    <details><summary>Identificação para conferência</summary><dl className="facts"><div><dt>Município</dt><dd>Piripá / BA · IBGE 2924702</dd></div><div><dt>Versão dos dados desta consulta</dt><dd className="hash">{m.snapshot}</dd></div>{m.sha256Resposta && <div><dt>SHA-256 da resposta da fonte</dt><dd className="hash">{m.sha256Resposta}</dd></div>}<div><dt>Período solicitado</dt><dd>{JSON.stringify(m.periodo)}</dd></div></dl><p>O identificador permite comparar versões. Ele não certifica a veracidade do conteúdo publicado pela fonte.</p></details>
+  </section>;
+}
+function YearSelect({ value, onChange }) { return <label>Exercício<select aria-label="Exercício" value={value} onChange={e => onChange(Number(e.target.value))}>{years.map(year => <option key={year}>{year}</option>)}</select></label>; }
+function Overview() {
+  const [year, setYear] = useState(currentYear), [bimester, setBimester] = useState(Math.max(1, Math.floor((currentMonth - 1) / 2)));
+  const state = useQuery({ endpoint: 'resumo', ano: String(year), bimestre: String(bimester) }), data = state.data;
+  const end = monthBounds(year, bimester * 2).end;
+  return <><Heading eyebrow="Orçamento municipal" title="O dinheiro público, explicado">Acompanhe o demonstrativo fiscal e abra os lançamentos para conhecer a origem e a aplicação dos recursos.</Heading>
+    <div className="toolbar"><YearSelect value={year} onChange={value => { setYear(value); setBimester(value === currentYear ? Math.max(1, Math.floor((currentMonth - 1) / 2)) : 6); }}/><label>Acumulado até<select aria-label="Acumulado até" value={bimester} onChange={e => setBimester(Number(e.target.value))}>{Array.from({length:6},(_,i) => <option key={i} value={i+1}>{i+1}º bimestre · {['fevereiro','abril','junho','agosto','outubro','dezembro'][i]}</option>)}</select></label><button onClick={state.refresh} disabled={state.loading}><RefreshCw size={16}/>Atualizar fonte</button></div>
+    <QueryState {...state} source={links.resumo}/>
+    {data && <><div className="section-title"><h2>1º de janeiro a {dateBR(end)}</h2><span className="badge">SICONFI · RREO, anexo 01</span></div><Warnings data={data}/>
+      {data.resumo ? <><div className="metrics two"><Metric label="Receita realizada" value={data.resumo.receitaRealizada.centavos} note="Arrecadação acumulada informada no RREO." accent/><Metric label="Previsão atualizada da receita" value={data.resumo.receitaPrevista.centavos} note="Estimativa para o exercício. Não é dinheiro já recebido."/></div><div className="metrics three"><Metric label="Despesa empenhada" value={data.resumo.empenhado.centavos} note="Compromissos assumidos no orçamento."/><Metric label="Despesa liquidada" value={data.resumo.liquidado.centavos} note="Direito do credor verificado pela administração."/><Metric label="Despesa paga" value={data.resumo.pago.centavos} note="Pagamentos registrados no demonstrativo." accent/></div>
+      <Notice>As três etapas da despesa acompanham a execução do mesmo orçamento. Somá-las contaria o dinheiro mais de uma vez. Este resumo não informa o saldo bancário.</Notice>
+      <details className="panel"><summary>Quais contas formam estes valores?</summary><div className="table-wrap"><table><thead><tr><th>Indicador</th><th>Conta na fonte</th><th>Coluna na fonte</th><th>Valor</th></tr></thead><tbody>{[['Receita realizada','receitaRealizada'],['Previsão atualizada','receitaPrevista'],['Empenhado','empenhado'],['Liquidado','liquidado'],['Pago','pago']].map(([label,key]) => <tr key={key}><td>{label}</td><td>{data.resumo[key].conta}<small>{data.resumo[key].codigo}</small></td><td>{data.resumo[key].coluna}</td><td className="amount">{money(data.resumo[key].centavos)}</td></tr>)}</tbody></table></div></details>
+      <button onClick={() => saveFile(`piripa-rreo-${year}-${bimester}.json`, JSON.stringify(data, null, 2))}><Download size={16}/>Baixar demonstrativo e identificação da fonte</button></> : <p className="empty">Nenhum demonstrativo foi retornado para este bimestre. Os valores permanecem não informados.</p>}
+      <Evidence data={data}/></>}
+  </>;
+}
+function Breakdown({ title, groups, subtitle }) {
+  if (!groups?.length) return null;
+  return <details className="panel breakdown"><summary>{title}<span>{groups.length} classificações</span></summary><p className="muted">{subtitle}</p><div className="breakdown-list">{groups.map(group => <div className="breakdown-row" key={group.nome}><span>{group.nome}<small>{group.registros} registros</small></span><strong className={group.centavos < 0 ? 'negative' : ''}>{money(group.centavos)}</strong></div>)}</div></details>;
+}
+function DetailDialog({ item, kind, data, onClose }) {
+  const ref = useRef(null);
+  useEffect(() => { ref.current.showModal(); const previous = document.body.style.overflow; document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = previous; }; }, []);
+  const expense = kind === 'despesa';
+  const fields = expense ? [
+    ['Finalidade / histórico',item.historico], ['Credor',item.credor], ['Unidade gestora',item.unidadeGestora], ['Secretaria / unidade orçamentária',item.unidadeOrcamentaria], ['Fonte do recurso',item.fonte], ['Empenho',item.empenho], ['Tipo de empenho',item.tipoEmpenho], ['Função',item.funcao], ['Subfunção',item.subfuncao], ['Ação / projeto',item.acao], ['Programa',item.programa], ['Elemento de despesa',item.elemento], ['Grupo de despesa',item.grupo], ['Categoria econômica',item.categoria], ['Processo',item.processo], ['Contrato',item.contrato], ['Processo licitatório',item.licitacao], ['Modalidade',item.modalidade],
+  ] : [['Receita',item.descricao], ['Natureza',item.tipo], ['Unidade gestora',item.unidadeGestora], ['Fonte do recurso',item.fonte], ['Categoria',item.categoria], ['Origem',item.origem], ['Espécie',item.especie]];
+  return <dialog ref={ref} onCancel={onClose} onClick={e => { if (e.target === ref.current) onClose(); }}><div className="dialog-header"><div><span className="eyebrow">Lançamento original · {dateBR(item.data)}</span><h2>{expense ? `Empenho ${item.empenho}` : 'Origem da arrecadação'}</h2></div><button className="icon-button" onClick={onClose} aria-label="Fechar detalhes" autoFocus><X/></button></div>
+    <div className="dialog-body"><div className={`metrics ${expense ? 'three' : 'two'}`}>{expense ? <><Metric label="Empenhado" value={item.empenhadoCentavos}/><Metric label="Liquidado" value={item.liquidadoCentavos}/><Metric label="Pago" value={item.pagoCentavos} accent/></> : <><Metric label="Arrecadado no lançamento" value={item.arrecadadoCentavos} accent/><Metric label="Previsão exibida pela fonte" value={item.previstoCentavos} note="Não somada à arrecadação. Pode se repetir entre lançamentos."/></>}</div>
+    {expense && <Notice>Este registro apresenta movimentos por etapa. Valores negativos foram preservados como publicados e podem refletir anulações ou ajustes. O tipo de empenho (ordinário, global ou estimativo) não indica pagamento.</Notice>}
+    <dl className="detail-fields">{fields.map(([label,value]) => <div key={label}><dt>{label}</dt><dd className={!value ? 'muted' : ''}>{value || 'Não informado na fonte'}</dd></div>)}</dl>
+    <div className="record-proof"><h3>Como localizar na fonte</h3><p>Abra a consulta de {dateBR(data.meta.periodo.start)} a {dateBR(data.meta.periodo.end)}. Procure {expense ? `o empenho ${item.empenho}` : 'a descrição da receita'} na data {dateBR(item.data)} e abra as informações do lançamento.</p><p className="muted">Linha {item.linhaFonte} da resposta consultada · referência {item.dialogId}. Essa posição pode mudar quando a fonte for atualizada.</p><External href={data.meta.urlConsulta}>Abrir consulta original</External><small className="hash">Identificação no aplicativo: {item.id}</small></div>
+    <Notice>A classificação informa a fonte do recurso declarada pela prefeitura. Ela não estabelece, por si só, o vínculo entre um recebimento específico e este pagamento.</Notice></div>
+  </dialog>;
+}
+function Ledger({ kind }) {
+  const expense = kind === 'despesa';
+  const [draft, setDraft] = useState({ inicio: initialRange.start, fim: initialRange.end, q: '', fase: 'todos', natureza: 'todas', unidade: '', funcao: '', fonte: '' });
+  const [params, setParams] = useState({ endpoint: kind, ...draft, pagina: '1' });
+  const [formError, setFormError] = useState(''), [selected, setSelected] = useState(null), [exportState, setExportState] = useState(''), [exportError, setExportError] = useState('');
+  const state = useQuery(params), data = state.data;
+  const reload = () => { setParams(({snapshot, ...rest}) => ({...rest, pagina:'1'})); state.refresh(); };
+  const update = (key, value) => setDraft(prev => ({ ...prev, [key]: value }));
+  const apply = e => { e.preventDefault(); try { period(draft.inicio, draft.fim); setParams({ endpoint: kind, ...draft, pagina: '1' }); setFormError(''); setExportError(''); } catch (error) { setFormError(error.message); } };
+  async function download(format) { setExportError(''); setExportState('Preparando…'); try { await exportQuery(params, data, format, progress => setExportState(progress)); } catch (error) { setExportError(error.message); } finally { setExportState(''); } }
+  const phaseLabel = params.fase === 'empenhado' ? 'empenhado' : params.fase === 'liquidado' ? 'liquidado' : 'pago';
+  return <><Heading eyebrow={expense ? 'Aplicação dos recursos' : 'Origem dos recursos'} title={expense ? 'Onde o dinheiro é gasto' : 'De onde vem o dinheiro'}>{expense ? 'Veja quem recebeu, a finalidade e a classificação de cada lançamento publicado pela prefeitura.' : 'Consulte a arrecadação efetiva e a origem declarada de cada receita do município.'}</Heading>
+    <form className="filter-panel" onSubmit={apply}><div className="filters"><label>Data inicial<input type="date" value={draft.inicio} onChange={e => update('inicio', e.target.value)} required/></label><label>Data final<input type="date" value={draft.fim} onChange={e => update('fim', e.target.value)} required/></label><label className="search-field">{expense ? 'Credor, empenho ou finalidade' : 'Descrição ou código da receita'}<div className="input-icon"><Search size={17}/><input type="search" value={draft.q} onChange={e => update('q', e.target.value)} placeholder="Buscar nos registros" maxLength={200}/></div></label><button className="primary" type="submit" disabled={!!exportState}>Consultar<ArrowRight size={16}/></button></div>
+      <details className="filter-details"><summary>Mais filtros</summary><div className="filters">{expense ? <><label>Movimentos por etapa<select aria-label="Movimentos por etapa" value={draft.fase} onChange={e => update('fase',e.target.value)}><option value="todos">Todas as etapas</option><option value="empenhado">Com valor empenhado</option><option value="liquidado">Com valor liquidado</option><option value="pago">Com valor pago</option></select></label><label>Secretaria / unidade<select aria-label="Secretaria / unidade" value={draft.unidade} onChange={e => update('unidade',e.target.value)}><option value="">Todas</option>{(data?.filters.unidades || (draft.unidade ? [draft.unidade] : [])).map(v => <option key={v}>{v}</option>)}</select></label><label>Função<select aria-label="Função" value={draft.funcao} onChange={e => update('funcao',e.target.value)}><option value="">Todas</option>{(data?.filters.funcoes || (draft.funcao ? [draft.funcao] : [])).map(v => <option key={v}>{v}</option>)}</select></label></> : <label>Natureza<select aria-label="Natureza" value={draft.natureza} onChange={e => update('natureza',e.target.value)}><option value="todas">Todas, com totais separados</option><option value="orcamentaria">Receita orçamentária</option><option value="extraorcamentaria">Entrada extraorçamentária</option></select></label>}<label>Fonte do recurso<select aria-label="Fonte do recurso" value={draft.fonte} onChange={e => update('fonte',e.target.value)}><option value="">Todas</option>{(data?.filters.fontes || (draft.fonte ? [draft.fonte] : [])).map(v => <option key={v}>{v}</option>)}</select></label></div></details>
+      <p className="muted">Consulte de 1 a 31 dias por vez, no mesmo exercício. Os totais correspondem ao intervalo e aos filtros aplicados.</p>{formError && <p className="error-text" role="alert">{formError}</p>}</form>
+    <QueryState {...state} refresh={reload} source={links[kind]}/>
+    {data && <><div className="section-title"><div><h2>{dateBR(params.inicio)} a {dateBR(params.fim)}</h2><p>{data.total} registros nos filtros · {data.totalPeriodo} no período</p></div><button onClick={reload} disabled={!!exportState}><RefreshCw size={16}/>Atualizar fonte</button></div>
+      <div className="applied">{Object.entries(data.appliedFilters).filter(([,v]) => v && !['todos','todas'].includes(v)).map(([k,v]) => <span key={k}>{({q:'Busca',fase:'Etapa',natureza:'Natureza',unidade:'Unidade',funcao:'Função',fonte:'Fonte'})[k]}: {v}</span>)}</div>
+      <div className={`metrics ${expense ? 'three' : 'two'}`}>{expense ? <><Metric label="Empenhado nos filtros" value={data.totals.empenhadoCentavos} note="Compromissos e ajustes registrados."/><Metric label="Liquidado nos filtros" value={data.totals.liquidadoCentavos} note="Verificações e ajustes registrados."/><Metric label="Pago nos filtros" value={data.totals.pagoCentavos} note="Pagamentos e ajustes registrados." accent/></> : <><Metric label="Receita orçamentária arrecadada" value={data.totals.orcamentariaCentavos} note="Arrecadação dos registros selecionados." accent/><Metric label="Entradas extraorçamentárias" value={data.totals.extraorcamentariaCentavos} note="Ingressos registrados fora da receita orçamentária; exibidos separadamente."/></>}</div>
+      <Notice>{expense ? 'Empenhado, liquidado e pago são etapas diferentes. Consulte os detalhes para saber o que foi registrado em cada uma; não some as três colunas.' : 'O total utiliza o valor arrecadado. A previsão da receita aparece somente nos detalhes e não é somada como dinheiro recebido.'}</Notice>
+      <Warnings data={data}/>
+      {data.total > 0 && <div className="breakdowns"><Breakdown title={expense ? 'Por secretaria / unidade' : 'Por origem'} groups={expense ? data.grupos.unidades : data.grupos.origens} subtitle={expense ? `Valor ${phaseLabel} de todos os registros filtrados, incluindo ajustes negativos.` : 'Arrecadação de todos os registros filtrados, com natureza orçamentária e extraorçamentária identificadas separadamente.'}/><Breakdown title="Por fonte do recurso" groups={data.grupos.fontes} subtitle={expense ? `Valor ${phaseLabel}, conforme a fonte declarada nos lançamentos.` : 'Arrecadação classificada por fonte do recurso e natureza, sem juntar tipos diferentes.'}/></div>}
+      <section className="panel records"><div className="section-title"><h2>Lançamentos</h2><div className="actions"><button disabled={!!exportState} onClick={() => download('csv')}><Download size={16}/>CSV</button><button disabled={!!exportState} onClick={() => download('json')}>JSON com fontes</button></div></div>{exportState && <p role="status">Exportando todos os registros filtrados · {exportState}</p>}{exportError && <p role="alert" className="error-text">{exportError}</p>}
+      {!data.total ? <p className="empty">{data.totalPeriodo ? 'Nenhum registro corresponde aos filtros aplicados.' : 'A fonte não retornou lançamentos para este intervalo. Isso não comprova ausência de movimentação fora da cobertura publicada.'}</p> : <><div className="table-wrap"><table><thead><tr><th>Data</th><th>{expense ? 'Credor / empenho' : 'Receita / natureza'}</th>{expense ? <><th>Empenhado</th><th>Liquidado</th><th>Pago</th></> : <th>Arrecadado</th>}<th><span className="sr-only">Conferência</span></th></tr></thead><tbody>{data.items.map(item => <tr key={item.id}><td className="nowrap">{dateBR(item.data)}</td><td className="description">{expense ? item.credor : item.descricao}<small>{expense ? `Empenho ${item.empenho} · ${item.unidadeOrcamentaria || 'Unidade não informada'}` : item.tipo}</small></td>{(expense ? ['empenhadoCentavos','liquidadoCentavos','pagoCentavos'] : ['arrecadadoCentavos']).map(key => <td key={key} className={`amount ${item[key] < 0 ? 'negative' : ''}`}>{money(item[key])}</td>)}<td><button className="text-button" onClick={() => setSelected(item)} aria-label={`Ver detalhes ${expense ? item.empenho : item.descricao}`}>Detalhes<ArrowRight size={14}/></button></td></tr>)}</tbody></table></div><Pagination data={data} disabled={!!exportState} onPage={page => setParams(prev => ({ ...prev, pagina: String(page), snapshot: data.meta.snapshot }))}/></>}
+      </section><Evidence data={data}/>{selected && <DetailDialog item={selected} kind={kind} data={data} onClose={() => setSelected(null)}/>}</>}
+  </>;
+}
+function Pagination({ data, onPage, disabled }) { return <div className="pagination"><span>Página {data.pagina} de {Math.max(1,data.paginas)} · até {data.tamanho} registros por página</span><div className="actions"><button aria-label="Página anterior" disabled={disabled || data.pagina <= 1} onClick={() => onPage(data.pagina-1)}><ChevronLeft size={18}/></button><button aria-label="Próxima página" disabled={disabled || data.pagina >= data.paginas} onClick={() => onPage(data.pagina+1)}><ChevronRight size={18}/></button></div></div>; }
+function Procurement() {
+  const [draft, setDraft] = useState({ ano: String(currentYear), q: '', tema: '' });
+  const [params, setParams] = useState({ endpoint: 'licitacoes', ...draft, pagina: '1' });
+  const state = useQuery(params), data = state.data;
+  const reload = () => { setParams(({snapshot, ...rest}) => ({...rest, pagina:'1'})); state.refresh(); };
+  const [exporting, setExporting] = useState(false), [exportError,setExportError] = useState('');
+  async function download() { setExporting(true); setExportError(''); try { await exportQuery(params, data, 'json'); } catch(e) { setExportError(e.message); } finally { setExporting(false); } }
+  return <><Heading eyebrow="Compras públicas" title="Licitações e seus documentos">Veja o objeto, o processo e os valores informados no portal municipal.</Heading><form className="toolbar" onSubmit={e => { e.preventDefault(); setParams({ endpoint:'licitacoes', ...draft,pagina:'1' }); }}><YearSelect value={draft.ano} onChange={v => setDraft({...draft,ano:String(v)})}/><label className="search-field">Objeto ou processo<input type="search" value={draft.q} onChange={e => setDraft({...draft,q:e.target.value})} placeholder="Buscar licitação"/></label><label>Assunto<select aria-label="Assunto" value={draft.tema} onChange={e => setDraft({...draft,tema:e.target.value})}><option value="">Todos os assuntos</option><option value="juninos">Festejos juninos</option></select></label><button type="submit" className="primary">Consultar</button></form>
+    <Notice>Uma licitação estimada ou homologada não comprova pagamento. Para saber o que foi pago, consulte os lançamentos em “Onde é gasto” e os documentos do processo.</Notice><QueryState {...state} refresh={reload} source={links.licitacoes}/>
+    {data && <><div className="section-title"><div><h2>{data.total} licitações · {params.ano}</h2><p>{params.tema === 'juninos' ? 'Busca por termos no objeto: São João, São Pedro, juninos ou festejos juninos. A lista pode não incluir todos os eventos.' : 'Registros retornados para o exercício e a busca aplicada.'}{params.q && ` Busca: ${params.q}`}</p></div><div className="actions"><button disabled={exporting} onClick={download}><Download size={16}/>Baixar JSON</button><button onClick={reload}><RefreshCw size={16}/>Atualizar</button></div></div><Warnings data={data}/>{exportError && <p className="error-text" role="alert">{exportError}</p>}
+      {!data.total && <p className="empty">Nenhuma licitação retornada para estes filtros.</p>}
+      <div className="tenders">{data.items.map(item => <article className="panel tender" key={item.id}><div className="tender-top"><span className="badge">{item.modalidade || 'Modalidade não informada'}</span><span>{item.situacao || 'Situação não informada'}</span></div><h2>{item.numero}</h2><p>{item.objeto}</p><div className="tender-values"><div><span>Estimado</span><strong>{money(item.estimadoCentavos)}</strong></div><div><span>Homologado</span><strong>{money(item.homologadoCentavos)}</strong></div></div><div className="tender-footer"><small>Processo {item.processo || 'não informado'} · {dateBR(item.data)}</small><External href={item.url}>Documentos na fonte</External></div></article>)}</div>
+      {data.total > 0 && <Pagination data={data} disabled={exporting} onPage={page => setParams({...params,pagina:String(page),snapshot:data.meta.snapshot})}/>}<Evidence data={data}/></>}
+  </>;
+}
+function Benefits() {
+  const [year,setYear] = useState(currentYear), [month,setMonth] = useState(Math.max(1,currentMonth - 1));
+  const state = useQuery({ endpoint:'beneficios',ano:String(year),mes:String(month) }), data = state.data;
+  return <><Heading eyebrow="Transferências às pessoas" title="Benefícios aos cidadãos">Bolsa Família e BPC pagos pela União a residentes de Piripá, por competência mensal.</Heading><Notice>Esses benefícios são destinados às pessoas. Os valores não entram nos totais de receita ou despesa da prefeitura apresentados neste aplicativo.</Notice><div className="toolbar"><YearSelect value={year} onChange={setYear}/><label>Mês<select aria-label="Mês" value={month} onChange={e => setMonth(Number(e.target.value))}>{Array.from({length:12},(_,i) => <option key={i} value={i+1}>{new Intl.DateTimeFormat('pt-BR',{month:'long'}).format(new Date(2024,i,1))}</option>)}</select></label><button onClick={state.refresh}><RefreshCw size={16}/>Atualizar</button></div><QueryState {...state} source={links.beneficios}/>{data && <><Warnings data={data}/><div className="metrics two">{data.items.map(item => <Metric key={item.programa} label={item.programa} value={item.valorCentavos} note={item.status === 'ok' ? `${item.beneficiarios.toLocaleString('pt-BR')} beneficiados informados nesta competência.` : item.status === 'empty' ? 'Nenhum registro retornado para esta competência.' : 'Consulta indisponível para este programa.'}>{<External href={item.url}>Consultar registro</External>}</Metric>)}</div><Evidence data={data}/></>}</>;
+}
+function Sources() {
+  const rows = [
+    ['Lançamentos de receitas e despesas','Portal Fator Sistemas, indicado no site da Prefeitura','Datas, valores e classificações de cada registro devolvido pela consulta.', links.despesa],
+    ['Resumo fiscal','SICONFI / Tesouro Nacional','RREO, anexo 01, acumulado até o bimestre. Universo fiscal próprio do demonstrativo.', links.resumo],
+    ['Licitações','Portal municipal / SAI2','Objeto, processo, situação e valores estimados ou homologados. Não informa pagamento comprovado.', links.licitacoes],
+    ['Benefícios federais','Portal da Transparência / CGU','Bolsa Família e BPC por mês e município de residência. Consulta depende da disponibilidade da integração.', links.beneficios],
+  ];
+  return <><Heading eyebrow="Metodologia e fontes" title="Você pode conferir os números">Cada consulta identifica o período, a fonte e o momento em que os registros foram obtidos.</Heading>
+    <section className="panel"><h2>O que este aplicativo consegue mostrar</h2><p>Os dados são obtidos das fontes listadas abaixo. Receitas e despesas são somadas a partir dos valores publicados, com precisão de centavos. A conferência compara os valores das tabelas com os detalhes dos lançamentos.</p><p>A integridade da publicação cabe aos órgãos responsáveis. Se faltarem registros, documentos ou classificações, o aplicativo informa a lacuna. Um link para a fonte e um total que confere não certificam, sozinhos, que a prestação de contas está completa.</p><External href={links.cidade}>Site da Prefeitura de Piripá</External></section>
+    <div className="table-wrap panel"><table><thead><tr><th>Informação</th><th>Fonte</th><th>Alcance da consulta</th></tr></thead><tbody>{rows.map(([name,source,scope,url]) => <tr key={name}><td>{name}</td><td><External href={url}>{source}</External></td><td>{scope}</td></tr>)}</tbody></table></div>
+    <section className="panel"><h2>Como ler uma despesa</h2><div className="steps"><div><b>1</b><h3>Empenhado</h3><p>Compromisso registrado no orçamento para uma despesa. Ainda não comprova entrega ou pagamento.</p></div><div><b>2</b><h3>Liquidado</h3><p>Verificação do direito do credor, com base nos documentos da entrega ou do serviço.</p></div><div><b>3</b><h3>Pago</h3><p>Pagamento registrado pela administração. É a etapa usada quando a tela informa “valor pago”.</p></div></div><Notice>As etapas não devem ser somadas. Valores negativos são mantidos como publicados; o documento original explica eventuais anulações ou ajustes.</Notice></section>
+    <section className="panel"><h2>Como ler uma receita</h2><dl className="detail-fields"><div><dt>Prevista</dt><dd>Estimativa para arrecadação. Não representa uma entrada de dinheiro já realizada.</dd></div><div><dt>Arrecadada</dt><dd>Receita efetivamente registrada como arrecadada no período consultado.</dd></div><div><dt>Extraorçamentária</dt><dd>Ingresso fora da receita orçamentária, como valores de terceiros sob responsabilidade do município. Fica separado da arrecadação orçamentária.</dd></div><div><dt>Fonte do recurso</dt><dd>Classificação declarada no lançamento. Permite conhecer a origem ou vinculação do recurso, mas não rastrear automaticamente um recebimento individual até um pagamento.</dd></div></dl></section>
+    <section className="panel"><h2>Limites que precisam ficar visíveis</h2><ul className="plain-list"><li>A hora da consulta não é a data de atualização da prefeitura. Se a fonte não publicar essa data, ela aparece como não informada.</li><li>Uma resposta vazia significa que a consulta não retornou registros; não comprova inexistência de movimentação.</li><li>O resumo SICONFI e os lançamentos do portal municipal têm critérios e abrangências próprios. Divergências exigem conciliação contábil; o aplicativo não cria um saldo pela diferença entre essas fontes.</li><li>Contratos, notas fiscais, restos a pagar, movimentação bancária, cobertura de todos os órgãos e a conciliação completa entre origem e destino ainda exigem documentos e validação específicos. A entrega atual não certifica o rastreamento integral de cada centavo.</li><li>O filtro de festejos juninos busca termos no objeto da licitação. Valores de licitação não são apresentados como despesas pagas.</li></ul></section>
+    <section className="panel"><h2>Como guardar uma conferência</h2><p>Use “CSV” para os registros filtrados ou “JSON com fontes” para incluir também totais, filtros e identificação da consulta. A exportação verifica a quantidade de registros e os totais. Se os dados mudarem durante a coleta, será necessário atualizar a consulta.</p><p>A versão identificada por SHA-256 permite comparar respostas. A consulta pode ser reutilizada por até dois minutos; “Atualizar fonte” solicita uma nova coleta. Não há substituição automática por dados antigos quando uma consulta falha.</p></section>
+  </>;
+}
+export default function App() {
+  const requested = new URLSearchParams(window.location.search).get('tab');
+  const [tab,setTab] = useState(tabs.some(t => t.id === requested) ? requested : 'resumo');
+  const [menu,setMenu] = useState(false);
+  function navigate(id) { setTab(id); setMenu(false); history.replaceState(null,'',`?tab=${id}`); window.scrollTo({top:0}); }
+  return <div className="app"><aside className={`sidebar ${menu ? 'open' : ''}`}><a className="brand" href="?tab=resumo" onClick={e => {e.preventDefault();navigate('resumo');}}><span className="brand-icon"><Landmark/></span><span>Piripá<strong>Transparente</strong></span></a><p className="nav-label">O dinheiro da sua cidade</p><nav aria-label="Navegação principal">{tabs.map(({id,label,icon:Icon}) => <button key={id} className={tab === id ? 'active' : ''} aria-current={tab === id ? 'page' : undefined} onClick={() => navigate(id)}><Icon size={19}/>{label}</button>)}</nav><div className="sidebar-note"><BookOpen size={19}/><p>Informação pública, com caminho para a fonte.</p><span>Piripá · Bahia<br/>IBGE 2924702</span></div></aside>
+    <div className="main"><header className="topbar"><button className="mobile-menu icon-button" aria-label="Abrir navegação" aria-expanded={menu} onClick={() => setMenu(!menu)}><Menu/></button><span><span className="dot"/>Transparência municipal</span><External href={links.cidade}>Portal da prefeitura</External></header><main id="conteudo">{tab === 'resumo' ? <Overview/> : tab === 'despesa' || tab === 'receita' ? <Ledger key={tab} kind={tab}/> : tab === 'licitacoes' ? <Procurement/> : tab === 'beneficios' ? <Benefits/> : <Sources/>}</main><footer>Consulta cidadã de dados publicados por fontes oficiais. Este aplicativo não substitui a prestação de contas dos órgãos responsáveis.<button className="text-button" onClick={() => navigate('fontes')}>Conheça as fontes e os limites<ArrowRight size={14}/></button></footer></div></div>;
 }

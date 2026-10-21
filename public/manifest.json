@@ -1,7 +1,7 @@
 {
   "name": "Piripá Transparente",
   "short_name": "Piripá",
-  "description": "Transparência pública municipal de Piripá-BA. Veja cada centavo gasto pela prefeitura.",
+  "description": "Consulte receitas, despesas e licitações municipais com acesso às fontes oficiais.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#060F1E",
@@ -9,7 +9,11 @@
   "orientation": "portrait-primary",
   "lang": "pt-BR",
   "scope": "/",
-  "categories": ["government", "finance", "utilities"],
+  "categories": [
+    "government",
+    "finance",
+    "utilities"
+  ],
   "icons": [
     {
       "src": "/icons/icon-72x72.png",
@@ -66,29 +70,30 @@
       "purpose": "any"
     }
   ],
-  "screenshots": [
-    {
-      "src": "/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Tela inicial do Piripá Transparente"
-    }
-  ],
   "shortcuts": [
     {
       "name": "Gastos Detalhados",
       "short_name": "Gastos",
       "description": "Ver cada lançamento de despesa",
-      "url": "/?tab=gastos",
-      "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
+      "url": "/?tab=despesa",
+      "icons": [
+        {
+          "src": "/icons/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
     },
     {
       "name": "Licitações",
       "short_name": "Licitações",
       "description": "Ver licitações em andamento",
-      "url": "/?tab=licitaovivo",
-      "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
+      "url": "/?tab=licitacoes",
+      "icons": [
+        {
+          "src": "/icons/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
     }
   ]
 }
