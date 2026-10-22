@@ -215,7 +215,7 @@ export function filterDataset(dataset, kind, params) {
     total: filtered.length, totalPeriodo: dataset.items.length, pagina: page, tamanho: size, paginas: Math.ceil(filtered.length / size),
     filters: { unidades: options('unidadeOrcamentaria'), funcoes: options('funcao'), fontes: options('fonte') },
     appliedFilters: { q: params.q || '', fase: params.fase || 'todos', natureza: params.natureza || 'todas', unidade: params.unidade || '', funcao: params.funcao || '', fonte: params.fonte || '', tema: params.tema || '' },
-    grupos: kind === 'despesa' ? { metrica: metric, unidades: group('unidadeOrcamentaria', metric), fontes: group('fonte', metric) } : kind === 'receita' ? { metrica: metric, origens: group('origem', metric), fontes: group('fonte', metric) } : null,
+    grupos: kind === 'despesa' ? { metrica: metric, funcoes: group('funcao', metric), unidades: group('unidadeOrcamentaria', metric), fontes: group('fonte', metric) } : kind === 'receita' ? { metrica: metric, origens: group('origem', metric), fontes: group('fonte', metric) } : null,
   };
 }
 

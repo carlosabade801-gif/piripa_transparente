@@ -1,5 +1,5 @@
 /* Financial data is always network-only. Never substitute an old API response. */
-const CACHE = 'piripa-shell-v4';
+const CACHE = 'piripa-shell-v5';
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(['/offline.html', '/icons/icon-192x192.png'])).then(() => self.skipWaiting()));
 });

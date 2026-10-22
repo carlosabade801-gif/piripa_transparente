@@ -1,5 +1,5 @@
 {
-  "executadoEm": "2026-10-21T23:02:30.969Z",
+  "executadoEm": "2026-10-21T07:30:35.825Z",
   "escopo": "Consulta às fontes externas. Evidência pontual; não certifica todos os registros, anos, documentos ou a completude da publicação.",
   "consultas": [
     {
@@ -22,9 +22,9 @@
         "urlConsulta": "https://transparencia.fatorsistemas.com.br/dados/carregaDespesa.php?id=pm_piripa&unidade_gestora=0&tipo=-1&fornecedor=&cpfcnpj=&data_publicacao=15%2F09%2F2025&data_publicacao_fim=15%2F09%2F2025&Numero=&NProcesso=&funcao=-1&subfuncao=-1&Despesa=&Historico=&fonte=-1&acao=-1&Valor=&modalidade=-1&Categoria_Economica=-1&Grupo_Despesa=-1&Modalidade_Aplicacao=-1&Elemento=-1&Subelemento=-1&nContrato=",
         "municipio": "Piripá",
         "codigoIbge": "2924702",
-        "coletadoEm": "2026-10-21T23:02:05.541Z",
+        "coletadoEm": "2026-10-21T07:30:35.671Z",
         "atualizadoNaFonteEm": null,
-        "sha256Resposta": "b8c9a27cd3f352d684e35787759d56656a71fcbced3573aaad8a5c3b1ecc88b7",
+        "sha256Resposta": "906bc044be75d09fdbd233bfb622030d80d529dcbff8e97477eed20bfe9a9bce",
         "bytesResposta": 432155,
         "cache": false,
         "versaoExtrator": "1.0.0",
@@ -62,9 +62,9 @@
         "urlConsulta": "https://transparencia.fatorsistemas.com.br/dados/carregaReceita.php?id=pm_piripa&unidade_gestora=0&tipo=-1&dt_ini=15%2F09%2F2025&dt_fim=15%2F09%2F2025&natureza=-1&tipoREC=2&valor=",
         "municipio": "Piripá",
         "codigoIbge": "2924702",
-        "coletadoEm": "2026-10-21T23:02:14.119Z",
+        "coletadoEm": "2026-10-21T07:30:34.950Z",
         "atualizadoNaFonteEm": null,
-        "sha256Resposta": "d4d25fe55f7d9f12413a2af1613f95efaee89b9a5125af5a1a0fba60013f8e34",
+        "sha256Resposta": "f04bc2e081a4bb3773631f44333e7a2350122980cb528c698d453cf01a638134",
         "bytesResposta": 1680811,
         "cache": false,
         "versaoExtrator": "1.0.0",
@@ -131,7 +131,7 @@
         "urlConsulta": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?an_exercicio=2025&nr_periodo=6&co_tipo_demonstrativo=RREO&no_anexo=RREO-Anexo+01&co_esfera=M&id_ente=2924702&offset=0",
         "municipio": "Piripá",
         "codigoIbge": "2924702",
-        "coletadoEm": "2026-10-21T23:02:03.310Z",
+        "coletadoEm": "2026-10-21T07:30:30.738Z",
         "atualizadoNaFonteEm": null,
         "sha256Resposta": "693634492a6a01c03dcb98ef246ba7ca8049e2bcf7b1c2a88926976f027ff46c",
         "cache": false,
@@ -145,7 +145,7 @@
           {
             "url": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?an_exercicio=2025&nr_periodo=6&co_tipo_demonstrativo=RREO&no_anexo=RREO-Anexo+01&co_esfera=M&id_ente=2924702&offset=0",
             "sha256": "693634492a6a01c03dcb98ef246ba7ca8049e2bcf7b1c2a88926976f027ff46c",
-            "coletadoEm": "2026-10-21T23:02:03.310Z"
+            "coletadoEm": "2026-10-21T07:30:30.738Z"
           }
         ],
         "anexo": "RREO-Anexo 01",
@@ -170,7 +170,7 @@
         "urlConsulta": "https://transparencia.piripa.ba.gov.br/licitacoes",
         "municipio": "Piripá",
         "codigoIbge": "2924702",
-        "coletadoEm": "2026-10-21T23:02:02.813Z",
+        "coletadoEm": "2026-10-21T07:30:30.626Z",
         "atualizadoNaFonteEm": null,
         "sha256Resposta": "82209c5841e7d739b9dde15ec5ad8ede3a75d5a283195b845b67ad503c5c7231",
         "bytesResposta": 32643,

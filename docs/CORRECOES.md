@@ -1,5 +1,9 @@
 # Correções da entrega
 
+## Atualização 1.1.0 — navegação e celular
+
+Interface clara, página inicial orientada por perguntas, menu inferior, cartões de registros, filtros por mês, detalhes em tela cheia, ajuda em perguntas e respostas e agrupamento de gastos pela função declarada na fonte. Consulte `INTERFACE_MOBILE.md` e `validacao-interface.json`. As correções financeiras abaixo continuam aplicadas.
+
 ## Erros corrigidos
 
 1. **Receitas:** removida a soma da previsão como arrecadação. Excluídas das movimentações do período as linhas de previsão anual com arrecadação zero e data de 1º de janeiro fora do intervalo solicitado. Entradas orçamentárias e extraorçamentárias permanecem separadas.

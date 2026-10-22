@@ -1,5 +1,5 @@
 {
-  "executadoEm": "2026-10-21",
+  "executadoEm": "2026-10-22",
   "testesAutomatizados": {
     "total": 13,
     "aprovados": 13,
@@ -20,8 +20,11 @@
       "critical": 0,
       "total": 0
     },
-    "observacao": "Resultado pontual do registro npm, não uma certificação de segurança."
+    "observacao": "Auditoria da entrega anterior, em 21/10/2026. Nenhuma dependência foi adicionada ou alterada em 1.1.0; não houve nova auditoria npm nesta atualização.",
+    "consultadoEm": "2026-10-21"
   },
   "consultasReais": "validacao-fontes.json",
-  "limites": "Sem teste de carga ou homologação no domínio de produção. Integração autenticada da CGU não testada sem chave."
+  "limites": "Sem teste de carga ou homologação no domínio de produção. Integração autenticada da CGU não testada sem chave.",
+  "versao": "1.1.0",
+  "consultasReaisObservacao": "Evidências anteriores preservadas, sem nova consulta externa nesta atualização de interface."
 }

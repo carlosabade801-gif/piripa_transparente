@@ -1,19 +1,19 @@
 {
-  "executadoEm": "2026-10-21T13:22:46.805Z",
+  "executadoEm": "2026-10-22T16:26:59.845Z",
+  "versao": "1.1.0",
   "navegador": "131.0.6778.0",
-  "modo": "Interface compilada com respostas de teste originadas das amostras reais. Consultas externas verificadas separadamente em validacao-fontes.json.",
+  "modo": "Interface compilada com respostas controladas de amostras reais. Não é uma nova validação das fontes ao vivo nem um teste com usuários.",
   "verificacoes": [
-    "Desktop 1440 px e celular 390 px",
-    "Sem erros JavaScript capturados",
-    "Valores e detalhes monetários",
-    "CSV de 43 registros e JSON com totais conferidos",
-    "Paginação e filtro aplicados ao conjunto completo",
-    "Falha da fonte remove valores antigos; nova tentativa recupera consulta",
-    "Receita arrecadada e extraorçamentária separadas",
-    "Resumo por exercício e bimestre",
-    "Licitações e busca temática",
-    "Benefícios indisponíveis sem credencial",
-    "Sem transbordamento horizontal da página no celular"
+    "Home leve, quatro destinos visíveis no celular e alvos principais de pelo menos 48 px",
+    "Cartões de gastos por padrão, dez por página, campos com fonte de 16 px e nenhum transbordamento em 320–1440 px",
+    "Detalhes em tela cheia, foco restaurado, fechar por Escape e ajustes negativos preservados",
+    "Paginação, busca e filtro por área preservam totais de todo o conjunto",
+    "CSV e JSON exportam os 43 registros com totais exatos",
+    "Falha da fonte remove os números anteriores e permite tentar novamente",
+    "Voltar e avançar do navegador funcionam; período e modo de visualização são preservados",
+    "Receitas e entradas extraorçamentárias separadas; atalhos de mês fazem a consulta automaticamente",
+    "Resumo, compras, benefícios e ajuda acessíveis pelo menu Mais; ajuda sem tabela larga; paisagem sem transbordamento"
   ],
+  "errosJavaScript": [],
   "resultado": "aprovado"
 }

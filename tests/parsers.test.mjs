@@ -90,6 +90,12 @@ test('Filters and breakdowns use the entire result, not just one page; snapshot 
   assert.equal(a.items.length,10); assert.equal(a.total,43); assert.deepEqual(a.totals,expenses.totals);
   assert.notEqual(a.items[0].id,b.items[0].id);
   assert.equal(sumCents(a.grupos.unidades,'centavos'),a.totals.pagoCentavos);
+  assert.equal(sumCents(a.grupos.funcoes,'centavos'),a.totals.pagoCentavos);
+  const area = a.grupos.funcoes.find(g => g.nome !== 'Não informado na fonte');
+  const areaResult = filterDataset(dataset,'despesa',{funcao:area.nome,tamanho:'1'});
+  assert.equal(areaResult.totals.pagoCentavos,area.centavos);
+  assert.equal(areaResult.total,area.registros);
+  assert.ok(areaResult.items.every(i => i.funcao === area.nome));
   const matched=filterDataset(dataset,'despesa',{q:'COELBA',fase:'pago'});
   assert.ok(matched.total > 0 && matched.total < 43);
   assert.ok(matched.items.every(i => i.pagoCentavos !== 0 && i.credor.includes('COELBA')));

@@ -4,6 +4,20 @@ Aplicativo de consulta cidadã para receitas, despesas e licitações de Piripá
 
 **A versão não certifica a integridade das publicações da prefeitura nem o rastreamento integral de cada centavo.** Ela mostra os registros efetivamente retornados pelas fontes, com valores conferidos e limites de cobertura explícitos. Contratos, notas fiscais, restos a pagar, contas bancárias e conciliação integral ainda dependem de documentação própria.
 
+## Interface para celular — versão 1.1.0
+
+A tela inicial oferece dois caminhos diretos: **Quanto entrou?** e **Onde foi gasto?**. No celular, o menu inferior mantém **Início, Entradas, Gastos e Mais** sempre acessíveis. Resumo do orçamento, compras, benefícios e ajuda ficam em Mais.
+
+- Período por mês e ano, com atalhos para este mês e o anterior. Os dias exatos consultados aparecem junto aos valores. Consultas do mês corrente terminam no dia de hoje.
+- Valor pago ou receita arrecadada em destaque, antes da busca. Empenhado/liquidado e entradas extraorçamentárias ficam em explicações expansíveis, com valores separados.
+- Cartões como visualização padrão: data, área, credor, valor e finalidade. A tabela continua disponível como opção.
+- Busca por palavra e filtros de área, secretaria e fonte. Toque em uma área para filtrar os gastos. O agrupamento usa a função declarada nos registros, não uma classificação inventada.
+- Dez registros por página nas listas. Totais e exportações continuam incluindo todos os registros encontrados.
+- Detalhes em tela cheia no celular, botões maiores, ajuda em perguntas e respostas, navegação pelo botão Voltar do navegador e preservação de período/filtros ao trocar de tela durante a sessão.
+- Tema claro com textos escuros, fonte do próprio aparelho, sem download de fontes externas. Sem imagens grandes ou nova biblioteca de interface.
+
+A atualização foi conferida em navegador automatizado nas larguras 320, 360, 390, 412, 768 e 1440 px, além de 844 × 390 em paisagem. São testes de interface com amostras reais controladas; não substituem testes em aparelhos físicos ou com usuários. Veja `docs/INTERFACE_MOBILE.md`.
+
 ## Executar localmente
 
 Requer Node.js **22.12 ou superior** e npm. Use uma versão LTS mantida.
@@ -54,8 +68,8 @@ Os filtros se aplicam a todos os registros da consulta, antes da paginação. Os
 
 ## Exportar
 
-- **CSV:** todos os registros filtrados, valores em reais com duas casas decimais, fonte, período, filtros, instante da coleta e identificadores. Textos que poderiam executar fórmulas em planilhas são neutralizados.
-- **JSON com fontes:** registros em centavos inteiros, totais, metadados e avisos.
+- **Planilha (CSV):** todos os registros filtrados, valores em reais com duas casas decimais, fonte, período, filtros, instante da coleta e identificadores. Textos que poderiam executar fórmulas em planilhas são neutralizados.
+- **Dados com fontes (JSON):** registros em centavos inteiros, totais, metadados e avisos.
 - **Resumo SICONFI:** JSON do demonstrativo e da identificação da consulta.
 
 A exportação verifica quantidade, IDs, totais e a mesma versão semântica dos dados entre páginas. Mudança na fonte interrompe a exportação e pede nova consulta. O SHA-256 registra a identidade da resposta recebida; não substitui documento fiscal, assinatura do órgão ou certificação da veracidade. As respostas brutas de produção não são arquivadas permanentemente por este aplicativo.
@@ -64,7 +78,7 @@ A exportação verifica quantidade, IDs, totais e a mesma versão semântica dos
 
 Uma resposta inválida, alteração de estrutura, divergência de valores, período inconsistente ou erro de rede produz indisponibilidade. Não há estimativas, dados de demonstração ou uso silencioso de um arquivo histórico como se fosse a fonte atual. Um resultado vazio não comprova inexistência de movimentação.
 
-A consulta bem-sucedida pode ser reutilizada em memória por até dois minutos; o momento original da coleta continua visível. “Atualizar fonte” força nova coleta. Atualização publicada pela fonte aparece como desconhecida quando não é informada. O service worker nunca armazena respostas financeiras e elimina os caches antigos do app ao ativar a versão nova. Uma aba que permaneça aberta na versão antiga precisa ser recarregada após a atualização.
+A consulta bem-sucedida pode ser reutilizada em memória por até dois minutos; o momento original da coleta continua visível. “Atualizar dados” força nova coleta. Atualização publicada pela fonte aparece como desconhecida quando não é informada. O service worker nunca armazena respostas financeiras e elimina os caches antigos do app ao ativar a versão nova. Uma aba que permaneça aberta na versão antiga precisa ser recarregada após a atualização.
 
 ## Verificar
 
